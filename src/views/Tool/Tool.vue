@@ -2,8 +2,8 @@
     <div class="wrapper">
         <div class="wrappermain">
             <cell-box link="cxjsq" class="list">车险分期计算器</cell-box>
-            <cell-box is-link link="" class="list">房产分期</cell-box>
             <cell-box link="hljs" class="list">汇率计算</cell-box>
+            <cell-box is-link link="" class="list" @click.native="alerts">房产分期</cell-box>
             <x-button class="list" @click.native="exit">退出</x-button>
         </div>
     </div>
@@ -35,6 +35,9 @@
                 });
                 delete localStorage.login_post;
                 this.$router.push("/Login")
+            },
+            alerts(){
+               this.$vux.toast.text("正在玩命开发中....")
             }
         },
         components: {
@@ -46,12 +49,6 @@
             ButtonTab,
             ButtonTabItem,
             XButton
-        },
-        created() {
-            this.action({
-                moduleName: "s",
-                goods: "1212"
-            })
         }
     }
 </script>

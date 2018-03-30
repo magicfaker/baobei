@@ -1,9 +1,9 @@
 export default {
     login:{
-        password:"12345678",
-        phone:"15958123761",
-        // password:"123456",
-        // phone:"18768527014"
+        // password:"12345678",
+        // phone:"15958123761",
+        password:"123456",
+        phone:"18768527014"
     },
     layout:{
         backText:'',
@@ -93,5 +93,6 @@ export default {
         // auth_linkman2_phone:"18768527014",
         // auth_bankCode:"1111111111111111",
         // auth_idCode:"362329199303198119",
-    }
+    },
+    Tool:{}
 }
