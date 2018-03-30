@@ -6,6 +6,8 @@
 
 ## Build Setup
 
+分支测试
+
 ``` bash
 # install dependencies
 npm install
