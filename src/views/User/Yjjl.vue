@@ -8,7 +8,7 @@
 			</tab>
 			<div class="tab-body zq">
 				<group gutter="0" class="list">
-					<cell-box v-for="item in zq" class="list-item">
+					<cell-box v-for="(item,index) in zq" :key="index" class="list-item">
 						<div>
 							赚取佣金 <span>+{{item.money}}</span>
 						</div>
@@ -25,7 +25,7 @@
 			</div>
 			<div class="tab-body tx nshow">
 				<group gutter="0" class="list">
-					<cell-box v-for="item in tx" class="list-item">
+					<cell-box v-for="(item,index) in tx" :key="index" class="list-item">
 						<div>
 							佣金提现 <span>-{{item.money}}</span>
 						</div>
