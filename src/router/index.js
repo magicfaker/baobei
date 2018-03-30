@@ -7,9 +7,9 @@ Vue.use(Router)
 export default new Router({
   routes: [
       { path: '/', redirect: 'Login'},
-      //Dome
+      //todo Dome
       utils.importVueInit("Dome/Dome"),
-      //登陆
+      //todo 登陆
       utils.importVueInit("Login/Login"),
       utils.importVueInit({
           name:"Layout/Layout",
@@ -25,6 +25,8 @@ export default new Router({
                   component: HomeLayout,
                   redirect: '/app/HomeLayout/home',
                   children:[
+
+                      //todo 分期与订单
                       utils.importVueInit("Home/Home","/app/HomeLayout/home","车险分期",{
                           meta:{
                               showBack:false,
@@ -48,12 +50,17 @@ export default new Router({
                       utils.importVueInit("Messages/MessageDetails","/app/HomeLayout/messageDetails","消息详情",{meta:{navShow:false}}),
                       utils.importVueInit("Pay/Pay","/app/HomeLayout/pay","支付手续费",{meta:{navShow:false}}),
 
-
+                      //todo 工具
                       utils.importVueInit("Tool/Tool","/app/HomeLayout/Tool","工具",{
                           meta:{
                               showBack:false,
                           }
                       }),
+                      utils.importVueInit("Tool/Cxjsq","/app/HomeLayout/cxjsq","车险分期计算器",{meta:{navShow:false}}),
+                      utils.importVueInit("Tool/Hljs","/app/HomeLayout/hljs","汇率计算",{meta:{navShow:false}}),
+                      utils.importVueInit("Tool/SelectRate","/app/HomeLayout/selectrate","币种切换",{meta:{navShow:false}}),
+
+                      //todo 用户中心
                       utils.importVueInit("User/User","/app/HomeLayout/User","我的",{
                           meta:{
                               showBack:false,

@@ -48,6 +48,7 @@
                     this.$vux.toast.text("密码长度不能低于6位")
                     return;
                 }
+                this.$store.commit('updateLoadingStatus', {isLoading: true})
                 this.action({
                     moduleName:'login_post',
                     method:"POST",
@@ -55,6 +56,7 @@
                     data:this.airforce.login,
                     isFormData:true,
                 }).then(e=>{
+                    this.$store.commit('updateLoadingStatus', {isLoading: false})
                     if(e.code != 200){
                         this.$vux.toast.text(e.message);
                         return;
@@ -62,6 +64,7 @@
                     localStorage.login_post = JSON.stringify(this.airforce.login_post);
                     this.$router.push("/app/HomeLayout/home");
                 }).catch(e=>{
+                    this.$store.commit('updateLoadingStatus', {isLoading: false})
                     this.$vux.toast.text(e);
                 });
             },
