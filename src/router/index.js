@@ -97,19 +97,19 @@ export default new Router({
                               navShow:false,
                               head_type:2,
                               head_txt:"保存",
-                              icon_url:'/app/HomeLayout/wdyhk'
+                              click:true,
                           }}),
                       utils.importVueInit("User/Ylsjh","/app/HomeLayout/ylsjh","预留手机号",{meta:{
                               navShow:false,
                               head_type:2,
                               head_txt:"保存",
-                              icon_url:'/app/HomeLayout/wdyhk'
+                              click:true,
                           }}),
                       utils.importVueInit("User/Ylwxh","/app/HomeLayout/ylwxh","预留微信号",{meta:{
                               navShow:false,
                               head_type:2,
                               head_txt:"保存",
-                              icon_url:'/app/HomeLayout/wdyhk'
+                              click:true,
                           }}),
                       utils.importVueInit("User/Xgmm","/app/HomeLayout/xgmm","修改密码",{meta:{navShow:false}}),
                       utils.importVueInit("User/Yjjl","/app/HomeLayout/yjjl","佣金记录",{meta:{navShow:false}}),

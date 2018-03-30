@@ -32,9 +32,14 @@
         methods: {
             ...mapActions(['action']),
             iconGo(){
-                if(this.airforce.layout && this.airforce.layout.icon_url){
-                    this.$router.push(this.airforce.layout.icon_url);
-                }
+                try {
+                    if(this.airforce.layout && this.airforce.layout.click){
+                        this.airforce.layout.clickfn();
+                    }
+                    if(this.airforce.layout && this.airforce.layout.icon_url){
+                        this.$router.push(this.airforce.layout.icon_url);
+                    }
+                }catch (e){ }
             }
         },
     }

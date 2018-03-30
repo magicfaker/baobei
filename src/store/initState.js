@@ -2,8 +2,8 @@ export default {
     login:{
         // password:"12345678",
         // phone:"15958123761",
-        password:"123456",
-        phone:"18768527014"
+        // password:"123456",
+        // phone:"18768527014"
     },
     layout:{
         backText:'',

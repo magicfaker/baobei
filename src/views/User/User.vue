@@ -34,7 +34,7 @@
                     <i style="color: #0995ee;" class="iconfont">&#xe7dd;</i>
                     <span>我的二维码</span>
                 </cell-box>
-                <cell-box is-link link='' class="tjghy">
+                <cell-box is-link link='' class="tjghy" @click.native="alerts">
                     <i style="color: #ff6000;" class="iconfont">&#xe635;</i>
                     <span>推荐给好友</span>
                 </cell-box>
@@ -77,6 +77,9 @@
         },
         methods: {
             ...mapActions(['action']),
+            alerts(){
+              this.$vux.toast.text("玩命开发中...")
+            },
             upload() {
                 var fileObj = this.$refs.aa.files[0]; //获取到files的信息
                 var reader = new FileReader();

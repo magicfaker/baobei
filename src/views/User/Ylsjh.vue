@@ -46,11 +46,17 @@
                     if(d.code==200){
                         this.alt.val = "保存成功";
                         this.alt.show = true;
-                        var that = this;
-                        setTimeout(function() {
-                            that.$router.push({
-                                path: '/xgzl'
-                            });
+                        this.action({
+                            moduleName:'login_post',
+                            goods:{
+                                data:{
+                                    yphone:this.usertell,
+                                }
+                            }
+                        });
+                        localStorage.login_post = JSON.stringify(this.airforce.login_post);
+                        setTimeout(() =>{
+                            this.$router.back();
                         }, 2000)
                     }else{
                         this.alt.val = d.message;
@@ -72,7 +78,17 @@
 		created() {
             let e=this.airforce.login_post;
             this.usertell=e.data.yphone
-		}
+		},
+        mounted(){
+            this.action({
+                moduleName:'layout',
+                goods:{
+                    clickfn:()=>{
+                        this.save();
+                    }
+                }
+            })
+        }
 	}
 </script>
 

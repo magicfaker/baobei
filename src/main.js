@@ -26,7 +26,7 @@ router.beforeEach(function (to, from, next) {
   store.commit('AIRFORCE_DO', {
     data: {
       moduleName: 'layout',
-      goods: _.merge({title: to.name, marquee: false, showBack: true, head_type: 0, navShow: true, icon_url: false}, to.meta)
+      goods: _.merge({title: to.name, marquee: false, showBack: true, head_type: 0, navShow: true, icon_url: false, click:false}, to.meta)
     }
   })
   try {
