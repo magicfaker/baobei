@@ -1,6 +1,8 @@
 # baobei
 
-> 保呗分期
+#### 保呗分期
+
+>宝贝分期：基于vue的app项目
 
 ## Build Setup
 
@@ -27,4 +29,10 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 参考资料
+
+[api](https://team.oschina.net/b0fq/document)
+
+[vux](https://vux.li/#/)
+
+[axios](https://github.com/axios/axios)
