@@ -29,6 +29,10 @@ npm run e2e
 npm test
 ```
 
+## 开发工具
+
+[hbuilder](http://www.dcloud.io/)
+
 ## 参考资料
 
 [api](https://team.oschina.net/b0fq/document)
