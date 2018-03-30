@@ -29,7 +29,7 @@
 			</group>
 			
 		</div>
-		<router-link  to="tjyhk" class="bottom">
+		<router-link  to="/app/HomeLayout/tjyhk" class="bottom">
 			添加银行卡
 		</router-link>
 	</div>
@@ -179,61 +179,9 @@
 </script>
 
 <style scoped lang="less">
-	@font-face {
-		font-family: 'iconfont';  /* project id 590408 */
-  src: url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.eot');
-  src: url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.eot?#iefix') format('embedded-opentype'),
-  url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.woff') format('woff'),
-  url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.ttf') format('truetype'),
-  url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.svg#iconfont') format('svg');
-	}
-	
-	.iconfont {
-		font-family: "iconfont";
-		font-size: 18px;
-		font-style: normal;
-	}
-	
-	
-	
-	/** {
-		margin: 0;
-		padding: 0;
-	}*/
-	
-	ol,
-	ul,
-	li {
-		list-style: none;
-	}
-	
-	img {
-		border: 0;
-		vertical-align: middle;
-	}
-	
-	body {
-		color: #000000;
-		background: #FFF;
-		text-align: center;
-	}
-	
-	.clear {
-		clear: both;
-		height: 1px;
-		width: 100%;
-		overflow: hidden;
-		margin-top: -1px;
-	}
-	
-	a {
-		color: #000000;
-		text-decoration: none;
-	}
+
 	.wrapper{
-		min-width: 320px;
-		max-width: 640px;
-		margin: 0 auto;
+
 		font-size: 14px;
 		font-family: "微软雅黑";
 		.header {

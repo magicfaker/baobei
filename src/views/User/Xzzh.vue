@@ -60,33 +60,6 @@
 </script>
 
 <style scoped lang="less">
-	ol,
-	ul,
-	li {
-		list-style: none;
-	}
-	input:focus{
-		outline: none;
-	}
-	img {
-		border: 0;
-		vertical-align: middle;
-	}
-	
-	body {
-		color: #000000;
-		background: #FFF;
-		text-align: center;
-	}
-	
-	.clear {
-		clear: both;
-		height: 1px;
-		width: 100%;
-		overflow: hidden;
-		margin-top: -1px;
-	}
-	
 	a {
 		color: #000000;
 		text-decoration: none;

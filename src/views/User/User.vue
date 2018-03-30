@@ -8,7 +8,7 @@
                 </div>
                 <div class="username">
                     <span>{{username}}</span>
-                    <router-link class="modify" to="xgzl">
+                    <router-link class="modify" to="/app/HomeLayout/xgzl">
                         <i class="iconfont">&#xe63a;</i>
                     </router-link>
                 </div>
@@ -43,7 +43,7 @@
                 </cell-box>
             </group>
             <group gutter="30" class="set">
-                <cell-box is-link link='sz' class="sz">
+                <cell-box is-link link='/app/HomeLayout/sz' class="sz">
                     <i style="color: #7885a5;" class="iconfont">&#xe622;</i>
                     <span>设置</span>
                 </cell-box>

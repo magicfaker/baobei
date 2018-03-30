@@ -76,6 +76,36 @@ export default new Router({
                       utils.importVueInit("User/Wdyhk","/app/HomeLayout/wdyhk","我的银行卡",{meta:{
                           navShow:false,
                       }}),
+                      utils.importVueInit("User/Tjyhk","/app/HomeLayout/tjyhk","添加银行卡",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Wdewm","/app/HomeLayout/wdewm","我的二维码",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Bzzx","/app/HomeLayout/bzzx","帮助中心",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Yhxz","/app/HomeLayout/yhxz","用户须知",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Zcdyhk","/app/HomeLayout/zcdyhk","支持的银行卡",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Czlc","/app/HomeLayout/czlc","操作流程",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Rzlc","/app/HomeLayout/rzlc","保险渠道入住流程",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Lxkf","/app/HomeLayout/lxkf","联系客服",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Sz","/app/HomeLayout/sz","设置",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Xgzl","/app/HomeLayout/xgzl","修改资料",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Xgnc","/app/HomeLayout/xgnc","修改昵称",{meta:{
+                              navShow:false,
+                              head_type:2,
+                              head_txt:"保存",
+                              icon_url:'/app/HomeLayout/wdyhk'
+                          }}),
+                      utils.importVueInit("User/Ylsjh","/app/HomeLayout/ylsjh","预留手机号",{meta:{
+                              navShow:false,
+                              head_type:2,
+                              head_txt:"保存",
+                              icon_url:'/app/HomeLayout/wdyhk'
+                          }}),
+                      utils.importVueInit("User/Ylwxh","/app/HomeLayout/ylwxh","预留微信号",{meta:{
+                              navShow:false,
+                              head_type:2,
+                              head_txt:"保存",
+                              icon_url:'/app/HomeLayout/wdyhk'
+                          }}),
+                      utils.importVueInit("User/Xgmm","/app/HomeLayout/xgmm","修改密码",{meta:{navShow:false}}),
+                      utils.importVueInit("User/Yjjl","/app/HomeLayout/yjjl","佣金记录",{meta:{navShow:false}}),
                   ]
               }),
 

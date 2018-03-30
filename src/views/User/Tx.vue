@@ -147,57 +147,13 @@
 </script>
 
 <style scoped lang="less">
-	@font-face {
-		font-family: 'iconfont';
-		/* project id 590408 */
-		src: url('https://at.alicdn.com/t/font_590408_pl1w0nv12v9m5cdi.eot');
-		src: url('https://at.alicdn.com/t/font_590408_pl1w0nv12v9m5cdi.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_590408_pl1w0nv12v9m5cdi.woff') format('woff'), url('https://at.alicdn.com/t/font_590408_pl1w0nv12v9m5cdi.ttf') format('truetype'), url('https://at.alicdn.com/t/font_590408_pl1w0nv12v9m5cdi.svg#iconfont') format('svg');
-	}
-	
-	.iconfont {
-		font-family: "iconfont";
-		font-size: 18px;
-		font-style: normal;
-	}
-	
-	.active {
-		color: #ff7300;
-	}
-	
-	ol,
-	ul,
-	li {
-		list-style: none;
-	}
-	
-	img {
-		border: 0;
-		vertical-align: middle;
-	}
-	
-	body {
-		color: #000000;
-		background: #FFF;
-		text-align: center;
-	}
-	
-	.clear {
-		clear: both;
-		height: 1px;
-		width: 100%;
-		overflow: hidden;
-		margin-top: -1px;
-	}
-	
+
 	a {
 		color: #000000;
 		text-decoration: none;
 	}
-	
 	.wrapper {
-		min-width: 320px;
-		max-width: 640px;
-		margin: 0 auto;
+
 		font-size: 14px;
 		font-family: "微软雅黑";
 		.header {
@@ -270,6 +226,7 @@
 					padding: 15px;
 					font-size: 24px;
 					display: block;
+					background: white;
 					span {
 						display: block;
 						font-size: 16px;
