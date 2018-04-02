@@ -1,7 +1,6 @@
 <template>
-	<div class="wrapper">
-
-		<div class="wrappermain">
+	<div class="wrapperr">
+		<div class="wrappercontent">
 			<cell-box class="title">
 				<label>提现到银行卡</label>
 				<span>银行卡提现更便捷</span>
@@ -45,7 +44,6 @@
 		methods: {
 			...mapActions(['action']),
 			save(){
-				
 				if(!this.yz.test(this.yhknumber)){
 					this.alt.show=true;
 					this.alt.val="请输入正确的银行卡号";
@@ -104,14 +102,13 @@
 	input:focus{
 		outline: none;
 	}
-	.wrapper {
+	.wrapperr {
 		font-size: 14px;
 		font-family: "微软雅黑";
-
-		.wrappermain {
+		.wrappercontent {
 			margin-top: 40px;
 			.title {
-				label {
+				label{
 					font-size: 16px;
 					padding-right: 5px;
 				}
@@ -120,15 +117,16 @@
 				}
 			}
 			.list {
+				box-sizing: border-box;
 				padding: 0 15px;
 				background: white;
-				label {
+				label{
 					font-size: 16px;
 					width: 30%;
 					line-height: 42px;
 				}
 				input {
-					width: 70%;
+					width: 60%;
 					height: 42px;
 					line-height: 42px;
 					border: none;

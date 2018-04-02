@@ -184,28 +184,7 @@
 
 		font-size: 14px;
 		font-family: "微软雅黑";
-		.header {
-			width: 100%;
-			min-width: 320px;
-			max-width: 640px;
-			position: fixed;
-			top: 0;
-			left: 50%;
-			transform: translateX(-50%);
-			background: #ff7200;
-			overflow: hidden;
-			text-align: center;
-			z-index: 1000;
-			padding: 0;
-			&/deep/ .vux-header-left {
-				.left-arrow {
-					&:before {
-						content: '';
-						border-color: white;
-					}
-				}
-			}
-		}
+		
 		.none{
 			width: 30%;
 			margin: 0 auto;
