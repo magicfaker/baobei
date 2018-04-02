@@ -70,7 +70,7 @@
                         var that=this;
                         setTimeout(function() {
                             that.$router.push({
-                                path: '/wdyhk'
+                                path: '/app/HomeLayout/wdyhk'
                             });
                         }, 2000)
                     }else{

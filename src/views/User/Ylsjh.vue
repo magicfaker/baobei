@@ -25,12 +25,19 @@
 				alt:{
 					show:false,
 					val:""
-				}
+				},
+				yz:/^1[3|4|5|8][0-9]\d{4,8}$/,
+				
 			}
 		},
 		methods: {
 			...mapActions(['action']),
 			save(){
+				if(!this.yz.test(this.usertell)){
+					this.alt.show=true;
+					this.alt.val="不是完整的11位手机号或者正确的手机号前七位";
+					return false;
+				}
                 let e=this.airforce.login_post;
                 this.action({
                     moduleName: 'editPhone',

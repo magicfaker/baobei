@@ -55,36 +55,36 @@
 			...mapActions(['action']),
 			confirm() {
 				let e = this.airforce.login_post;
-                this.action({
-                    method: "post",
-                    url: "app/Commission/cash",
-                    isFormData: true,
-                    data: {
-                        uid: e.data.uid,
-                        token: e.data.token,
-                        money: this.cash,
-                        cid: this.yhkxx.id
-                    }
-                }).then(res => {
-                    if(res.code == 200) {
-                        this.alt.show = true;
-                        this.alt.val = res.message;
-                        setTimeout(function() {
-                            that.$router.push({
-                                path: '/xgzl'
-                            });
-                        }, 2000)
-                    } else if(this.cash == undefined) {
-                        this.alt.show = true;
-                        this.alt.val = "请输入提现金额";
-                    } else {
-                        this.alt.show = true;
-                        this.alt.val = res.message;
-                    }
-                }).catch(d => {
-                    this.alt.show = true;
-                    this.alt.val = d.message;
-                })
+				this.action({
+					method: "post",
+					url: "app/Commission/cash",
+					isFormData: true,
+					data: {
+						uid: e.data.uid,
+						token: e.data.token,
+						money: this.cash,
+						cid: this.yhkxx.id
+					}
+				}).then(res => {
+					if(res.code == 200) {
+						this.alt.show = true;
+						this.alt.val = res.message;
+						setTimeout(function() {
+							that.$router.push({
+								path: '/xgzl'
+							});
+						}, 2000)
+					} else if(this.cash == undefined) {
+						this.alt.show = true;
+						this.alt.val = "请输入提现金额";
+					} else {
+						this.alt.show = true;
+						this.alt.val = res.message;
+					}
+				}).catch(d => {
+					this.alt.show = true;
+					this.alt.val = d.message;
+				})
 			},
 			txall() {
 				this.cash = parseFloat(this.balance);
@@ -101,59 +101,60 @@
 			ButtonTabItem
 		},
 		created() {
-			if(this.$route.query.yhkid) {
-				this.yhkh = true;
-			}
-			this.yhkxx.id = this.$route.query.yhkid;
-			this.yhkxx.num = this.$route.query.yhknum;
-			this.yhkxx.bank = this.$route.query.bank;
 			let e = this.airforce.login_post;
-            this.action({ //获取到可提现的金额（佣金余额）
-                method: "post",
-                url: "app/Commission/commission",
-                isFormData: true,
-                data: {
-                    uid: e.data.uid,
-                    token: e.data.token
-                }
-            }).then(res => {
-                this.balance = res.data.commission;
-            }).catch(error => {
-                this.alt.show = true;
-                this.alt.val = e.message;
-            })
+			this.action({ //获取到可提现的金额（佣金余额）
+				method: "post",
+				url: "app/Commission/commission",
+				isFormData: true,
+				data: {
+					uid: e.data.uid,
+					token: e.data.token
+				}
+			}).then(res => {
+				this.balance = res.data.commission;
+			}).catch(error => {
+				this.alt.show = true;
+				this.alt.val = e.message;
+			})
 
-            this.action({ //获取到默认的银行卡信息
-                method: "post",
-                url: "app/Commission/getDefault",
-                isFormData: true,
-                data: {
-                    uid: e.data.uid,
-                    token: e.data.token
-                }
-            }).then(res => {
-                if(res.data) {
-                    this.yhkxx.bank = res.data.bank;
-                    this.yhkxx.num = res.data.number;
-                    this.yhkxx.id = res.data.id;
-                    this.yhkh = true;
-                }
-            }).catch(error => {
-                this.alt.show = true;
-                this.alt.val = e.message;
-            })
+			if(this.$route.query.yhkid) {//判断选择银行卡页面有没有传数据过来，有就用传过来的数据，没有就申请得到默认银行卡信息
+				this.yhkh = true;
+				this.yhkxx.id = this.$route.query.yhkid;
+				this.yhkxx.num = this.$route.query.yhknum;
+				this.yhkxx.bank = this.$route.query.bank;
+			} else {
+				this.action({ //获取到默认的银行卡信息
+					method: "post",
+					url: "app/Commission/getDefault",
+					isFormData: true,
+					data: {
+						uid: e.data.uid,
+						token: e.data.token
+					}
+				}).then(res => {
+					if(res.data) {
+						this.yhkxx.bank = res.data.bank;
+						this.yhkxx.num = res.data.number;
+						this.yhkxx.id = res.data.id;
+						this.yhkh = true;
+					}
+				}).catch(error => {
+					this.alt.show = true;
+					this.alt.val = e.message;
+				})
+			}
+
 		}
 	}
 </script>
 
 <style scoped lang="less">
-
 	a {
 		color: #000000;
 		text-decoration: none;
 	}
+	
 	.wrapper {
-
 		font-size: 14px;
 		font-family: "微软雅黑";
 		.header {
