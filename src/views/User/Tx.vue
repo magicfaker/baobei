@@ -28,122 +28,122 @@
 </template>
 
 <script>
-	import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem } from 'vux'
-	import { Group, Cell, CellBox, Toast } from 'vux'
-	import { mapActions, mapGetters } from 'vuex'
-	var cash;
-	export default {
-		name: 'wdewm',
-		...mapActions,
-		computed: mapGetters({
-			airforce: 'airforce'
-		}),
-		data() {
-			return {
-				msg: '佣金提现',
-				yhkh: false,
-				yhkxx: {},
-				balance: 0,
-				cash: cash,
-				alt: {
-					show: false,
-					val: ""
-				}
-			}
-		},
-		methods: {
-			...mapActions(['action']),
-			confirm() {
-				let e = this.airforce.login_post;
-                this.action({
-                    method: "post",
-                    url: "app/Commission/cash",
-                    isFormData: true,
-                    data: {
-                        uid: e.data.uid,
-                        token: e.data.token,
-                        money: this.cash,
-                        cid: this.yhkxx.id
-                    }
-                }).then(res => {
-                    if(res.code == 200) {
-                        this.alt.show = true;
-                        this.alt.val = res.message;
-                        setTimeout(function() {
-                            that.$router.push({
-                                path: '/xgzl'
-                            });
-                        }, 2000)
-                    } else if(this.cash == undefined) {
-                        this.alt.show = true;
-                        this.alt.val = "请输入提现金额";
-                    } else {
-                        this.alt.show = true;
-                        this.alt.val = res.message;
-                    }
-                }).catch(d => {
-                    this.alt.show = true;
-                    this.alt.val = d.message;
-                })
-			},
-			txall() {
-				this.cash = parseFloat(this.balance);
-			}
-		},
-		components: {
-			Toast,
-			Group,
-			Cell,
-			CellBox,
-			XHeader,
-			Actionsheet,
-			ButtonTab,
-			ButtonTabItem
-		},
-		created() {
-			if(this.$route.query.yhkid) {
-				this.yhkh = true;
-			}
-			this.yhkxx.id = this.$route.query.yhkid;
-			this.yhkxx.num = this.$route.query.yhknum;
-			this.yhkxx.bank = this.$route.query.bank;
-			let e = this.airforce.login_post;
-            this.action({ //获取到可提现的金额（佣金余额）
-                method: "post",
-                url: "app/Commission/commission",
-                isFormData: true,
-                data: {
-                    uid: e.data.uid,
-                    token: e.data.token
-                }
-            }).then(res => {
-                this.balance = res.data.commission;
-            }).catch(error => {
-                this.alt.show = true;
-                this.alt.val = e.message;
+import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem } from 'vux'
+import { Group, Cell, CellBox, Toast } from 'vux'
+import { mapActions, mapGetters } from 'vuex'
+var cash
+export default {
+  name: 'wdewm',
+  ...mapActions,
+  computed: mapGetters({
+    airforce: 'airforce'
+  }),
+  data () {
+    return {
+      msg: '佣金提现',
+      yhkh: false,
+      yhkxx: {},
+      balance: 0,
+      cash: cash,
+      alt: {
+        show: false,
+        val: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions(['action']),
+    confirm () {
+      let e = this.airforce.login_post
+      this.action({
+        method: 'post',
+        url: 'app/Commission/cash',
+        isFormData: true,
+        data: {
+          uid: e.data.uid,
+          token: e.data.token,
+          money: this.cash,
+          cid: this.yhkxx.id
+        }
+      }).then(res => {
+        if (res.code == 200) {
+          this.alt.show = true
+          this.alt.val = res.message
+          setTimeout(function () {
+            that.$router.push({
+              path: '/app/HomeLayout/xgzl'
             })
+          }, 2000)
+        } else if (this.cash == undefined) {
+          this.alt.show = true
+          this.alt.val = '请输入提现金额'
+        } else {
+          this.alt.show = true
+          this.alt.val = res.message
+        }
+      }).catch(d => {
+        this.alt.show = true
+        this.alt.val = d.message
+      })
+    },
+    txall () {
+      this.cash = parseFloat(this.balance)
+    }
+  },
+  components: {
+    Toast,
+    Group,
+    Cell,
+    CellBox,
+    XHeader,
+    Actionsheet,
+    ButtonTab,
+    ButtonTabItem
+  },
+  created () {
+    if (this.$route.query.yhkid) {
+      this.yhkh = true
+    }
+    this.yhkxx.id = this.$route.query.yhkid
+    this.yhkxx.num = this.$route.query.yhknum
+    this.yhkxx.bank = this.$route.query.bank
+    let e = this.airforce.login_post
+    this.action({ // 获取到可提现的金额（佣金余额）
+      method: 'post',
+      url: 'app/Commission/commission',
+      isFormData: true,
+      data: {
+        uid: e.data.uid,
+        token: e.data.token
+      }
+    }).then(res => {
+      this.balance = res.data.commission
+    }).catch(error => {
+      this.alt.show = true
+      this.alt.val = e.message
+    })
 
-            this.action({ //获取到默认的银行卡信息
-                method: "post",
-                url: "app/Commission/getDefault",
-                isFormData: true,
-                data: {
-                    uid: e.data.uid,
-                    token: e.data.token
-                }
-            }).then(res => {
-                if(res.data) {
-                    this.yhkxx.bank = res.data.bank;
-                    this.yhkxx.num = res.data.number;
-                    this.yhkxx.id = res.data.id;
-                    this.yhkh = true;
-                }
-            }).catch(error => {
-                this.alt.show = true;
-                this.alt.val = e.message;
-            })
-		}
-	}
+    this.action({ // 获取到默认的银行卡信息
+      method: 'post',
+      url: 'app/Commission/getDefault',
+      isFormData: true,
+      data: {
+        uid: e.data.uid,
+        token: e.data.token
+      }
+    }).then(res => {
+      if (res.data) {
+        this.yhkxx.bank = res.data.bank
+        this.yhkxx.num = res.data.number
+        this.yhkxx.id = res.data.id
+        this.yhkh = true
+      }
+    }).catch(error => {
+      this.alt.show = true
+      this.alt.val = e.message
+    })
+  }
+}
 </script>
 
 <style scoped lang="less">
@@ -216,7 +216,7 @@
 							color: #44c2dd;
 						}
 					}
-					
+
 					.yhkh{
 						color: #b2b2b2;
 						padding-left: 30%;
