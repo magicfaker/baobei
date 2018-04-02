@@ -176,27 +176,14 @@
 </script>
 
 <style scoped lang="less">
-	@font-face {
-		font-family: 'iconfont';
-		/* project id 590408 */
-		src: url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.eot');
-		src: url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.eot?#iefix') format('embedded-opentype'), url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.woff') format('woff'), url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.ttf') format('truetype'), url('https://at.alicdn.com/t/font_590408_ab8lr4tq957y14i.svg#iconfont') format('svg');
-	}
-	
-	.iconfont {
-		font-family: "iconfont";
-		font-size: 18px;
-		font-style: normal;
-	}
-	
 	.active {
 		box-sizing: border-box;
 		float: left;
 		border-radius: 5px;
-		border: 2px solid #f3981e;
+	/*	border: 2px solid #f3981e;*/
 		color: #f3981e;
-		margin-right: 5%;
 		padding: 0 5px;
+		border-color: #f3981e;
 	}
 	
 	.oldtype {
@@ -213,31 +200,6 @@
 		margin: 0;
 		padding: 0;
 	}*/
-	
-	ol,
-	ul,
-	li {
-		list-style: none;
-	}
-	
-	img {
-		border: 0;
-		vertical-align: middle;
-	}
-	
-	body {
-		color: #000000;
-		background: #FFF;
-		text-align: center;
-	}
-	
-	.clear {
-		clear: both;
-		height: 1px;
-		width: 100%;
-		overflow: hidden;
-		margin-top: -1px;
-	}
 	
 	a {
 		color: #000000;
@@ -338,13 +300,14 @@
 					color: #c3c3c3;
 					.cartype-item {
 						float: left;
+						width: 30%;
 						border-radius: 5px;
 						box-sizing: border-box;
 						border: 2px solid #c3c3c3;
 						/*height: 35px;
 						margin: auto 0;*/
 						line-height: 25px;
-						margin-right: 5%;
+						
 						padding: 0 5px;
 						span {
 							display: block;
