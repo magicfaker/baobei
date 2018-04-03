@@ -113,6 +113,7 @@ export default new Router({
                           }}),
                       utils.importVueInit("User/Xgmm","/app/HomeLayout/xgmm","修改密码",{meta:{navShow:false}}),
                       utils.importVueInit("User/Yjjl","/app/HomeLayout/yjjl","佣金记录",{meta:{navShow:false}}),
+                      utils.importVueInit("User/About","/app/HomeLayout/about","关于",{meta:{navShow:false}}),
                   ]
               }),
 

@@ -94,5 +94,6 @@ export default {
         // auth_bankCode:"1111111111111111",
         // auth_idCode:"362329199303198119",
     },
-    Tool:{}
+    Tool:{},
+    app_info:{},
 }

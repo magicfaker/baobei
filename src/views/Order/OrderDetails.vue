@@ -29,7 +29,7 @@
             <!--这里是图文编辑显示区域-->
         <!--</div>-->
         <div class="footerBtns">
-            <x-button plain mini v-if="status == '40'" @click.native="toPay">支付手续费</x-button>
+            <!--<x-button plain mini v-if="status == '40'" @click.native="toPay">支付手续费</x-button>-->
             <x-button plain mini v-if="status == '20'" @click.native="editor">修改期数</x-button>
             <x-button plain mini v-if="status == '30'" @click.native="editor">去修改</x-button>
             <a href="tel:0574-87919382" class="tel">联系客服</a>

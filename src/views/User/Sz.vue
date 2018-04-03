@@ -3,6 +3,7 @@
 		<div class="wrappermain">
 			<group gutter="0">
 				<cell-box is-link link='/app/HomeLayout/xgmm'>修改登陆密码</cell-box>
+				<cell-box is-link link='/app/HomeLayout/about'>关于</cell-box>
 			</group>
 			<button v-model="show" @click.prevent="quit" class="quit" >退出登陆</button>
 			<actionsheet v-model="show" :menus="menus" show-cancel @on-click-menu="click5" @on-click-menu-sure="click6"></actionsheet>
@@ -33,7 +34,6 @@
 		methods: {
 			...mapActions(['action']),
 			click5(key, item) {
-				console.log(key, item)
 				if(key=='true'){
 //					window.localStorage
 				}

@@ -94,10 +94,10 @@ const mutations = {
     } else {
       Vue.set(state, data.moduleName, data.goods)
     }
-    console.group()
-    console.log('action', data)
-    console.log('airforce', state)
-    console.groupEnd()
+    // console.group()
+    // console.log('action', data)
+    // console.log('airforce', state)
+    // console.groupEnd()
   },
   [AIRFORCE_LEAVE] (state, { data }) {
     state[data.moduleName] = undefined
