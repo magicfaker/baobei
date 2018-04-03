@@ -49,7 +49,7 @@ export default {
                           cancelText:"稍后更新",
                           onCancel:()=>{
                           },
-                          onConfirm () {
+                          onConfirm:()=> {
                               this.update = true;
                               setTimeout(()=>{
                                   this.update = false;

@@ -105,7 +105,6 @@
                     }
                 }
                 if(!this.airforce.homeSubmit.money || this.airforce.homeSubmit.money.length == 0){
-                    console.log(this.airforce.homeSubmit.money,1111)
                     this.$vux.toast.text("分期金额不能为空");
                     return
                 }
@@ -209,10 +208,13 @@
                    return this.airforce.homeSubmit.company.value;
                 }
                 return "请选择公司名称";
+            },
+            addCompany(){
+                console.log(2)
             }
         },
         watch:{
-            show1(){
+            show1(val){
                 var radioSelectObj = _.find(this.airforce.all_company_post.data,o=>{
                     return o.key == this.radioSelect;
                 });
@@ -221,7 +223,30 @@
                     goods:{
                         company:radioSelectObj
                     }
-                })
+                });
+                if(val){
+                    var _this = this;
+                    this.action({
+                        moduleName:'layout',
+                        goods:{
+                            head_type:2,
+                            head_txt:"添加公司",
+                            click:true,
+                            clickfn:()=>{
+                                _this.addCompany();
+                            }
+                        }
+                    });
+                }else {
+                    this.action({
+                        moduleName:'layout',
+                        goods:{
+                            head_type:1,
+                            click:false,
+                            clickfn:null,
+                        }
+                    });
+                }
             },
             radioSelect(){
                 this.show1 = false;
