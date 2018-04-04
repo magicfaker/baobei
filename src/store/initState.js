@@ -58,7 +58,7 @@ export default {
 
     },
     homeSubmit:{
-        fenqicheType:true,
+        // fenqicheType:true,
         // chepaiType:true,
         // company:{
         //     cid:"149",

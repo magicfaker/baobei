@@ -85,7 +85,7 @@
     };
     //// 检测更新
     var wgtUrl="http://192.168.1.117/h5.apk";
-    var checkUrl="http://demo.dcloud.net.cn/test/update/check.php";
+    var checkUrl="http://fq.egretloan.com/app/VersionDown/downs";
     function checkUpdate(opt){
         var opts = {
             callback:new Function(),
@@ -111,9 +111,22 @@
                     if(xhr.status==200){
                         // console.log("检测更新成功："+xhr.responseText);
                         var newVer=xhr.responseText;
+
+                        var resData = {};
+                        try {
+                            resData = JSON.parse(xhr.responseText).data;
+                            newVer=resData.version_code;
+                            opts.wgtUrl = resData.version_path;
+                            newVer = parseInt(newVer.replace(/\./img,''));
+
+                        }catch (e){}
+
                         //获取版本号
                         getWgtVer(function () {
-                            if(wgtVer&&newVer&&(wgtVer!=newVer)){
+                            try {
+                                wgtVer = parseInt(wgtVer.replace(/\./img,''));
+                            } catch (e){}
+                            if(wgtVer&&newVer&&(newVer > wgtVer)){
                                 if(!opts.bool){
                                     downWgt(opts.callback,opts.err,opts.ok,opts.wgtUrl);  // 下载升级包
                                 }
