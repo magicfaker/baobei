@@ -208,9 +208,6 @@
                    return this.airforce.homeSubmit.company.value;
                 }
                 return "请选择公司名称";
-            },
-            addCompany(){
-                console.log(2)
             }
         },
         watch:{
@@ -225,7 +222,6 @@
                     }
                 });
                 if(val){
-                    var _this = this;
                     this.action({
                         moduleName:'layout',
                         goods:{
@@ -233,7 +229,7 @@
                             head_txt:"添加公司",
                             click:true,
                             clickfn:()=>{
-                                _this.addCompany();
+                                this.$router.push("/app/HomeLayout/addcompany")
                             }
                         }
                     });

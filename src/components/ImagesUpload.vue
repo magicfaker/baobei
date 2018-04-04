@@ -93,7 +93,7 @@
            },
             url:{
                type:String,
-               default:`${$$rootUrl}/app/installment/upfile`
+               default:`${$$rootUrl}app/installment/upfile`
            },
            src:{
                type:String,
@@ -113,7 +113,15 @@
            },
             ossUrl:{
                type:String,
-               default:`${$$rootUrl}/app/installment/upcardphone`
+               default:`app/installment/upcardphone`
+           },
+            orderNo:{
+               type:String,
+               default:null
+           },
+            prefix:{
+               type:String,
+               default:"upload_"
            }
         },
         data(){
@@ -128,7 +136,7 @@
         },
         mounted(){
             try {
-                let base64Url = this.airforce.homeSubmit["upload_"+this.inputOfFile];
+                let base64Url = this.airforce.homeSubmit[this.prefix+this.inputOfFile];
                 if(base64Url){
                     if(base64Url.base64Url && base64Url.bool){
                         this.base64Url = base64Url.base64Url;
@@ -160,7 +168,7 @@
                     if(this.type != 2){
                         this.action({
                             moduleName:'homeSubmit',
-                            goods:_.set({},"upload_"+this.inputOfFile,{
+                            goods:_.set({},this.prefix+this.inputOfFile,{
                                 bool:true,
                                 base64Url:this.base64Url,
                             })
@@ -192,7 +200,7 @@
                     if(this.name) {
                         this.action({
                             moduleName: 'homeSubmit',
-                            goods: _.set({},"upload_"+this.inputOfFile, undefined)
+                            goods: _.set({},this.prefix+this.inputOfFile, undefined)
                         });
                     }
                 }
@@ -212,7 +220,7 @@
                 if(this.name) {
                     this.action({
                         moduleName: 'homeSubmit',
-                        goods: _.set({},"upload_"+this.inputOfFile, undefined)
+                        goods: _.set({},this.prefix+this.inputOfFile, undefined)
                     });
                 }
             },
@@ -247,7 +255,7 @@
                         });
                         this.action({
                             moduleName: 'homeSubmit',
-                            goods: _.set({},"upload_"+this.inputOfFile, this.base64Url2)
+                            goods: _.set({},this.prefix+this.inputOfFile, this.base64Url2)
                         });
                         return;
                     }
@@ -258,7 +266,7 @@
                     }
                     this.action({
                         moduleName: 'homeSubmit',
-                        goods: _.set({},"upload_"+this.inputOfFile, this.base64Url2)
+                        goods: _.set({},this.prefix+this.inputOfFile, this.base64Url2)
                     });
                 }
             }
@@ -280,17 +288,20 @@
             },
             newData(){
                 let orderid = '';
-                if(this.$router.currentRoute.query.editor == "true"){
-                    orderid = this.airforce.getperiods.data.orderid
-                }else {
-                    orderid = this.airforce.home_post.data.orderid;
-                }
+                try {
+                    if(this.$router.currentRoute.query.editor == "true"){
+                        orderid = this.airforce.getperiods.data.orderid
+                    }else {
+                        orderid = this.airforce.home_post.data.orderid;
+                    }
+                }catch (e){}
                let retData = {};
                try {
                    retData = {
                        uid:this.airforce.login_post.data.uid,
                        token:this.airforce.login_post.data.token,
                        orderid:orderid,
+                       order_no:this.orderNo,
                    }
                } catch (e){}
                for(let i in this.data){

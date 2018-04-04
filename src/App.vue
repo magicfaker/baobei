@@ -100,4 +100,22 @@ export default {
     background-color: #f7f6f5;
   }
   .vux-confirm{}
+  .HomeXbutton{
+    width: 80% !important;
+    border: none !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    background-color: #f19820 !important;
+    color: #fff !important;
+    margin-top: 40px !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.09) !important;
+    margin-bottom: 100px !important;
+    &:active {
+      border-color: rgba(241, 152, 32, 0.6) !important;
+      background-color: rgba(241, 152, 32, 0.6) !important;
+    }
+    &:after{
+      border: none !important;
+    }
+  }
 </style>

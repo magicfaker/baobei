@@ -54,8 +54,11 @@ export default {
             link:'/app/HomeLayout/user'
         },
     ],
+    AddCompanyInfo:{
+
+    },
     homeSubmit:{
-        // fenqicheType:true,
+        fenqicheType:true,
         // chepaiType:true,
         // company:{
         //     cid:"149",

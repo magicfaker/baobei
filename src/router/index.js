@@ -114,6 +114,10 @@ export default new Router({
                       utils.importVueInit("User/Xgmm","/app/HomeLayout/xgmm","修改密码",{meta:{navShow:false}}),
                       utils.importVueInit("User/Yjjl","/app/HomeLayout/yjjl","佣金记录",{meta:{navShow:false}}),
                       utils.importVueInit("User/About","/app/HomeLayout/about","关于",{meta:{navShow:false}}),
+
+                      //todo 添加公司
+                      utils.importVueInit("AddCompany/AddCompany","/app/HomeLayout/addcompany","添加公司",{meta:{navShow:false}}),
+                      utils.importVueInit("AddCompany/AddCompanyInfo","/app/HomeLayout/addcompanyinfo","公司信息",{meta:{navShow:false}}),
                   ]
               }),
 
