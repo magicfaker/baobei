@@ -226,19 +226,21 @@
         margin-bottom: 15px;
     }
     .HomeXbutton{
-        border: none;
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: #f19820;
-        color: #fff;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.09);
-        float: right;
+        border: none !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        background-color: #f19820 !important;
+        color: #fff !important;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.09) !important;
+        float: right !important;
+        margin: 0 !important;
+        width: auto !important;
         &:active {
             border-color: rgba(241, 152, 32, 0.6) !important;
             background-color: rgba(241, 152, 32, 0.6) !important;
         }
         &:after{
-            border: none;
+            border: none !important;
         }
     }
 }
