@@ -57,6 +57,7 @@
     import { Group, Cell, CellBox } from 'vux'
     import { mapActions, mapGetters } from 'vuex'
     import VueCoreImageUpload from 'vue-core-image-upload';
+    // sourcetree提交测试
     var userhead;
 
     export default {
