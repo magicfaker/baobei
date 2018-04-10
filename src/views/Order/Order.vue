@@ -120,6 +120,18 @@
                 if(selectOrderObj.status != '0'){
                     this.$router.push("/app/HomeLayout/orderdetails");
                 }else {
+                    this.action({
+                        moduleName:'homeSubmit',
+                        goods:{
+                            upload_bank_card:null,
+                            upload_idcard_back:null,
+                            upload_idcard_front:null,
+                            upload_payment_slip:null,
+                            upload_safe_no:null,
+                            upload_vehicle_license:null,
+                            upload_vehicle_license2:null,
+                        }
+                    });
                     this.$router.push("/app/HomeLayout/selectType?editor=true");
                 };
             },

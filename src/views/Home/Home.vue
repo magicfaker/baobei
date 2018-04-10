@@ -112,6 +112,7 @@
                     this.$vux.toast.text("请选择分期险种");
                     return
                 }
+                //不验证以下字段
                 // if(!this.airforce.homeSubmit.channel || this.airforce.homeSubmit.channel.length == 0){
                 //     this.$vux.toast.text("业务渠道不能为空");
                 //     return
@@ -127,11 +128,15 @@
                         token:this.airforce.login_post.data.token,
                         plate:this.airforce.homeSubmit.number,
                         amount:this.airforce.homeSubmit.money,
-                        channel:this.airforce.homeSubmit.channel,
-                        remark:this.airforce.homeSubmit.remark,
                         insurance:this.airforce.homeSubmit.fenqiType_SelectTxt,
                         cid:this.airforce.homeSubmit.company.cid,
                     };
+                    if(this.airforce.homeSubmit.channel){
+                        home_post_data['channel'] = this.airforce.homeSubmit.channel;
+                    }
+                    if(this.airforce.homeSubmit.remark){
+                        home_post_data['remark'] = this.airforce.homeSubmit.remark;
+                    }
                     if(this.airforce.homeSubmit.fenqicheType){
                         home_post_data['cartype'] = 2;
                     }else {
@@ -157,6 +162,18 @@
                         return;
                     }else {
                         this.$vux.toast.text("提交成功");
+                        this.action({
+                            moduleName:'homeSubmit',
+                            goods:{
+                                upload_bank_card:null,
+                                upload_idcard_back:null,
+                                upload_idcard_front:null,
+                                upload_payment_slip:null,
+                                upload_safe_no:null,
+                                upload_vehicle_license:null,
+                                upload_vehicle_license2:null,
+                            }
+                        })
                     }
                     this.$router.push("/app/HomeLayout/selectType");
                 }).catch(err=>{

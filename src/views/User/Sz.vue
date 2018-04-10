@@ -48,7 +48,6 @@
 			},
 			quit() {
 				this.show = true;
-				console.log(this.show)
 			}
 		},
 		components: {

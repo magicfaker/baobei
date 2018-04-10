@@ -1,6 +1,7 @@
 <template>
     <div class="Authentication">
         <group>
+            <div class="disabled"></div>
             <x-input :value="airforce.homeSubmit.auth_name" @on-change="airforce.change.set($event,'auth_name','homeSubmit')" label-width="110px" title="姓名" placeholder="请输入车主姓名"></x-input>
             <x-input :value="airforce.homeSubmit.auth_phone" @on-change="airforce.change.set($event,'auth_phone','homeSubmit')" label-width="110px" title="手机号码" placeholder="请输入车主银行卡绑定手机号"></x-input>
             <select-picker :data="selectData"
@@ -24,7 +25,7 @@
             <x-img :src="url + airforce.SelectType_post.data.idcard_front"></x-img>
             <x-input type="number" :value="airforce.homeSubmit.auth_bankCode" @on-change="airforce.change.set($event,'auth_bankCode','homeSubmit')" label-width="110px" title="银行卡卡号" placeholder="请输入车主银行卡"></x-input>
             <x-img :src="url + airforce.SelectType_post.data.bank_card"></x-img>
-            <x-input type="number" :value="airforce.homeSubmit.auth_idCode" @on-change="airforce.change.set($event,'auth_idCode','homeSubmit')" label-width="110px" title="身份证号" placeholder="请输入车主身份证"></x-input>
+            <x-input :value="airforce.homeSubmit.auth_idCode" @on-change="airforce.change.set($event,'auth_idCode','homeSubmit')" label-width="110px" title="身份证号" placeholder="请输入车主身份证"></x-input>
         </group>
         <box>
             <x-button type="primary" class="HomeXbutton"  @click.native="homeSubmitNext">确认上传</x-button>
@@ -209,7 +210,16 @@
             ...mapGetters(['airforce']),
         },
         mounted(){
-            if(this.$router.currentRoute.query.editor == "true"){
+            let orderid = '';
+                try {
+                    if(this.$router.currentRoute.query.editor == 'true' && this.airforce.selectOrder && this.airforce.selectOrder.orderid){
+                        orderid = this.airforce.selectOrder.orderid;
+                    }
+                    if(this.airforce.home_post && this.airforce.home_post.data){
+                        orderid = this.airforce.home_post.data.orderid;
+                    }
+                    //
+                }catch (e){}
                 this.action({
                     moduleName:"getinfo",
                     method:"post",
@@ -217,7 +227,7 @@
                     data:{
                         uid:this.airforce.login_post.data.uid,
                         token:this.airforce.login_post.data.token,
-                        orderid:this.airforce.selectOrder.orderid,
+                        orderid:orderid,
                     },
                     isFormData:true,
                 }).then(res=>{
@@ -249,13 +259,21 @@
                 }).catch(err=>{
                     this.$vux.toast.text(err);
                 })
-            };
         },
+
     }
 </script>
 
 <style scoped lang="less">
 .Authentication{
+    .disabled{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+    }
     .vux-x-img{
         width: 80%;
         margin: auto;

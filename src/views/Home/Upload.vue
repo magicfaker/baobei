@@ -17,9 +17,11 @@
         <images-upload inputOfFile="bank_card" text="上传还款的借记卡" toastText="还款的借记卡" :off="bank_card"></images-upload>
         <images-upload inputOfFile="payment_slip" text="上传投保人变更凭证" toastText="投保人变更凭证"></images-upload>
         <images-upload inputOfFile="safe_no" text="上传保险公司的收款账号" toastText="保险公司的收款账号"></images-upload>
-
-        <images-upload inputOfFile="vehicle_license2" text="额外的行驶证图片" toastText="行驶证图片"></images-upload>
-        <images-upload inputOfFile="payment_slip2" text="额外的缴费单" toastText="缴费单"></images-upload>
+        <x-switch class="homeXSwitch" title="是否上传额外附件" v-model="is_more"></x-switch>
+        <div v-if="is_more">
+            <images-upload v-for="i in 9" :key="i" :inputOfFile="'vehicle_license'+i" :text="'额外的行驶证图片'+i" toastText="行驶证图片"></images-upload>
+            <images-upload v-for="i in 9" :key="i+'A'" :inputOfFile="'payment_slip'+i" :text="'额外的缴费单'+i" toastText="缴费单"></images-upload>
+        </div>
         <!--<images-upload inputOfFile="other_img" :type="2" toastText="其它" :src="require('@/assets/img/home/addUpload.png')" title="其它上传(选填)" name="upload_account"></images-upload>-->
         <box>
             <x-button type="primary" class="HomeXbutton"  @click.native="homeSubmitNext">确认上传</x-button>
@@ -30,12 +32,13 @@
 <script>
     import ImagesUpload from "@/components/ImagesUpload.vue"
     import { mapActions, mapGetters } from 'vuex'
-    import {Box, XButton } from 'vux'
+    import {Box, XButton, XSwitch } from 'vux'
     export default {
         name: "upload",
         data(){
             return {
                 url:'http://egretloan.img-cn-qingdao.aliyuncs.com/',
+                is_more:false,
             }
         },
         methods: {
@@ -71,11 +74,36 @@
                     this.$vux.toast.text("请上传保险公司收款账号");
                     return;
                 }
+                let orderid = '';
                 if(this.$router.currentRoute.query.editor == "true"){
-                    this.$router.push("/app/HomeLayout/authentication?editor="+this.$router.currentRoute.query.editor);
-                    return;
+                    orderid = this.airforce.getperiods.data.orderid
+                }else {
+                    orderid = this.airforce.home_post.data.orderid;
                 }
-                this.$router.push("/app/HomeLayout/authentication")
+                // this.action({
+                //     moduleName:'is_more_post',
+                //     url:'app/installment/is_more',
+                //     method:'post',
+                //     isFormData:true,
+                //     data:{
+                //         uid:this.airforce.login_post.data.uid,
+                //         token:this.airforce.login_post.data.token,
+                //         orderid:orderid,
+                //         is_more:this.is_more
+                //     },
+                // }).then(res=>{
+                //     if(res.code != 200){
+                //         this.$vux.toast.text(res.message);
+                //         return;
+                //     }
+                    if(this.$router.currentRoute.query.editor == "true"){
+                        this.$router.push("/app/HomeLayout/authentication?editor="+this.$router.currentRoute.query.editor);
+                        return;
+                    }
+                    this.$router.push("/app/HomeLayout/authentication")
+                // }).catch(err=>{
+                //     this.$vux.toast.text(err);
+                // });
             }
         },
         computed: {
@@ -117,12 +145,12 @@
             this.action({
                 moduleName:"layout",
                 goods:{
-                    marquee:"影像资料"
+                    marquee:"上传的证件照必须为原件拍摄，并且真实有效。如有造假，不予通过！"
                 }
             })
         },
         components:{
-            ImagesUpload, Box, XButton
+            ImagesUpload, Box, XButton, XSwitch
         }
     }
 </script>
@@ -146,6 +174,17 @@
             }
             &:after{
                 border: none;
+            }
+        }
+        .homeXSwitch{
+            &/deep/ .weui-cell__ft{
+                position: relative;
+                .weui-switch{
+                    &:checked{
+                        border-color: #f38431;
+                        background-color: #f38431;
+                    }
+                }
             }
         }
     }
