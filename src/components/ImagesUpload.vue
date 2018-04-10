@@ -96,7 +96,7 @@
            },
             maxFileSize:{
                type:Number,
-               default:5242880
+               default:10010485760
            },
             url:{
                type:String,

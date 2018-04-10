@@ -43,6 +43,13 @@
         },
         methods: {
             ...mapActions(['action']),
+            go(){
+                if(this.$router.currentRoute.query.editor == "true"){
+                    this.$router.push("/app/HomeLayout/authentication?editor="+this.$router.currentRoute.query.editor);
+                    return;
+                }
+                this.$router.push("/app/HomeLayout/authentication")
+            },
             homeSubmitNext(){
                 if(!this.airforce.homeSubmit.upload_idcard_front ||
                     !this.airforce.homeSubmit.upload_idcard_front.bool ){
@@ -80,30 +87,52 @@
                 }else {
                     orderid = this.airforce.home_post.data.orderid;
                 }
-                // this.action({
-                //     moduleName:'is_more_post',
-                //     url:'app/installment/is_more',
-                //     method:'post',
-                //     isFormData:true,
-                //     data:{
-                //         uid:this.airforce.login_post.data.uid,
-                //         token:this.airforce.login_post.data.token,
-                //         orderid:orderid,
-                //         is_more:this.is_more
-                //     },
-                // }).then(res=>{
-                //     if(res.code != 200){
-                //         this.$vux.toast.text(res.message);
-                //         return;
-                //     }
-                    if(this.$router.currentRoute.query.editor == "true"){
-                        this.$router.push("/app/HomeLayout/authentication?editor="+this.$router.currentRoute.query.editor);
-                        return;
-                    }
-                    this.$router.push("/app/HomeLayout/authentication")
-                // }).catch(err=>{
-                //     this.$vux.toast.text(err);
-                // });
+                //判断额外图片上传
+                if(this.is_more &&
+                    (
+                        this.airforce.homeSubmit.upload_payment_slip1 ||
+                        this.airforce.homeSubmit.upload_payment_slip2 ||
+                        this.airforce.homeSubmit.upload_payment_slip3 ||
+                        this.airforce.homeSubmit.upload_payment_slip4 ||
+                        this.airforce.homeSubmit.upload_payment_slip5 ||
+                        this.airforce.homeSubmit.upload_payment_slip6 ||
+                        this.airforce.homeSubmit.upload_payment_slip7 ||
+                        this.airforce.homeSubmit.upload_payment_slip8 ||
+                        this.airforce.homeSubmit.upload_payment_slip9 ||
+                        this.airforce.homeSubmit.upload_vehicle_license1 ||
+                        this.airforce.homeSubmit.upload_vehicle_license2 ||
+                        this.airforce.homeSubmit.upload_vehicle_license3 ||
+                        this.airforce.homeSubmit.upload_vehicle_license4 ||
+                        this.airforce.homeSubmit.upload_vehicle_license5 ||
+                        this.airforce.homeSubmit.upload_vehicle_license6 ||
+                        this.airforce.homeSubmit.upload_vehicle_license7 ||
+                        this.airforce.homeSubmit.upload_vehicle_license8 ||
+                        this.airforce.homeSubmit.upload_vehicle_license9
+                    )
+                ){
+                    this.action({
+                        moduleName:'is_more_post',
+                        url:'app/installment/is_more',
+                        method:'post',
+                        isFormData:true,
+                        data:{
+                            uid:this.airforce.login_post.data.uid,
+                            token:this.airforce.login_post.data.token,
+                            orderid:orderid,
+                            is_more:1
+                        },
+                    }).then(res=>{
+                        if(res.code != 200){
+                            this.$vux.toast.text(res.message);
+                            return;
+                        }
+                        this.go();
+                    }).catch(err=>{
+                        this.$vux.toast.text(err);
+                    });
+                }else {
+                    this.go();
+                }
             }
         },
         computed: {
