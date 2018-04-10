@@ -1,8 +1,8 @@
 <template>
     <div class="AddCompany">
-        <images-upload :prefix="prefix" :orderNo="orderNo" :url="url" inputOfFile="idcard_front" text="上传企业法人身份证正面照片" toastText="身份证正面"></images-upload>
-        <images-upload :prefix="prefix" :orderNo="orderNo" :url="url" inputOfFile="idcard_back" text="上传企业法人身份证反面照片" toastText="身份证反面"></images-upload>
-        <images-upload :prefix="prefix" :orderNo="orderNo" :url="url" inputOfFile="bank_card" text="上传对公账户的借记卡正面照片" toastText="借记卡正面照片"></images-upload>
+        <images-upload :prefix="prefix" :orderNo="orderNo" :url="url" :ossUrl="ossUrl" inputOfFile="idcard_front" text="上传企业法人身份证正面照片" toastText="身份证正面"></images-upload>
+        <images-upload :prefix="prefix" :orderNo="orderNo" :url="url" :ossUrl="ossUrl" inputOfFile="idcard_back" text="上传企业法人身份证反面照片" toastText="身份证反面"></images-upload>
+        <images-upload :prefix="prefix" :orderNo="orderNo" :url="url" :ossUrl="ossUrl" inputOfFile="bank_card" text="上传对公账户的借记卡正面照片" toastText="借记卡正面照片"></images-upload>
         <box>
             <x-button type="primary" class="HomeXbutton"  @click.native="addCompanyNext">下一步</x-button>
         </box>
@@ -22,7 +22,8 @@
             return {
                 url:`${$$rootUrl}app/Truck/upphoto`,
                 orderNo:null,
-                prefix:'AddCompany_'
+                prefix:'AddCompany_',
+                ossUrl:`app/Truck/upcardphone`
             }
         },
         methods:{

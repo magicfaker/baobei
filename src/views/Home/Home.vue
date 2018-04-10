@@ -112,14 +112,14 @@
                     this.$vux.toast.text("请选择分期险种");
                     return
                 }
-                if(!this.airforce.homeSubmit.channel || this.airforce.homeSubmit.channel.length == 0){
-                    this.$vux.toast.text("业务渠道不能为空");
-                    return
-                }
-                if(!this.airforce.homeSubmit.remark || this.airforce.homeSubmit.remark.length == 0){
-                    this.$vux.toast.text("备注不能为空");
-                    return
-                }
+                // if(!this.airforce.homeSubmit.channel || this.airforce.homeSubmit.channel.length == 0){
+                //     this.$vux.toast.text("业务渠道不能为空");
+                //     return
+                // }
+                // if(!this.airforce.homeSubmit.remark || this.airforce.homeSubmit.remark.length == 0){
+                //     this.$vux.toast.text("备注不能为空");
+                //     return
+                // }
                 let home_post_data = {};
                 try {
                     home_post_data = {
@@ -129,7 +129,7 @@
                         amount:this.airforce.homeSubmit.money,
                         channel:this.airforce.homeSubmit.channel,
                         remark:this.airforce.homeSubmit.remark,
-                        insurance:this.airforce.homeSubmit.fenqiType_Select,
+                        insurance:this.airforce.homeSubmit.fenqiType_SelectTxt,
                         cid:this.airforce.homeSubmit.company.cid,
                     };
                     if(this.airforce.homeSubmit.fenqicheType){

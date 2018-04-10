@@ -4,10 +4,11 @@
         <div class="imagesUpload">
             <flexbox v-if="type != 2">
                 <flexbox-item :span="`60px`">
-                    <img :src="imgSrcNew" class="imagesUploadShowImgObj">
+                    <img :src="imgSrcNew" v-if="!off" class="imagesUploadShowImgObj">
+                    <img :src="off" v-if="off" class="imagesUploadShowImgObj">
                 </flexbox-item>
                 <flexbox-item>
-                    <vue-core-image-upload
+                    <vue-core-image-upload v-if="!off"
                             class="vue-core-image-upload"
                             :crop="false"
                             @imageuploaded="imageuploaded"
@@ -21,9 +22,15 @@
                             :credentials="credentials"
                             :url="url" >
                     </vue-core-image-upload>
-                    <div class="imagesUploadTxt">{{text}}<span :class="`${(percentIndex == 100)? 'ok' : ''}`">{{percentIndex}}%</span></div>
+                    <div class="imagesUploadTxt">{{text}}
+                        <span  v-if="!off" :class="`${(percentIndex == 100)? 'ok' : ''}`">
+                            {{percentIndex}}%
+                        </span>
+                        <span v-if="off" class="ok">100%</span>
+                    </div>
                     <div class="imagesUploadTxt text2" v-if="text2">{{text2}}</div>
-                    <x-progress :percent="percentIndex" :show-cancel="false"></x-progress>
+                    <x-progress v-if="!off" :percent="percentIndex" :show-cancel="false"></x-progress>
+                    <x-progress v-if="off" :percent="100" :show-cancel="false"></x-progress>
                 </flexbox-item>
             </flexbox>
             <div v-if="type == 2" class="type2Box">
@@ -122,6 +129,10 @@
             prefix:{
                type:String,
                default:"upload_"
+           },
+            off:{
+               type:String,
+               default:null
            }
         },
         data(){
@@ -300,8 +311,12 @@
                    retData = {
                        uid:this.airforce.login_post.data.uid,
                        token:this.airforce.login_post.data.token,
-                       orderid:orderid,
-                       order_no:this.orderNo,
+                   }
+                   if(this.orderNo){
+                       retData.order_no = this.orderNo;
+                   }
+                   if(orderid.length > 0){
+                       retData.orderid = orderid;
                    }
                } catch (e){}
                for(let i in this.data){
@@ -313,6 +328,17 @@
         components:{
             VueCoreImageUpload, Flexbox, FlexboxItem, XProgress
         },
+        mounted(){
+            if(this.off){
+                this.action({
+                    moduleName:'homeSubmit',
+                    goods:_.set({},this.prefix+this.inputOfFile,{
+                        bool:true,
+                        base64Url:this.off,
+                    })
+                });
+            }
+        }
     }
 </script>
 

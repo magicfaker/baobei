@@ -4,10 +4,10 @@
 		"iPhone",
 		"iPad"
 	],
-	"id": "H5694D67E",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "保呗分期",/*应用名称，程序桌面图标名称*/
+	"id": "tongbaotianxia",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "通保天下",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.1.27",/*应用版本名称*/
+		"name": "1.1.29",/*应用版本名称*/
 		"code": ""
 	},
 	"description": "",/*应用描述信息*/
@@ -33,12 +33,10 @@
 			"description": "应用扩展事件"
 		},
 		"Maps": {},
-		"Payment": {
-			"description": "支付"
-		},
+		
 		"Downloader": {
 			"description": "文件下载，管理文件下载任务"
-		}
+		},"Payment":{}
 	},
 	"plus": {
 		"splashscreen": {
@@ -161,11 +159,8 @@
 				}
 			},
 			"plugins": {
-				"payment": {
-                    "alipay": {/*配置应用使用支付宝支付，参考http://ask.dcloud.net.cn/article/71*/
-                        "scheme": "helloh5test",/*ios平台在支付宝应用支付完成后返回当前应用使用的url scheme*/
-                        "description": "支付宝支付"
-                    },"weixin":{"description":"微信支付","appid":"wxfcf3ca5806155082"}
+				"payment": {"appleiap":{"description":"Apple应用内支付"},"alipay":{"description":"阿里支付","scheme":""}
+                    
                 }
 			}
 		},

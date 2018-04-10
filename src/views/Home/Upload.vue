@@ -11,13 +11,16 @@
         :imgSrc="url + uploadOld.idcard_back"
         :imgSrc="url + uploadOld.bank_card"
         -->
-        <images-upload inputOfFile="idcard_front" text="上传身份证正面" toastText="身份证正面"></images-upload>
-        <images-upload inputOfFile="idcard_back" text="上传身份证反面" toastText="身份证反面"></images-upload>
+        <images-upload inputOfFile="idcard_front" text="上传身份证正面" toastText="身份证正面" :off="idcard_front"></images-upload>
+        <images-upload inputOfFile="idcard_back" text="上传身份证反面" toastText="身份证反面" :off="idcard_back"></images-upload>
         <images-upload inputOfFile="vehicle_license" text="上传行驶证正页/购车发票/车辆登记证书" text2="(三选一)" toastText="三选一"></images-upload>
-        <images-upload inputOfFile="bank_card" text="上传还款的借记卡" toastText="还款的借记卡"></images-upload>
+        <images-upload inputOfFile="bank_card" text="上传还款的借记卡" toastText="还款的借记卡" :off="bank_card"></images-upload>
         <images-upload inputOfFile="payment_slip" text="上传投保人变更凭证" toastText="投保人变更凭证"></images-upload>
         <images-upload inputOfFile="safe_no" text="上传保险公司的收款账号" toastText="保险公司的收款账号"></images-upload>
-        <images-upload inputOfFile="other_img" :type="2" toastText="其它" :src="require('@/assets/img/home/addUpload.png')" title="其它上传(选填)" name="upload_account"></images-upload>
+
+        <images-upload inputOfFile="vehicle_license2" text="额外的行驶证图片" toastText="行驶证图片"></images-upload>
+        <images-upload inputOfFile="payment_slip2" text="额外的缴费单" toastText="缴费单"></images-upload>
+        <!--<images-upload inputOfFile="other_img" :type="2" toastText="其它" :src="require('@/assets/img/home/addUpload.png')" title="其它上传(选填)" name="upload_account"></images-upload>-->
         <box>
             <x-button type="primary" class="HomeXbutton"  @click.native="homeSubmitNext">确认上传</x-button>
         </box>
@@ -84,6 +87,30 @@
                     }
                 }catch (e){}
                 return [];
+            },
+            idcard_front(){
+                var data = this.airforce.SelectType_post.data;
+                if(data && data.idcard_front && data.cartype == '2'
+                ){
+                    return  this.url + data.idcard_front;
+                };
+                return null;
+            },
+            idcard_back(){
+                var data = this.airforce.SelectType_post.data;
+                if(data && data.idcard_back && data.cartype == '2'
+                ){
+                    return  this.url + data.idcard_back;
+                };
+                return null;
+            },
+            bank_card(){
+                var data = this.airforce.SelectType_post.data;
+                if(data && data.bank_card && data.cartype == '2'
+                ){
+                    return  this.url + data.bank_card;
+                };
+                return null;
             }
         },
         mounted(){
