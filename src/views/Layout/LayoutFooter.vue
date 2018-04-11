@@ -4,9 +4,10 @@
             <tabbar-item class="homeTabbarItem" v-for="(item,index) in airforce.homeTabbar" :key="index" :selected="item.selected">
                 <img slot="icon" v-if="!item.iconSelectBool" :src="item.icon">
                 <img slot="icon" v-else :src="item.iconSelect">
-                <span slot="label">{{item.txt}}</span>
+                <span slot="label" :ref="'LayoutFooterhomeTabbarItem'+index">{{item.txt}}</span>
             </tabbar-item>
         </tabbar>
+        <div style="display: none">{{watchObj}}</div>
     </div>
 </template>
 
@@ -29,13 +30,26 @@
                 this.action({
                     moduleName:'homeTabbar',
                     goods:homeTabbar
-                })
+                });
+                try {
+                    for(let i in this.$refs){
+                        this.$refs[i][0].className = "";
+                    }
+                    this.$refs['LayoutFooterhomeTabbarItem'+e][0].className = "selectObj"
+                }catch (e){}
                 this.$router.push(homeTabbar[e].link)
             }
         },
-        computed: mapGetters({
-            airforce: 'airforce'
-        }),
+        computed:{
+            ...mapGetters({
+               airforce: 'airforce'
+           }),
+           watchObj(){
+                if(typeof this.airforce.layout.homeTabbarIndex == 'number'){
+                    this.tabMenuNav(this.airforce.layout.homeTabbarIndex)
+                }
+           }
+        } ,
     }
 </script>
 
@@ -44,11 +58,14 @@
     &/deep/ .homeTabbar{
         position: fixed;
         .homeTabbarItem{
-            &.weui-bar__item_on{
+            /*&.weui-bar__item_on{*/
                 .weui-tabbar__label{
-                    color: #f38431;
+                    color: #999999;
+                    .selectObj{
+                        color: #f38431;
+                    }
                 }
-            }
+            /*}*/
             &.weui-tabbar__item{
                 text-decoration: none;
                 outline: medium;

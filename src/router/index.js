@@ -31,12 +31,14 @@ export default new Router({
                           meta:{
                               showBack:false,
                               head_type:1,
-                              icon_url:'/app/HomeLayout/messages'
+                              icon_url:'/app/HomeLayout/messages',
+                              homeTabbarIndex:0,
                           },
                       }),
                       utils.importVueInit("Order/Order","/app/HomeLayout/order","分期订单",{
                           meta:{
                               showBack:false,
+                              homeTabbarIndex:1,
                           }
                       }),
                       utils.importVueInit("Home/SelectType","/app/HomeLayout/selectType","分期付款",{meta:{navShow:false}}),
@@ -54,6 +56,7 @@ export default new Router({
                       utils.importVueInit("Tool/Tool","/app/HomeLayout/Tool","工具",{
                           meta:{
                               showBack:false,
+                              homeTabbarIndex:2,
                           }
                       }),
                       utils.importVueInit("Tool/Cxjsq","/app/HomeLayout/cxjsq","车险分期计算器",{meta:{navShow:false}}),
@@ -64,6 +67,7 @@ export default new Router({
                       utils.importVueInit("User/User","/app/HomeLayout/User","我的",{
                           meta:{
                               showBack:false,
+                              homeTabbarIndex:3,
                           }
                       }),
                       utils.importVueInit("User/Wdtd","/app/HomeLayout/wdtd","我的团队",{meta:{navShow:false}}),
@@ -77,12 +81,8 @@ export default new Router({
                           head_txt:"管理",
                           icon_url:'/app/HomeLayout/wdyhk'
                       }}),
-                      utils.importVueInit("User/Lsyj","/app/HomeLayout/lsyj","历史累计佣金",{meta:{
-                          navShow:false,
-                      }}),
-                      utils.importVueInit("User/Wdyhk","/app/HomeLayout/wdyhk","我的银行卡",{meta:{
-                          navShow:false,
-                      }}),
+                      utils.importVueInit("User/Lsyj","/app/HomeLayout/lsyj","历史累计佣金",{meta:{navShow:false,}}),
+                      utils.importVueInit("User/Wdyhk","/app/HomeLayout/wdyhk","我的银行卡",{meta:{navShow:false}}),
                       utils.importVueInit("User/Tjyhk","/app/HomeLayout/tjyhk","添加银行卡",{meta:{navShow:false}}),
                       utils.importVueInit("User/Wdewm","/app/HomeLayout/wdewm","我的二维码",{meta:{navShow:false}}),
                       utils.importVueInit("User/Bzzx","/app/HomeLayout/bzzx","帮助中心",{meta:{navShow:false}}),

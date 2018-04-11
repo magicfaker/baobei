@@ -220,6 +220,31 @@
                     }
                     //
                 }catch (e){}
+                this.airforce.change.set(null,'auth_name','homeSubmit');
+                this.airforce.change.set(null,'auth_phone','homeSubmit');
+
+
+                this.airforce.change.set(null,'auth_linkman1','homeSubmit');
+                this.airforce.change.set(null,'auth_linkman1_phone','homeSubmit');
+                try {
+                    // this.airforce.change.set(null,'auth_linkman1_SelectTxt','homeSubmit');
+                    // this.airforce.change.set(null,'auth_linkman1_SelectVal','homeSubmit');
+                    // this.airforce.change.set(null,'auth_linkman1_Select','homeSubmit');
+                }catch (e){}
+
+
+
+
+                this.airforce.change.set(null,'auth_linkman2','homeSubmit');
+                this.airforce.change.set(null,'auth_linkman2_phone','homeSubmit');
+                try {
+                    // this.airforce.change.set(null, 'auth_linkman2_SelectTxt', 'homeSubmit');
+                    // this.airforce.change.set(null, 'auth_linkman2_SelectVal', 'homeSubmit');
+                    // this.airforce.change.set(null, 'auth_linkman2_Select', 'homeSubmit');
+                }catch (e){}
+
+                this.airforce.change.set(null,'auth_idCode','homeSubmit');
+                this.airforce.change.set(null,'auth_bankCode','homeSubmit');
                 this.action({
                     moduleName:"getinfo",
                     method:"post",
