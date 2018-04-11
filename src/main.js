@@ -36,7 +36,7 @@ router.beforeEach(function (to, from, next) {
           click:false,
           clickfn:null,
           homeTabbarIndex:null,
-          animatedName:''
+          animatedName:'',
       }, to.meta)
     }
   })

@@ -194,7 +194,9 @@
                             }
                         });
                     }
-                    this.$router.push("/app/HomeLayout/selectType");
+                    setTimeout(()=>{
+                        this.$router.push("/app/HomeLayout/selectType");
+                    },1000);
                 }).catch(err=>{
                     this.$store.commit('updateLoadingStatus', {isLoading: false});
                     this.$vux.toast.text(err);
