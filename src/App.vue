@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <loading v-model="isLoading"></loading>
-    <router-view/>
-    <check-update :update="update"></check-update>
+    <!--<swiper  :show-desc-mask="false" :show-dots="false" class="swiperEventObj">-->
+      <!--<swiper-item class="a">-->
+        <loading v-model="isLoading"></loading>
+        <router-view/>
+        <check-update :update="update"></check-update>
+      <!--</swiper-item>-->
+    <!--</swiper>-->
   </div>
 </template>
 
 <script>
-
-import { Loading } from 'vux'
+import { Loading, Swiper, SwiperItem } from 'vux'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import CheckUpdate from '@/components/CheckUpdate.vue'
 export default {
@@ -16,10 +19,11 @@ export default {
   data(){
     return {
         update:false,
+        banners:[]
     }
   },
   components: {
-      Loading, CheckUpdate
+      Loading, CheckUpdate, Swiper, SwiperItem
   },
   computed: {
       ...mapGetters(['airforce']),
@@ -119,4 +123,13 @@ export default {
       border: none !important;
     }
   }
+  /*.swiperEventObj{*/
+    /*.vux-swiper{*/
+      /*height: 100% !important;*/
+      /*width: 100% !important;*/
+      /*position: fixed !important;*/
+      /*left: 0;*/
+      /*top: 0;*/
+    /*}*/
+  /*}*/
 </style>
