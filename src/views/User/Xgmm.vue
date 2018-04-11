@@ -11,88 +11,86 @@
 </template>
 
 <script>
-	import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem,Toast } from 'vux'
-	import { Group, Cell, CellBox } from 'vux'
-	import { mapActions, mapGetters } from 'vuex'
-	export default {
-		name: 'user',
-		...mapActions,
-		computed: mapGetters({
-			airforce: 'airforce'
-		}),
-		data() {
-			return {
-				msg: '修改密码',
-				oldpwd:'',
-				newpwd:'',
-				agapwd:'',
-				alt:{
-					show:false,
-					val:''
-				},
-				yz:/^[a-zA-Z\d_]{8,}$/
-			}
-		},
-		methods: {
-			...mapActions(['action']),
-			ensure(){
-				if(!this.yz.test(this.newpwd)){
-					this.alt.show=true;
-					this.alt.val="新密码需8位以上字母或数字";
-					return false;
-				}
-				if(this.newpwd!==this.agapwd){
-					this.alt.show=true;
-					this.alt.val="两次密码输入不一致";
-					return false;
-				}
-				let e=this.airforce.login_post;
-                this.action({
-                    moduleName: 'editNickName',
-                    method: "post",
-                    url: "app/Member/resetpassword",
-                    isFormData: true,
-                    data: {
-                        uid: e.data.uid,
-                        token: e.data.token,
-                        newpass: this.newpwd,
-                        newpass2:this.agapwd,
-                        oldpass:this.oldpwd
-                    }
-                }).then(d => {
-                    if(d.code == 200) {
-                        this.alt.val = "修改成功";
-                        this.alt.show = true;
-                        var that = this;
-                        setTimeout(function() {
-                            that.$router.push({
-                                path: '/login'
-                            });
-                        }, 2000)
-                    }else{
-                        this.alt.val = d.message;
-                        this.alt.show = true;
-                    }
+import { XHeader, Actionsheet, TransferDom, ButtonTab, ButtonTabItem, Toast } from 'vux'
+import { Group, Cell, CellBox } from 'vux'
+import { mapActions, mapGetters } from 'vuex'
+export default {
+  name: 'user',
+  ...mapActions,
+  computed: mapGetters({
+    airforce: 'airforce'
+  }),
+  data () {
+    return {
+      msg: '修改密码',
+      oldpwd: '',
+      newpwd: '',
+      agapwd: '',
+      alt: {
+        show: false,
+        val: ''
+      },
+      yz: /^[a-zA-Z\d_]{8,}$/
+    }
+  },
+  methods: {
+    ...mapActions(['action']),
+    ensure () {
+      if (!this.yz.test(this.newpwd)) {
+        this.alt.show = true
+        this.alt.val = '新密码需8位以上字母或数字'
+        return false
+      }
+      if (this.newpwd !== this.agapwd) {
+        this.alt.show = true
+        this.alt.val = '两次密码输入不一致'
+        return false
+      }
+      let e = this.airforce.login_post
+      this.action({
+        moduleName: 'editNickName',
+        method: 'post',
+        url: 'app/Member/resetpassword',
+        isFormData: true,
+        data: {
+          uid: e.data.uid,
+          token: e.data.token,
+          newpass: this.newpwd,
+          newpass2: this.agapwd,
+          oldpass: this.oldpwd
+        }
+      }).then(d => {
+        if (d.code == 200) {
+          this.alt.val = '修改成功'
+          this.alt.show = true
+          var that = this
+          setTimeout(function () {
+            that.$router.push({
+              path: '/login'
+            })
+          }, 2000)
+        } else {
+          this.alt.val = d.message
+          this.alt.show = true
+        }
+      })
+    }
 
-                })
-				
-			}
-			
-		},
-		components: {
-			Toast,
-			Group,
-			Cell,
-			CellBox,
-			XHeader,
-		    Actionsheet,
-		    ButtonTab,
+  },
+  components: {
+    Toast,
+    Group,
+    Cell,
+    CellBox,
+    XHeader,
+	Actionsheet,
+	ButtonTab,
 		    ButtonTabItem
-		},
-		created() {
+  },
+  created () {
 
-		}
-	}
+  }
+}
 </script>
 
 <style scoped lang="less">
