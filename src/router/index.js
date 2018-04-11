@@ -57,6 +57,7 @@ export default new Router({
                           meta:{
                               showBack:false,
                               homeTabbarIndex:2,
+                              // animatedName:'bounceInLeft',
                           }
                       }),
                       utils.importVueInit("Tool/Cxjsq","/app/HomeLayout/cxjsq","车险分期计算器",{meta:{navShow:false}}),

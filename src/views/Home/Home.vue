@@ -121,16 +121,14 @@
                 //     this.$vux.toast.text("备注不能为空");
                 //     return
                 // }
-                let home_post_data = {};
+                let home_post_data = {
+                    uid:this.airforce.login_post.data.uid,
+                    token:this.airforce.login_post.data.token,
+                    plate:this.airforce.homeSubmit.number,
+                    amount:this.airforce.homeSubmit.money,
+                    insurance:this.airforce.homeSubmit.fenqiType_SelectTxt,
+                };
                 try {
-                    home_post_data = {
-                        uid:this.airforce.login_post.data.uid,
-                        token:this.airforce.login_post.data.token,
-                        plate:this.airforce.homeSubmit.number,
-                        amount:this.airforce.homeSubmit.money,
-                        insurance:this.airforce.homeSubmit.fenqiType_SelectTxt,
-                        cid:this.airforce.homeSubmit.company.cid,
-                    };
                     if(this.airforce.homeSubmit.company && this.airforce.homeSubmit.company.cid){
                         home_post_data['cid'] = this.airforce.homeSubmit.company.cid;
                     }

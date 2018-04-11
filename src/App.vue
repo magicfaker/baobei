@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <loading v-model="isLoading"></loading>
-    <router-view class="animated"/>
+    <router-view/>
     <check-update :update="update"></check-update>
   </div>
 </template>
@@ -9,7 +9,7 @@
 <script>
 
 import { Loading } from 'vux'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import CheckUpdate from '@/components/CheckUpdate.vue'
 export default {
   name: 'App',
@@ -22,6 +22,7 @@ export default {
       Loading, CheckUpdate
   },
   computed: {
+      ...mapGetters(['airforce']),
       ...mapState({
           isLoading: state => state.vux.isLoading,
       })
