@@ -8,13 +8,13 @@
 			</div>
 			<group class="menulist">
 				<cell-box is-link link="/app/HomeLayout/yhxz" class="yhxz">
-					<i style="color: #0ba2f0;" class="iconfont">&#xe643;</i>
+					<span style="color: #0ba2f0;" class="iconfont">&#xe643;</span>
 					<span>用户须知</span>
 				</cell-box>
-				<cell-box is-link link='/app/HomeLayout/zcdyhk' class="zcdyhk"><i style="color: #ff3f00;" class="iconfont">&#xe76a;</i><span>支持的银行卡</span></cell-box>
-				<cell-box is-link link='/app/HomeLayout/czlc' class="czlc"><i style="color: #70c438;" class="iconfont">&#xe662;</i><span>操作流程</span></cell-box>
-				<cell-box is-link link='/app/HomeLayout/rzlc' class="rzlc"><i style="color: #ffae00;" class="iconfont">&#xe716;</i><span>保险渠道入住流程</span></cell-box>
-				<cell-box is-link link='/app/HomeLayout/lxkf' class="lxkf"><i style="color: #e72480;" class="iconfont">&#xe616;</i><span>联系客服</span></cell-box>
+				<cell-box is-link link='/app/HomeLayout/zcdyhk' class="zcdyhk"><span style="color: #ff3f00;" class="iconfont">&#xe76a;</span><span>支持的银行卡</span></cell-box>
+				<cell-box is-link link='/app/HomeLayout/czlc' class="czlc"><span style="color: #70c438;" class="iconfont">&#xe662;</span><span>操作流程</span></cell-box>
+				<cell-box is-link link='/app/HomeLayout/rzlc' class="rzlc"><span style="color: #ffae00;" class="iconfont">&#xe716;</span><span>保险渠道入住流程</span></cell-box>
+				<cell-box is-link link='/app/HomeLayout/lxkf' class="lxkf"><span style="color: #e72480;" class="iconfont">&#xe616;</span><span>联系客服</span></cell-box>
 			</group>
 		</div>
 	</div>
