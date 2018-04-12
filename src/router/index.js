@@ -69,7 +69,7 @@ export default new Router({
               meta: {
                 showBack: false,
                 homeTabbarIndex: 3,
-                animatedName:'bounceInUp'
+
               }
             }),
             utils.importVueInit('User/Wdtd', '/app/HomeLayout/wdtd', '我的团队', {meta: {navShow: false}}),

@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="wrapperMain">
             <div class="user">
-                <div class="userhead">
+                <div class="userhead animated zoomIn">
                     <input type="file" id="pass" @change="upload" ref="aa" />
                     <img :src="userhead" alt="" />
                 </div>
@@ -15,36 +15,36 @@
             </div>
             <group gutter="0" class="menu">
                 <cell-box is-link link='/app/HomeLayout/wdtd' class="wdtd">
-                    <i style="color: #91c43d;" class="iconfont">&#xe6f2;</i>
+                    <span style="color: #91c43d;" class="iconfont">&#xe6f2;</span>
                     <span>我的团队</span>
                 </cell-box>
                 <cell-box is-link link='/app/HomeLayout/wdrw' class="wdrw">
-                    <i style="color: #ed66b2;" class="iconfont">&#xe684;</i>
+                    <span style="color: #ed66b2;" class="iconfont">&#xe684;</span>
                     <span>我的任务</span>
                 </cell-box>
                 <cell-box is-link link='/app/HomeLayout/wdyj' class="wdyj">
-                    <i style="color: #f3981e;" class="iconfont">&#xe626;</i>
+                    <span style="color: #f3981e;" class="iconfont">&#xe626;</span>
                     <span>我的佣金</span>
                 </cell-box>
                 <cell-box is-link link='/app/HomeLayout/wdyhk' class="wdyhk">
-                    <i style="color: #ff3600;" class="iconfont">&#xe680;</i>
+                    <span style="color: #ff3600;" class="iconfont">&#xe680;</span>
                     <span>我的银行卡</span>
                 </cell-box>
                 <cell-box is-link link='/app/HomeLayout/wdewm' class="wdewm">
-                    <i style="color: #0995ee;" class="iconfont">&#xe7dd;</i>
+                    <span style="color: #0995ee;" class="iconfont">&#xe7dd;</span>
                     <span>我的二维码</span>
                 </cell-box>
                 <cell-box is-link link='' class="tjghy" @click.native="alerts">
-                    <i style="color: #ff6000;" class="iconfont">&#xe635;</i>
+                    <span style="color: #ff6000;" class="iconfont">&#xe635;</span>
                     <span>推荐给好友</span>
                 </cell-box>
                 <cell-box is-link link='/app/HomeLayout/bzzx' class="bzzx">
-                    <i style="color: #9f4ea4;" class="iconfont">&#xe6f2;</i><span>帮助中心</span>
+                    <span style="color: #9f4ea4;" class="iconfont">&#xe6f2;</span><span>帮助中心</span>
                 </cell-box>
             </group>
             <group gutter="30" class="set">
                 <cell-box is-link link='/app/HomeLayout/sz' class="sz">
-                    <i style="color: #7885a5;" class="iconfont">&#xe622;</i>
+                    <span style="color: #7885a5;" class="iconfont">&#xe622;</span>
                     <span>设置</span>
                 </cell-box>
             </group>
