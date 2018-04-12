@@ -25,9 +25,9 @@
 							</div>
 						</div>
 					</cell-box>
-					<confirm v-model="whether" content="确定删除该银行卡？" @on-confirm="del(delid)"></confirm> 
+					<confirm v-model="whether" content="确定删除该银行卡？" @on-confirm="del(delid)"></confirm>
 			</group>
-			
+
 		</div>
 		<router-link  to="/app/HomeLayout/tjyhk" class="bottom">
 			添加银行卡
@@ -53,7 +53,7 @@
 				show:false,
 				whether:false,
 				delid:'',
-				
+
 			}
 		},
 		methods:{
@@ -80,8 +80,8 @@
                     }
                 })
 			},
-			
-			
+
+
 			del(nid){
 				var id=parseInt(nid);
                 let e = this.airforce.login_post;
@@ -184,7 +184,7 @@
 
 		font-size: 14px;
 		font-family: "微软雅黑";
-		
+
 		.none{
 			width: 30%;
 			margin: 0 auto;
@@ -200,23 +200,23 @@
 				.yhk{
 					display: block;
 					.yhk-top{
-						
+
 						font-size: 16px;
 						overflow:hidden;
 						.icon{
 							font-size: 14px;
 							float:right;
-							
+
 							width: 35%;
 							overflow: hidden;
-							
+
 							*{
 								float: left;
 							}
 						}
 					}
 					.yhk-bottom{
-						
+
 						overflow:hidden;
 						padding: 7px 0;
 						span{
@@ -268,7 +268,7 @@
 			box-sizing: border-box;
 			border: 2px solid #000000;
 			border-radius: 50%;
-			
+
 		}
 		input+div+span{
 			padding: 0 5px;
@@ -278,7 +278,7 @@
 			border:none;
 			background: url(../../assets/img/user/check.png) no-repeat;
 			background-size: cover;
-			
+
 		}
 		.active {
 			border:none;

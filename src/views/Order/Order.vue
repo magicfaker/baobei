@@ -5,7 +5,7 @@
             <div class="txt">暂无订单</div>
         </div>
         <div v-else>
-            <card v-for="(item,index) in orderlist" :key="index" class="orderCard">
+            <card v-for="(item,index) in orderlist" :key="index" :class="`orderCard animated ${(index > 6) ? 'fadeInUp' : 'flipInX'}`">
                 <div slot="header" class="orderCardHeader" @click="selectOrder(item)">
                     <flexbox>
                         <flexbox-item>
@@ -83,8 +83,10 @@
                             this.$vux.toast.text(res.message);
                             return;
                         };
-                        if (this.page == 1 && res.data &&  res.data.length == 0) {
+                        if (res.data &&  res.data.length == 0) {
                             this.notOrder = true;
+                        }else {
+                            this.notOrder = false;
                         };
                         this.page += 1;
                         if($state){

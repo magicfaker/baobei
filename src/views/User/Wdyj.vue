@@ -1,14 +1,14 @@
 <template>
 	<div class="wrapper">
 		<div class="wrappermain">
-			<div class="collect">
+			<div class="collect animated flipInY">
 				<span>可提现的佣金（元）</span>
 				<div>
 					<span>￥{{now}}</span>
 					<router-link to="tx" class="tx">立即提现</router-link>
 				</div>
 			</div>
-			<group gutter="0" class="menu">
+			<group gutter="0" class="menu animated fadeInUp">
 				<cell title="历史累计佣金" :value="'￥'+all" is-link :link="'lsyj?history='+now" class="submenu"></cell>
 				<cell-box is-link link="wdyhk" class="submenu">
 					<span>我的银行卡</span>

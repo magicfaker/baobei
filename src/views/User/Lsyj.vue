@@ -9,17 +9,17 @@
 			</div>
 			<div class="yhyj">
 				<group gutter="0" class="menu">
-					<cell-box class="option">
+					<cell-box class="option animated flipInX">
 						<i style="color: #258ecb;" class="iconfont">&#xe6f2;</i>
 						<span class="title">A级成员总累计赚取</span>
 						<span class="cynum">￥{{ayh}}</span>
 					</cell-box>
-					<cell-box class="option">
+					<cell-box class="option animated flipInX">
 						<i style="color: #f3981e;" class="iconfont">&#xe6f2;</i>
 						<span class="title">B级成员总累计赚取</span>
 						<span class="cynum">￥{{byh}}</span>
 					</cell-box>
-					<cell-box class="option">
+					<cell-box class="option animated flipInX">
 						<i style="color: #91c43d;" class="iconfont">&#xe6f2;</i>
 						<span class="title">C级成员总累计赚取</span>
 						<span class="cynum">￥{{cyh}}</span>

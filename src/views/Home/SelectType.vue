@@ -2,7 +2,7 @@
     <div class="SelectType">
         <div class="bj"></div>
         <img :src="banner" class="banner">
-        <div class="SelectTypeCard">
+        <div class="SelectTypeCard animated flipInY">
             <div class="header">分期总金额：￥{{amount}}</div>
             <flexbox>
                 <flexbox-item v-for="(item,index) in instalment" :key="index" :class="(item.select)?'select':''" @click.native="SelectTypeCardObj(item,index)">
@@ -16,7 +16,7 @@
                 </flexbox-item>
             </flexbox>
         </div>
-        <img :src="renzheng" class="renzheng" @click="homeSubmitNext">
+        <img :src="renzheng" class="renzheng animated fadeInUp" @click="homeSubmitNext">
     </div>
 </template>
 

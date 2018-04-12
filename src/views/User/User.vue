@@ -1,6 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="wrapperMain">
+<<<<<<< HEAD
             <div class="user">
                 <div class="userhead animated zoomIn">
                     <input type="file" id="pass" @change="upload" ref="aa" />
@@ -11,9 +12,23 @@
                     <router-link class="modify" to="/app/HomeLayout/xgzl">
                         <i class="iconfont">&#xe63a;</i>
                     </router-link>
+=======
+            <div class="user animated flipInX">
+                <div class="animated bounceIn">
+                    <div class="userhead ">
+                        <input type="file" id="pass" @change="upload" ref="aa" />
+                        <img :src="userhead" alt="" />
+                    </div>
+                    <div class="username">
+                        <span>{{username}}</span>
+                        <router-link class="modify" to="/app/HomeLayout/xgzl">
+                            <i class="iconfont">&#xe63a;</i>
+                        </router-link>
+                    </div>
+>>>>>>> 37f60fab25b4eafd496b1a1e4fb708af03fde430
                 </div>
             </div>
-            <group gutter="0" class="menu">
+            <group gutter="0" class="menu animated bounceInLeft">
                 <cell-box is-link link='/app/HomeLayout/wdtd' class="wdtd">
                     <span style="color: #91c43d;" class="iconfont">&#xe6f2;</span>
                     <span>我的团队</span>
@@ -42,7 +57,7 @@
                     <span style="color: #9f4ea4;" class="iconfont">&#xe6f2;</span><span>帮助中心</span>
                 </cell-box>
             </group>
-            <group gutter="30" class="set">
+            <group gutter="30" class="set animated bounceInLeft">
                 <cell-box is-link link='/app/HomeLayout/sz' class="sz">
                     <span style="color: #7885a5;" class="iconfont">&#xe622;</span>
                     <span>设置</span>

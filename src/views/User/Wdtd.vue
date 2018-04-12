@@ -1,7 +1,7 @@
 <template>
 	<div class="wrapper">
 		<div class="wrapperMain" :style="{backgroundImage:`url(${main_bj})`}">
-			<div class="content">
+			<div class="content animated flipInY">
 				<div class="khnr tz">
 					<p>
 						<span>我是团长</span>
