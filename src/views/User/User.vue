@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="wrapperMain">
-<<<<<<< HEAD
+<!--<<<<<<< HEAD
             <div class="user">
                 <div class="userhead animated zoomIn">
                     <input type="file" id="pass" @change="upload" ref="aa" />
@@ -11,8 +11,8 @@
                     <span>{{username}}</span>
                     <router-link class="modify" to="/app/HomeLayout/xgzl">
                         <i class="iconfont">&#xe63a;</i>
-                    </router-link>
-=======
+                    </router-link>-->
+<!--=======-->
             <div class="user animated flipInX">
                 <div class="animated bounceIn">
                     <div class="userhead ">
@@ -25,7 +25,7 @@
                             <i class="iconfont">&#xe63a;</i>
                         </router-link>
                     </div>
->>>>>>> 37f60fab25b4eafd496b1a1e4fb708af03fde430
+<!-->>>>>>> 37f60fab25b4eafd496b1a1e4fb708af03fde430-->
                 </div>
             </div>
             <group gutter="0" class="menu animated bounceInLeft">
