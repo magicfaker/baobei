@@ -1,17 +1,14 @@
 <template>
-  <div id="app">
-    <!--<swiper  :show-desc-mask="false" :show-dots="false" class="swiperEventObj">-->
-      <!--<swiper-item class="a">-->
-        <loading v-model="isLoading"></loading>
-        <router-view/>
-        <check-update :update="update"></check-update>
-      <!--</swiper-item>-->
-    <!--</swiper>-->
+  <div id="app" ref="app">
+      <loading v-model="isLoading"></loading>
+      <router-view/>
+      <check-update :update="update"></check-update>
   </div>
 </template>
 
 <script>
-import { Loading, Swiper, SwiperItem } from 'vux'
+import { Loading } from 'vux'
+import Hammer from 'hammerjs'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import CheckUpdate from '@/components/CheckUpdate.vue'
 export default {
@@ -23,7 +20,7 @@ export default {
     }
   },
   components: {
-      Loading, CheckUpdate, Swiper, SwiperItem
+      Loading, CheckUpdate
   },
   computed: {
       ...mapGetters(['airforce']),
@@ -68,13 +65,31 @@ export default {
       },200);
       setTimeout(()=>{
           clearInterval(time);
-      },10000)
+      },10000);
 
+      //滑动返回上一页
+      var h = new Hammer(this.$refs.app);
+      h.on('swiperight',(e) =>{
+          //白名单
+          const whiteList = ["车险分期",
+              // "分期订单","工具","我的"
+          ];
+          if(!whiteList.some(title=>{return title == this.airforce.layout.title; })){
+              this.$router.back();
+          };
+      });
   }
 }
 </script>
 
 <style lang="less">
+    #app{
+        min-height: 100%;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
   @import '~vux/src/styles/reset.less';
   @import './assets/css/animate.min.css';
   //*
@@ -123,13 +138,4 @@ export default {
       border: none !important;
     }
   }
-  /*.swiperEventObj{*/
-    /*.vux-swiper{*/
-      /*height: 100% !important;*/
-      /*width: 100% !important;*/
-      /*position: fixed !important;*/
-      /*left: 0;*/
-      /*top: 0;*/
-    /*}*/
-  /*}*/
 </style>
