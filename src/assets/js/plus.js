@@ -153,13 +153,28 @@
         xhr.send();
     };
 
+    //todo 监听安卓手机返回键
+    // 开始监听backbutton事件
+    function startBack(backListener){
+        plus.key.addEventListener('backbutton',backListener,false);
+    }
+    // 取消监听backbutton事件
+    function stopBack(backListener){
+        plus.key.removeEventListener('backbutton',backListener);
+    }
+
     function plusReady(){
         win.checkUpdate = checkUpdate;
         win.getWgtVer = getWgtVer;
+        win.backListener = {
+            start:startBack,
+            stop:stopBack,
+        };
         // 获取支付通道
         paymentInit();
         //检测更新
         // checkUpdate();
+
     }
     doc.addEventListener('plusready', plusReady, false);
 

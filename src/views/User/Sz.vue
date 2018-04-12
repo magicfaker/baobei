@@ -89,6 +89,7 @@
 				line-height: 40px;
 				margin-top: 30px;
 				border: none;
+				outline: medium;
 			}
 		}
 	}

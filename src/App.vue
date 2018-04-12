@@ -16,7 +16,8 @@ export default {
   data(){
     return {
         update:false,
-        banners:[]
+        banners:[],
+        confirmBack:0,
     }
   },
   components: {
@@ -30,10 +31,23 @@ export default {
   },
   methods:{
       ...mapActions(['action']),
+      notWhiteListBack(event){
+          var  callback = new Function();
+          if(typeof event == "function"){
+              callback = event;
+          };
+          //白名单
+          const whiteList = ["车险分期","分期订单","工具","我的","登录"];
+          if(!whiteList.some(title=>{return title == this.airforce.layout.title; })){
+              this.$router.back();
+          }else {
+              callback();
+          };
+      }
   },
   mounted(){
-      //检测版本更新
       var time = setInterval(()=>{
+          //检测版本更新
           if(window.checkUpdate){
               window.checkUpdate({
                   bool:true,
@@ -60,6 +74,27 @@ export default {
                       })
                   }
               });
+              //监听安卓返回键
+              if(window.backListener && window.backListener.start){
+                  window.backListener.start(()=> {
+                      this.notWhiteListBack(()=>{
+                          if(this.confirmBack > 0){
+                              plus.runtime.quit();
+                              return;
+                          };
+                          this.$vux.toast.show({
+                              text:"再次点击退出",
+                              type:"text",
+                              width:"auto",
+                              position:"bottom",
+                          });
+                          this.confirmBack += 1;
+                          setTimeout(()=>{
+                              this.confirmBack = 0;
+                          },2500);
+                      });
+                  });
+              };
               clearInterval(time);
           }
       },200);
@@ -70,14 +105,9 @@ export default {
       //滑动返回上一页
       var h = new Hammer(this.$refs.app);
       h.on('swiperight',(e) =>{
-          //白名单
-          const whiteList = ["车险分期",
-              // "分期订单","工具","我的"
-          ];
-          if(!whiteList.some(title=>{return title == this.airforce.layout.title; })){
-              this.$router.back();
-          };
+          this.notWhiteListBack(e);
       });
+
   }
 }
 </script>

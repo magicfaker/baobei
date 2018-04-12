@@ -10,7 +10,7 @@ export default new Router({
         // todo Dome
         utils.importVueInit('Dome/Dome'),
         // todo 登陆
-        utils.importVueInit('Login/Login'),
+        utils.importVueInit('Login/Login','/login',"登录"),
         utils.importVueInit({
             name: 'Layout/Layout',
             path: '/app',

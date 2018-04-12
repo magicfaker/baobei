@@ -1,7 +1,7 @@
 <template>
     <div class="LayoutFooter">
-        <tabbar :class="`homeTabbar ${(!airforce.layout.navShow)? 'hide':''}`" @on-index-change="tabMenuNav">
-            <tabbar-item class="homeTabbarItem" v-for="(item,index) in airforce.homeTabbar" :key="index" :selected="item.selected">
+        <tabbar :class="`homeTabbar ${(!airforce.layout.navShow)? 'hide':''}`">
+            <tabbar-item @on-item-click="tabMenuNav" class="homeTabbarItem" v-for="(item,index) in airforce.homeTabbar" :key="index" :selected="item.selected">
                 <img slot="icon" v-if="!item.iconSelectBool" :src="item.icon">
                 <img slot="icon" v-else :src="item.iconSelect">
                 <span slot="label" :ref="'LayoutFooterhomeTabbarItem'+index">{{item.txt}}</span>
@@ -22,7 +22,6 @@
         methods: {
             ...mapActions(['action']),
             tabMenuNav(e){
-                // console.log(e)
                 const homeTabbar = JSON.parse(JSON.stringify(this.airforce.homeTabbar));
                 for(let i in homeTabbar){
                     homeTabbar[i].iconSelectBool = false;
