@@ -22,6 +22,7 @@
         methods: {
             ...mapActions(['action']),
             tabMenuNav(e){
+                // console.log(e)
                 const homeTabbar = JSON.parse(JSON.stringify(this.airforce.homeTabbar));
                 for(let i in homeTabbar){
                     homeTabbar[i].iconSelectBool = false;
