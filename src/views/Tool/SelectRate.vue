@@ -37,6 +37,7 @@
         methods: {
             ...mapActions(['action']),
             selectrate(selectrateObj){
+                console.log(selectrateObj)
                 selectrateObj.type = this.airforce.Tool.selectrate.type;
                 this.action({
                     moduleName:'Tool',
@@ -70,7 +71,14 @@
                     this.$vux.toast.text(d.message);
                     return;
                 }
-                this.currency=d.data
+                try {
+                    this.currency=d.data.map(obj=>{
+                        obj.en = obj.code;
+                        return obj;
+                    })
+                }catch (e){
+                    this.currency = [];
+                }
             }).catch(err=>{
                 this.$vux.toast.text(err);
             });

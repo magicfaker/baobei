@@ -6,7 +6,7 @@
 				<cell-box is-link link='/app/HomeLayout/about'>关于</cell-box>
 			</group>
 			<button v-model="show" @click.prevent="quit" class="quit" >退出登陆</button>
-			<actionsheet v-model="show" :menus="menus" show-cancel @on-click-menu="click5" @on-click-menu-sure="click6"></actionsheet>
+			<actionsheet v-model="show" :menus="menus" show-cancel @on-click-menu="click5"></actionsheet>
 		</div>
 	</div>
 </template>
@@ -25,26 +25,34 @@
 			return {
 				msg: '设置',
 				show: false,
-				menus: {
-					'title.noop': "确定退出登陆吗？",
-					sure:"确定"
-				}
+				menus:[
+                    {
+                        label: "确定退出登陆吗？",
+                        type: 'info'
+                    }, {
+                        label: '确定',
+                        type: 'warn'
+                    }
+				]
 			}
 		},
 		methods: {
 			...mapActions(['action']),
-			click5(key, item) {
-				if(key=='true'){
-//					window.localStorage
+			click5(key,data) {
+			    if(data){
+			        switch (data.type){
+						case "warn":
+                            this.action({
+                                moduleName:'login_post',
+                                goods:undefined,
+                            });
+                            delete localStorage.login_post;
+                            this.$router.push("/Login");
+						    break;
+						default:
+						    break;
+					}
 				}
-			},
-			click6(label){
-                this.action({
-                    moduleName:'login_post',
-                    goods:undefined,
-                });
-                delete localStorage.login_post;
-                this.$router.push("/Login")
 			},
 			quit() {
 				this.show = true;
