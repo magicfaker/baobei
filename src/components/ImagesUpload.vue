@@ -4,10 +4,10 @@
         <div class="imagesUpload">
             <flexbox v-if="type != 2">
                 <flexbox-item :span="`60px`">
-                    <img :src="imgSrcNew" v-if="!off" class="imagesUploadShowImgObj">
-                    <img :src="off" v-if="off" class="imagesUploadShowImgObj">
+                    <img :src="imgSrcNew" ref="img_" v-if="!off" class="imagesUploadShowImgObj">
+                    <img :src="off" ref="img_" v-if="off" class="imagesUploadShowImgObj">
                 </flexbox-item>
-                <flexbox-item>
+                <flexbox-item :class="(percentIndex == 100) ? 'imgZoomIn' : ''">
                     <vue-core-image-upload v-if="!off"
                             class="vue-core-image-upload"
                             :crop="false"
@@ -145,21 +145,6 @@
                 isImgs:false,
             }
         },
-        mounted(){
-            try {
-                let base64Url = this.airforce.homeSubmit[this.prefix+this.inputOfFile];
-                if(base64Url){
-                    if(base64Url.base64Url && base64Url.bool){
-                        this.base64Url = base64Url.base64Url;
-                    }
-                    if(this.type == 2){
-                        this.isImgs = true;
-                        this.base64Url2 = base64Url;
-                    }
-                    this.percentIndex = 100;
-                }
-            }catch (e){}
-        },
         methods: {
             ...mapActions(['action']),
             imageuploaded(res) {
@@ -168,6 +153,7 @@
                     this.base64Url = this.base64;
                     this.base64 = null;
                     this.percentIndex = 100;
+                    this.$root.$children[0].imgZoomIn();
                     if(this.toastText){
                         this.$vux.toast.show({
                             text:`【${this.toastText}】上传成功`,
@@ -329,6 +315,19 @@
             VueCoreImageUpload, Flexbox, FlexboxItem, XProgress
         },
         mounted(){
+            try {
+                let base64Url = this.airforce.homeSubmit[this.prefix+this.inputOfFile];
+                if(base64Url){
+                    if(base64Url.base64Url && base64Url.bool){
+                        this.base64Url = base64Url.base64Url;
+                    }
+                    if(this.type == 2){
+                        this.isImgs = true;
+                        this.base64Url2 = base64Url;
+                    }
+                    this.percentIndex = 100;
+                }
+            }catch (e){}
             if(this.off){
                 this.action({
                     moduleName:'homeSubmit',
@@ -338,7 +337,7 @@
                     })
                 });
             }
-        }
+        },
     }
 </script>
 
@@ -354,6 +353,9 @@
         .vux-flexbox{
             position: relative;
             .vux-flexbox-item{
+                &.imgZoomIn{
+                    position: relative;
+                }
                 .imagesUploadShowImgObj{
                     width: 100%;
                     display: block;

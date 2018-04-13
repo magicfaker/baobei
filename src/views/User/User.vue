@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <group gutter="0" class="menu animated bounceInLeft">
+            <group gutter="0" class="menu animated slideInLeft">
                 <cell-box is-link link='/app/HomeLayout/wdtd' class="wdtd">
                     <span style="color: #91c43d;" class="iconfont">&#xe6f2;</span>
                     <span>我的团队</span>
@@ -44,7 +44,7 @@
                     <span style="color: #9f4ea4;" class="iconfont">&#xe6f2;</span><span>帮助中心</span>
                 </cell-box>
             </group>
-            <group gutter="30" class="set animated bounceInLeft">
+            <group gutter="30" class="set animated slideInLeft">
                 <cell-box is-link link='/app/HomeLayout/sz' class="sz">
                     <span style="color: #7885a5;" class="iconfont">&#xe622;</span>
                     <span>设置</span>

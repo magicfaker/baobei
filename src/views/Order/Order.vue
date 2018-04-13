@@ -5,7 +5,7 @@
             <div class="txt">暂无订单</div>
         </div>
         <div v-else>
-            <card v-for="(item,index) in orderlist" :key="index" :class="`orderCard animated ${(index > 6) ? 'fadeInUp' : 'flipInX'}`">
+            <card v-for="(item,index) in orderlist" :key="index" :class="`orderCard animated ${(index > 6) ? 'fadeInUp' : ''}`">
                 <div slot="header" class="orderCardHeader" @click="selectOrder(item)">
                     <flexbox>
                         <flexbox-item>

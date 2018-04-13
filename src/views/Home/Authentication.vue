@@ -22,9 +22,9 @@
             >
             </select-picker>
             <x-input :value="airforce.homeSubmit.auth_linkman2_phone" @on-change="airforce.change.set($event,'auth_linkman2_phone','homeSubmit')" label-width="110px" title="联系人2手机" placeholder="请输入紧急联系人2的手机号"></x-input>
-            <x-img :src="url + airforce.SelectType_post.data.idcard_front"></x-img>
+            <x-img class="seeImg" ref="img_1" :src="url + airforce.SelectType_post.data.idcard_front"></x-img>
             <x-input type="number" :value="airforce.homeSubmit.auth_bankCode" @on-change="airforce.change.set($event,'auth_bankCode','homeSubmit')" label-width="110px" title="银行卡卡号" placeholder="请输入车主银行卡"></x-input>
-            <x-img :src="url + airforce.SelectType_post.data.bank_card"></x-img>
+            <x-img class="seeImg" ref="img_2" :src="url + airforce.SelectType_post.data.bank_card"></x-img>
             <x-input :value="airforce.homeSubmit.auth_idCode" @on-change="airforce.change.set($event,'auth_idCode','homeSubmit')" label-width="110px" title="身份证号" placeholder="请输入车主身份证"></x-input>
         </group>
         <box>
@@ -329,6 +329,10 @@
         &:after{
             border: none;
         }
+    }
+    .seeImg{
+        position: relative;
+        z-index: 11;
     }
 }
 </style>

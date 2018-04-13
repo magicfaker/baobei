@@ -41,27 +41,27 @@ export default new Router({
                           }
                         }),
                         utils.importVueInit('Home/SelectType', '/app/HomeLayout/selectType', '分期付款', {meta: {navShow: false}}),
-                        utils.importVueInit('Home/Upload', '/app/HomeLayout/upload', '上传影像资料', {meta: {navShow: false,animatedName:'bounceInRight'}}),
-                        utils.importVueInit('Home/Authentication', '/app/HomeLayout/authentication', '实名认证', {meta: {navShow: false,animatedName:'bounceInLeft'}}),
-                        utils.importVueInit('Home/Pending', '/app/HomeLayout/pending', '等待审核', {meta: {navShow: false,animatedName:'bounceInRight'}}),
+                        utils.importVueInit('Home/Upload', '/app/HomeLayout/upload', '上传影像资料', {meta: {navShow: false,animatedName:'slideInRight'}}),
+                        utils.importVueInit('Home/Authentication', '/app/HomeLayout/authentication', '实名认证', {meta: {navShow: false,animatedName:'slideInLeft'}}),
+                        utils.importVueInit('Home/Pending', '/app/HomeLayout/pending', '等待审核', {meta: {navShow: false,animatedName:'slideInRight'}}),
                         utils.importVueInit('Order/OrderDetails', '/app/HomeLayout/orderdetails', '订单详情', {meta: {navShow: false}}),
-                        utils.importVueInit('Messages/Messages', '/app/HomeLayout/messages', '消息中心', {meta: {navShow: false,animatedName:'bounceInRight'}}),
+                        utils.importVueInit('Messages/Messages', '/app/HomeLayout/messages', '消息中心', {meta: {navShow: false}}),
                         utils.importVueInit('Messages/OrderMessages', '/app/HomeLayout/orderMessages', '订单消息', {meta: {navShow: false,animatedName:'fadeInUp'}}),
                         utils.importVueInit('Messages/SystemMessages', '/app/HomeLayout/systemMessages', '系统消息', {meta: {navShow: false,animatedName:'fadeInUp'}}),
-                        utils.importVueInit('Messages/MessageDetails', '/app/HomeLayout/messageDetails', '消息详情', {meta: {navShow: false,animatedName:'bounceInRight'}}),
-                        utils.importVueInit('Pay/Pay', '/app/HomeLayout/pay', '支付手续费', {meta: {navShow: false,animatedName:'bounceInLeft'}}),
+                        utils.importVueInit('Messages/MessageDetails', '/app/HomeLayout/messageDetails', '消息详情', {meta: {navShow: false,animatedName:'slideInRight'}}),
+                        utils.importVueInit('Pay/Pay', '/app/HomeLayout/pay', '支付手续费', {meta: {navShow: false,animatedName:'slideInLeft'}}),
 
                         // todo 工具
                         utils.importVueInit('Tool/Tool', '/app/HomeLayout/Tool', '工具', {
                           meta: {
                               showBack: false,
                               homeTabbarIndex: 2,
-                              animatedName:'bounceInLeft'
+                              animatedName:'slideInLeft'
                           }
                         }),
-                        utils.importVueInit('Tool/Cxjsq', '/app/HomeLayout/cxjsq', '车险分期计算器', {meta: {navShow: false,animatedName:'bounceInRight'}}),
-                        utils.importVueInit('Tool/Hljs', '/app/HomeLayout/hljs', '汇率计算', {meta: {navShow: false,animatedName:'bounceInRight'}}),
-                        utils.importVueInit('Tool/SelectRate', '/app/HomeLayout/selectrate', '币种切换', {meta: {navShow: false,animatedName:'bounceInRight'}}),
+                        utils.importVueInit('Tool/Cxjsq', '/app/HomeLayout/cxjsq', '车险分期计算器', {meta: {navShow: false,animatedName:'slideInRight'}}),
+                        utils.importVueInit('Tool/Hljs', '/app/HomeLayout/hljs', '汇率计算', {meta: {navShow: false,animatedName:'slideInLeft'}}),
+                        utils.importVueInit('Tool/SelectRate', '/app/HomeLayout/selectrate', '币种切换', {meta: {navShow: false,animatedName:'slideInRight'}}),
 
                         // todo 用户中心
                         utils.importVueInit('User/User', '/app/HomeLayout/User', '我的', {
@@ -71,7 +71,7 @@ export default new Router({
                           }
                         }),
                         utils.importVueInit('User/Wdtd', '/app/HomeLayout/wdtd', '我的团队', {meta: {navShow: false}}),
-                        utils.importVueInit('User/Tdxq', '/app/HomeLayout/tdxq', '我的客户', {meta: {navShow: false,animatedName:'bounceInRight'}}),
+                        utils.importVueInit('User/Tdxq', '/app/HomeLayout/tdxq', '我的客户', {meta: {navShow: false,animatedName:'slideInRight'}}),
                         utils.importVueInit('User/Wdrw', '/app/HomeLayout/wdrw', '详情', {meta: {navShow: false}}),
                         utils.importVueInit('User/Wdyj', '/app/HomeLayout/wdyj', '我的佣金', {meta: {navShow: false}}),
                         utils.importVueInit('User/Tx', '/app/HomeLayout/tx', '佣金提现', {meta: {navShow: false}}),
@@ -116,8 +116,8 @@ export default new Router({
                         utils.importVueInit('User/About', '/app/HomeLayout/about', '关于', {meta: {navShow: false}}),
 
                         // todo 添加公司
-                        utils.importVueInit('AddCompany/AddCompany', '/app/HomeLayout/addcompany', '添加公司', {meta: {navShow: false,animatedName:'bounceInRight'}}),
-                        utils.importVueInit('AddCompany/AddCompanyInfo', '/app/HomeLayout/addcompanyinfo', '公司信息', {meta: {navShow: false,animatedName:'bounceInRight'}})
+                        utils.importVueInit('AddCompany/AddCompany', '/app/HomeLayout/addcompany', '添加公司', {meta: {navShow: false,animatedName:'slideInRight'}}),
+                        utils.importVueInit('AddCompany/AddCompanyInfo', '/app/HomeLayout/addcompanyinfo', '公司信息', {meta: {navShow: false,animatedName:'slideInRight'}})
                     ]
                 })
             ]

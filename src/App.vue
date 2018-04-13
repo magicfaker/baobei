@@ -1,13 +1,16 @@
 <template>
-  <div id="app" ref="app">
-      <loading v-model="isLoading"></loading>
-      <router-view/>
-      <check-update :update="update"></check-update>
+  <div id="app">
+      <div id="appView" ref="appView">
+          <loading v-model="isLoading"></loading>
+          <router-view/>
+          <check-update :update="update"></check-update>
+      </div>
+      <previewer ref="previewer" :list="imgList" @on-close="closePreviewer"></previewer>
   </div>
 </template>
 
 <script>
-import { Loading } from 'vux'
+import { Loading, Previewer } from 'vux'
 import Hammer from 'hammerjs'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import CheckUpdate from '@/components/CheckUpdate.vue'
@@ -18,10 +21,13 @@ export default {
         update:false,
         banners:[],
         confirmBack:0,
+        imgList:[],
+        path:null,
+        isClosePreviewer:false,
     }
   },
   components: {
-      Loading, CheckUpdate
+      Loading, CheckUpdate, Previewer
   },
   computed: {
       ...mapGetters(['airforce']),
@@ -31,6 +37,7 @@ export default {
   },
   methods:{
       ...mapActions(['action']),
+      //路由返回处理
       notWhiteListBack(event){
           var  callback = new Function();
           if(typeof event == "function"){
@@ -39,11 +46,61 @@ export default {
           //白名单
           const whiteList = ["车险分期","分期订单","工具","我的","登录"];
           if(!whiteList.some(title=>{return title == this.airforce.layout.title; })){
+              if(this.isClosePreviewer){
+                  this.$refs.previewer.close();
+                  return;
+              }
               this.$router.back();
           }else {
               callback();
           };
-      }
+      },
+      //获取所有ref节点
+      getRefsAll(refs,children){
+          try {
+              children = children || this.$children;
+              var refs = refs || [this.$refs];
+              children.forEach((el)=>{
+                  refs.push(el.$refs);
+                  if(el.$children.length > 0){
+                      this.getRefsAll(refs,el.$children);
+                  };
+              });
+              return refs;
+          }catch (e){
+              return [];
+          }
+      },
+      closePreviewer(){
+          this.isClosePreviewer = false;
+      },
+      //图片放大查看
+      imgZoomIn(prefix){
+          prefix = prefix || "img_";
+          if(this.$router.currentRoute.path != this.path){
+              try {
+                  this.getRefsAll().forEach((ref)=>{
+                      for(let key in ref){
+                          if(key.indexOf(prefix) > -1){
+                              let el = ref[key].$el || ref[key];
+                              el.addEventListener("click",()=>{
+                                  this.imgList = [
+                                      {
+                                          src:el.src
+                                      }
+                                  ];
+                                  setTimeout(()=>{
+                                      this.$refs.previewer.show(0);
+                                      this.isClosePreviewer = true;
+                                  },30);
+                              });
+                          };
+                      };
+                  });
+              }catch (e){}
+              this.path = this.$router.currentRoute.path;
+          }
+      },
   },
   mounted(){
       var time = setInterval(()=>{
@@ -103,17 +160,22 @@ export default {
       },10000);
 
       //滑动返回上一页
-      var h = new Hammer(this.$refs.app);
+      var h = new Hammer(this.$refs.appView);
       h.on('swiperight',(e) =>{
           this.notWhiteListBack(e);
       });
-
+      //图片缩放查看
+      this.imgZoomIn();
+  },
+  updated(){
+      //图片缩放查看
+      this.imgZoomIn();
   }
 }
 </script>
 
 <style lang="less">
-    #app{
+    #appView{
         min-height: 100%;
         position: absolute;
         width: 100%;

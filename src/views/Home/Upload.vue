@@ -1,16 +1,5 @@
 <template>
     <div class="Upload">
-        <!--idcard_front:'上传身份证正面',-->
-        <!--idcard_back:'上传身份证反面',-->
-        <!--vehicle_license:'上传行驶证整页/购车发票/车辆登记证明(三选一)',-->
-        <!--bank_card:'上传接收借款的借记卡',-->
-        <!--payment_slip:'上传保险缴费单',-->
-        <!--safe_no:'上传保险公司收款账号'-->
-        <!--
-        :imgSrc="url + uploadOld.idcard_front"
-        :imgSrc="url + uploadOld.idcard_back"
-        :imgSrc="url + uploadOld.bank_card"
-        -->
         <images-upload inputOfFile="idcard_front" text="上传身份证正面" toastText="身份证正面" :off="idcard_front"></images-upload>
         <images-upload inputOfFile="idcard_back" text="上传身份证反面" toastText="身份证反面" :off="idcard_back"></images-upload>
         <images-upload inputOfFile="vehicle_license" text="上传行驶证正页/购车发票/车辆登记证书" text2="(三选一)" toastText="三选一"></images-upload>
@@ -18,7 +7,7 @@
         <images-upload inputOfFile="payment_slip" text="上传投保人变更凭证" toastText="投保人变更凭证"></images-upload>
         <images-upload inputOfFile="safe_no" text="上传保险公司的收款账号" toastText="保险公司的收款账号"></images-upload>
         <x-switch class="homeXSwitch" title="是否上传额外附件" v-model="is_more"></x-switch>
-        <div v-if="is_more">
+        <div :class="(!is_more) ? 'is_more' : ''">
             <images-upload v-for="i in 9" :key="i" :inputOfFile="'vehicle_license'+i" :text="'额外的行驶证图片'+i" toastText="行驶证图片"></images-upload>
             <images-upload v-for="i in 9" :key="i+'A'" :inputOfFile="'payment_slip'+i" :text="'额外的缴费单'+i" toastText="缴费单"></images-upload>
         </div>
@@ -180,7 +169,7 @@
         },
         components:{
             ImagesUpload, Box, XButton, XSwitch
-        }
+        },
     }
 </script>
 
@@ -215,6 +204,9 @@
                     }
                 }
             }
+        }
+        .is_more{
+            display: none;
         }
     }
 </style>
