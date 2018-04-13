@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <swiper :list="banners" auto loop :show-desc-mask="false"></swiper>
-        <group>
+        <group class="homeGroup">
             <flexbox>
                 <flexbox-item>
                     <x-switch class="homeXSwitch" :inline-desc="fenqicheTypeTxt" title="分期车型" :value="airforce.homeSubmit.fenqicheType" @on-change="airforce.change.set($event,'fenqicheType','homeSubmit')"></x-switch>
@@ -322,6 +322,11 @@
 
 <style scoped lang="less">
 .home{
+    .homeGroup{
+        &/deep/ .vux-no-group-title{
+            margin-top: 0;
+        }
+    }
     .homeXSwitch{
         &/deep/ .weui-cell__ft{
             position: relative;

@@ -184,6 +184,7 @@ export default {
     }
   @import '~vux/src/styles/reset.less';
   @import './assets/css/animate.min.css';
+  @import './assets/css/publicCeset.less';
   //*
   @font-face {
     font-family: 'iconfont';

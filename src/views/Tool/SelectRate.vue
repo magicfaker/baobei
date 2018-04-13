@@ -37,7 +37,6 @@
         methods: {
             ...mapActions(['action']),
             selectrate(selectrateObj){
-                console.log(selectrateObj)
                 selectrateObj.type = this.airforce.Tool.selectrate.type;
                 this.action({
                     moduleName:'Tool',

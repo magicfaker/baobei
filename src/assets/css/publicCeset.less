@@ -1,0 +1,53 @@
+//todo 变量===start
+@px_12:12px;
+@px_14:14px;
+@px_16:16px;
+@px_18:18px;
+
+//todo 方法===statr
+//字体大小
+.fontSize(@index:@px_14){
+  font-size: @index;
+}
+
+//todo 样式实例===start
+#app{
+  .loginModule{
+    .loginFlexbox{
+      .loginFlexboxTxt{
+        .fontSize();
+      }
+    }
+  }
+  .weui-label{
+    .fontSize();
+  }
+  .weui-input{
+    .weui-label;
+  }
+  .vux-label-desc{
+    .fontSize(@px_12);
+  }
+  .weui-cells{
+    .weui-label;
+  }
+  .HomeXbutton{
+    .fontSize(@px_16);
+  }
+  .layoutXHeaderRight_txt{
+    .weui-label;
+  }
+}
+.popupEX{
+  .vux-flexbox{
+    .EnterBtn{
+      .fontSize();
+    }
+    .weui-search-bar__cancel-btn{
+      .EnterBtn;
+    }
+  }
+  .weui-cell{
+    .fontSize();
+  }
+}
