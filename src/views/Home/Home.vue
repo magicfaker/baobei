@@ -22,8 +22,8 @@
                            label-width="80px"
             >
             </select-picker>
-            <x-input label-width="80px" title="业务渠道" placeholder="请输入您投保的保险渠道（必填）" :value="airforce.homeSubmit.channel" @on-change="airforce.change.set($event,'channel','homeSubmit')"></x-input>
-            <x-input label-width="80px" title="备注" placeholder="输入您需要备注的内容（必填）" :value="airforce.homeSubmit.remark" @on-change="airforce.change.set($event,'remark','homeSubmit')"></x-input>
+            <x-input label-width="80px" title="业务渠道" placeholder="请输入您投保的保险渠道（选填）" :value="airforce.homeSubmit.channel" @on-change="airforce.change.set($event,'channel','homeSubmit')"></x-input>
+            <x-input label-width="80px" title="备注" placeholder="输入您需要备注的内容（选填）" :value="airforce.homeSubmit.remark" @on-change="airforce.change.set($event,'remark','homeSubmit')"></x-input>
         </group>
         <box>
             <x-button type="primary" class="HomeXbutton"  @click.native="homeSubmitNext">下一步</x-button>

@@ -24,9 +24,9 @@
             </select-picker>
             <!--<x-input label-width="100px" title="紧急联系人2" placeholder="请输入联系人姓名" :value="airforce.AddCompanyInfo.role_2_name" @on-change="airforce.change.set($event,'role_2_name','AddCompanyInfo')"></x-input>-->
             <x-input label-width="100px" title="手机号2" type="number" placeholder="请输入联系人手机" :value="airforce.AddCompanyInfo.jjphone_2" @on-change="airforce.change.set($event,'jjphone_2','AddCompanyInfo')"></x-input>
-            <x-img class="AddCompanyInfo-img" :src="airforce.homeSubmit.AddCompany_bank_card.base64Url"></x-img>
+            <x-img ref="img_1" class="AddCompanyInfo-img" :src="airforce.homeSubmit.AddCompany_bank_card.base64Url"></x-img>
             <x-input label-width="100px" title="银行卡卡号" type="number" placeholder="请输入车主银行卡号" :value="airforce.AddCompanyInfo.cardno" @on-change="airforce.change.set($event,'cardno','AddCompanyInfo')"></x-input>
-            <x-img class="AddCompanyInfo-img" :src="airforce.homeSubmit.AddCompany_idcard_front.base64Url"></x-img>
+            <x-img ref="img_" class="AddCompanyInfo-img" :src="airforce.homeSubmit.AddCompany_idcard_front.base64Url"></x-img>
             <x-input label-width="100px" title="身份证号码" placeholder="请输入车主身份证号码" :value="airforce.AddCompanyInfo.idcard" @on-change="airforce.change.set($event,'idcard','AddCompanyInfo')"></x-input>
         </group>
         <box>

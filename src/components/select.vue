@@ -2,7 +2,7 @@
     <div class="select_components" v-if="moduleName">
         <flexbox class="select-flexbox" v-if="type != 'select'">
             <flexbox-item>
-                <x-input label-width="110px"
+                <x-input label-width="100px"
                          :title="title"
                          :placeholder="placeholder"
                          :value="airforce[moduleName][name]"
