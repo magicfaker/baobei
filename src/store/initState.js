@@ -23,33 +23,33 @@ export default {
     homeTabbar:[
         {
             txt:"分期",
-            icon:require("@/assets/img/MenuIcon/fq.png"),
-            iconSelect:require("@/assets/img/MenuIcon/fq_on.png"),
             iconSelectBool:false,
+            icons:"&#xe613;",
+            iconsSelect:"&#xe619;",
             selected:true,
             link:'/app/HomeLayout/home'
         },
         {
             txt:"订单",
-            icon:require("@/assets/img/MenuIcon/dd.png"),
-            iconSelect:require("@/assets/img/MenuIcon/dd_on.png"),
             iconSelectBool:false,
+            icons:"&#xe606;",
+            iconsSelect:"&#xe609;",
             selected:false,
             link:'/app/HomeLayout/order'
         },
         {
             txt:"工具",
-            icon:require("@/assets/img/MenuIcon/gj.png"),
-            iconSelect:require("@/assets/img/MenuIcon/gj_on.png"),
             iconSelectBool:false,
+            icons:"&#xe6ad;",
+            iconsSelect:"&#xe6ae;",
             selected:false,
             link:'/app/HomeLayout/tool'
         },
         {
             txt:"我的",
-            icon:require("@/assets/img/MenuIcon/wd.png"),
-            iconSelect:require("@/assets/img/MenuIcon/wd_on.png"),
             iconSelectBool:false,
+            icons:"&#xe633;",
+            iconsSelect:"&#xe6a2;",
             selected:false,
             link:'/app/HomeLayout/user'
         },

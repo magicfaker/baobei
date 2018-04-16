@@ -304,4 +304,16 @@ export default {
         }
         return importVue(configs);
     },
+    /**
+     * 判断是否手ios或android
+     * */
+    isIosAndroid(){
+        var bool = true;
+        var ua = navigator.userAgent.toLowerCase();
+        if (/iphone|ipad|ipod/.test(ua)) {
+            bool = true;
+        } else if (/android/.test(ua)) {
+            bool = false;
+        }
+    }
 }

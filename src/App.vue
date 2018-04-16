@@ -2,7 +2,7 @@
   <div id="app">
       <div id="appView" ref="appView">
           <loading v-model="isLoading"></loading>
-            <router-view/>
+          <router-view/>
           <check-update :update="update"></check-update>
       </div>
       <previewer ref="previewer" :list="imgList" @on-close="closePreviewer"></previewer>
@@ -117,7 +117,7 @@ export default {
                       });
                       this.$vux.confirm.show({
                           title:"软件更新提示",
-                          content:"1、修改",
+                          content:"【更新】优化了一些细节",
                           confirmText:"马上更新",
                           cancelText:"稍后更新",
                           onCancel:()=>{
@@ -196,7 +196,7 @@ export default {
   }
   //*/
   /*
-  @Nb:"font_590408_gk10bzn1u9sve7b9";
+  @Nb:"font_590408_fgip3g4snd5z5mi";
   @font-face {
     font-family: 'iconfont';
     src: url('//at.alicdn.com/t/@{Nb}.eot');

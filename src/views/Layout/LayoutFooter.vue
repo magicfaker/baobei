@@ -2,8 +2,8 @@
     <div class="LayoutFooter">
         <tabbar :class="`homeTabbar ${(!airforce.layout.navShow)? 'hide':''}`">
             <tabbar-item @on-item-click="tabMenuNav" class="homeTabbarItem" v-for="(item,index) in airforce.homeTabbar" :key="index" :selected="item.selected">
-                <img slot="icon" v-if="!item.iconSelectBool" :src="item.icon">
-                <img slot="icon" v-else :src="item.iconSelect">
+                <div slot="icon" v-if="!item.iconSelectBool" class="iconfont" v-html="item.icons"></div>
+                <div slot="icon" v-else class="iconfont" v-html="item.iconsSelect"></div>
                 <span slot="label" :ref="'LayoutFooterhomeTabbarItem'+index">{{item.txt}}</span>
             </tabbar-item>
         </tabbar>
@@ -58,17 +58,30 @@
     &/deep/ .homeTabbar{
         position: fixed;
         .homeTabbarItem{
-            /*&.weui-bar__item_on{*/
-                .weui-tabbar__label{
-                    color: #999999;
-                    .selectObj{
-                        color: #f38431;
-                    }
-                }
-            /*}*/
+            .weui-tabbar__label{
+                color: #999999;
+            }
             &.weui-tabbar__item{
                 text-decoration: none;
                 outline: medium;
+            }
+            .iconfont{
+                color: #999999;
+                height: 27px;
+                font-size: 27px;
+                line-height: 27px;
+            }
+            &.weui-bar__item_on{
+                .weui-tabbar__icon{
+                    .iconfont{
+                        color: #f38431;
+                    }
+                }
+                .weui-tabbar__label{
+                    span{
+                        color: #f38431;
+                    }
+                }
             }
         }
         &.hide{
