@@ -1,6 +1,6 @@
 <template>
 	<div class="wrapper">
-		<div class="wrappermain">
+		<div class="wrapperMain">
 			<div class="yj-collect">
 				<x-circle :percent="percent" :stroke-width="4" stroke-color="#fe7f19" class="circular">
 			        <span>历史累计佣金</span>
@@ -172,7 +172,7 @@
 				}
 			}
 		}
-		.wrappermain{
+		.wrapperMain{
 			margin-top: 40px;
 			.yj-collect{
 				width:200px;

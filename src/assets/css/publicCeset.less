@@ -4,6 +4,10 @@
 @px_16:16px;
 @px_18:18px;
 
+//顏色
+@cor-f38431:#f38431;
+@themeColor:@cor-f38431;
+
 //todo 方法===statr
 //字体大小
 .fontSize(@index:@px_14){
@@ -11,46 +15,233 @@
 }
 
 //todo 样式实例===start
-#app{
-  .loginModule{
-    .loginFlexbox{
-      .loginFlexboxTxt{
-        .fontSize();
+.newThemeColor(@themeName:'',@themeColor:@themeColor){
+  #app{
+    .HomeXbutton{
+      width: 80% !important;
+      border: none !important;
+      border-radius: 10px !important;
+      overflow: hidden !important;
+      background-color: @themeColor !important;
+      color: #fff !important;
+      margin-top: 40px !important;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.09) !important;
+      margin-bottom: 100px !important;
+      &:active {
+        border-color: @themeColor*0.9 !important;
+        background-color: @themeColor*0.9 !important;
+      }
+      &:after{
+        border: none !important;
+      }
+    }
+    .loginModule{
+      .loginFlexbox{
+        .loginFlexboxTxt{
+          .fontSize();
+        }
+      }
+      .loginXbutton{
+        .HomeXbutton;
+      }
+    }
+    .weui-label{
+      .fontSize();
+    }
+    .weui-input{
+      .weui-label;
+    }
+    .vux-label-desc{
+      .fontSize(@px_12);
+    }
+    .weui-cells{
+      .weui-label;
+    }
+    .HomeXbutton{
+      .fontSize(@px_16);
+    }
+    .layoutXHeaderRight_txt{
+      .weui-label;
+    }
+    .imagesUploadTxt{
+      .weui-label;
+    }
+    .orderCard{
+      .orderCardHeader{
+        .weui-label;
+        .left{
+          .iconfont{
+            color: @themeColor;
+          }
+        }
+      }
+      .orderCardContent{
+        .fontSize(@px_12);
+      }
+      .orderCardFooter{
+        .orderCardHeader;
+      }
+      .HomeXbutton{
+        margin: 0 !important;
+        width: auto !important;
+      }
+    }
+    .SelectType{
+      .SelectTypeCard{
+        .header{
+          .weui-label;
+        }
+      }
+      .bj{
+        &:before{
+          content: '';
+          background-color: @themeColor;
+        }
+      }
+    }
+    .OrderDetails{
+      .OrderDetails-timeline{
+        .vux-timeline-item-content{
+          h4{
+            color: @themeColor;
+          }
+          p{
+            color: @themeColor;
+          }
+        }
+        .vux-timeline-item-color{
+          background-color: @themeColor;
+        }
+      }
+      .footerBtns{
+        .tel{
+          border: 1px solid @themeColor;
+          color: @themeColor;
+        }
+      }
+    }
+    .wrapper{
+      .wrapperMain{
+        .menu{
+          span{
+            .weui-label;
+          }
+        }
+        .user{
+          background-color: @themeColor;
+        }
+        .collect{
+          .user;
+        }
+      }
+      .wcontent{
+        .list{
+          .weui-label;
+        }
+      }
+      .yj-collect{
+        .vux-circle{
+          svg{
+            path{
+              &:last-child{
+                stroke:@themeColor;
+              }
+            }
+          }
+        }
+      }
+    }
+    .layout-header{
+      .layoutXHeaderBox{
+        .layoutXHeader{
+          background-color: @themeColor;
+        }
+        .layoutFlexbox{
+          color: @themeColor;
+        }
+      }
+    }
+    .imagesUpload {
+      .vux-flexbox{
+        .vux-flexbox-item{
+          .imagesUploadTxt{
+            span{
+              &.ok{
+                color: @themeColor;
+              }
+            }
+            &.text2{
+              color: @themeColor;
+            }
+          }
+          .weui-progress__inner-bar{
+            background-color: @themeColor;
+          }
+        }
+      }
+    }
+    .LayoutFooter{
+      .homeTabbar {
+        .homeTabbarItem{
+          .weui-tabbar__label{
+            .selectObj{
+              color: @themeColor;
+            }
+          }
+          &.weui-bar__item_on{
+            .weui-tabbar__icon{
+              width: 27px;
+              height: 27px;
+              overflow: hidden;
+              img{
+                position: relative;
+                left: -50px;
+                filter:drop-shadow(@themeColor 50px 0)  ;
+              }
+            }
+          }
+        }
+      }
+    }
+    .weui-btn_plain-primary-Theme{
+      color: @themeColor;
+      border: 1px solid @themeColor;
+    }
+    .ForgetPwdXbutton{
+      .HomeXbutton;
+    }
+    .home{
+      .homeXSwitch{
+        .weui-cell__ft{
+          .weui-switch{
+            &:checked{
+              border-color: @themeColor;
+              background-color: @themeColor;
+            }
+          }
+        }
+      }
+    }
+    .Upload{
+      .homeXSwitch{
+        .home.homeXSwitch;
       }
     }
   }
-  .weui-label{
-    .fontSize();
-  }
-  .weui-input{
-    .weui-label;
-  }
-  .vux-label-desc{
-    .fontSize(@px_12);
-  }
-  .weui-cells{
-    .weui-label;
-  }
-  .HomeXbutton{
-    .fontSize(@px_16);
-  }
-  .layoutXHeaderRight_txt{
-    .weui-label;
-  }
-  .imagesUploadTxt{
-    .weui-label;
-  }
-}
-.popupEX{
-  .vux-flexbox{
-    .EnterBtn{
+  .popupEX{
+    .vux-flexbox{
+      .EnterBtn{
+        .fontSize();
+      }
+      .weui-search-bar__cancel-btn{
+        .EnterBtn;
+      }
+    }
+    .weui-cell{
       .fontSize();
     }
-    .weui-search-bar__cancel-btn{
-      .EnterBtn;
-    }
-  }
-  .weui-cell{
-    .fontSize();
   }
 }
+
+//初始化主题
+.newThemeColor();

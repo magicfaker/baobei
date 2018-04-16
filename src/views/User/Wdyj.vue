@@ -1,6 +1,6 @@
 <template>
 	<div class="wrapper">
-		<div class="wrappermain">
+		<div class="wrapperMain">
 			<div class="collect animated flipInY">
 				<span>可提现的佣金（元）</span>
 				<div>
@@ -150,7 +150,7 @@
 				}
 			}
 		}
-		.wrappermain{
+		.wrapperMain{
 			margin-top: 40px;
 			.collect{
 				background:#fe7f19;

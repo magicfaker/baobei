@@ -2,7 +2,7 @@
   <div id="app">
       <div id="appView" ref="appView">
           <loading v-model="isLoading"></loading>
-          <router-view/>
+            <router-view/>
           <check-update :update="update"></check-update>
       </div>
       <previewer ref="previewer" :list="imgList" @on-close="closePreviewer"></previewer>
