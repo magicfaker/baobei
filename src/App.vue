@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+      <!--引导页-->
+      <swiper class="guidePage" v-if="guidePageShow" :list="banners" :show-desc-mask="false"></swiper>
+
       <div id="appView" ref="appView">
           <loading v-model="isLoading"></loading>
           <router-view/>
@@ -10,7 +13,7 @@
 </template>
 
 <script>
-import { Loading, Previewer } from 'vux'
+import { Loading, Previewer, Swiper } from 'vux'
 import Hammer from 'hammerjs'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import CheckUpdate from '@/components/CheckUpdate.vue'
@@ -24,10 +27,28 @@ export default {
         imgList:[],
         path:null,
         isClosePreviewer:false,
+        guidePageShow:false,
+        banners:[
+            {
+                url: 'javascript:',
+                img: require('@/assets/img/banner/banner1.png'),
+                title: ''
+            },
+            {
+                url: 'javascript:',
+                img: require('@/assets/img/banner/banner1.png'),
+                title: ''
+            },
+            {
+                url: 'javascript:',
+                img: require('@/assets/img/banner/banner1.png'),
+                title: ''
+            },
+        ],
     }
   },
   components: {
-      Loading, CheckUpdate, Previewer
+      Loading, CheckUpdate, Previewer, Swiper
   },
   computed: {
       ...mapGetters(['airforce']),
@@ -231,4 +252,41 @@ export default {
       border: none !important;
     }
   }
+  #app{
+      .guidePage{
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1000;
+          background-color: #ffffff;
+          .vux-swiper{
+              position: fixed;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%  !important;
+              z-index: 1000;
+              .vux-swiper-item{
+                  a{
+                      .vux-img{
+                          background-size: 100% 100%;
+                      }
+                  }
+              }
+          }
+          .vux-indicator-right{
+              position: fixed;
+              z-index: 1001;
+              width: 80%;
+              right: 10%;
+              text-align: center;
+              a{
+                  float: none;
+              }
+          }
+      }
+  }
+
 </style>
