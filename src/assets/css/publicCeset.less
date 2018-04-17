@@ -3,6 +3,7 @@
 @px_14:14px;
 @px_16:16px;
 @px_18:18px;
+@_0_7:0.7;
 
 //顏色
 @cor-f38431:#f38431;
@@ -42,6 +43,60 @@
     }
     .loginXbutton{
       .HomeXbutton;
+    }
+    .loginXinput{
+      .weui-cells{
+        .weui-label{
+          color: @themeColor;
+        }
+      }
+    }
+    .loginXbutton2{
+      opacity: @_0_7;
+      margin-bottom: 20px !important;
+    }
+    .loginFlexbox2{
+      margin-top: 0;
+      .loginFlexboxTxt{
+        color: @themeColor;
+        text-align: right;
+        &.left{
+          text-align: left;
+          &:before{
+            width: 0;
+            background-color: transparent;
+          }
+          &:after{
+            width: 0;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+    .loginXinput2{
+      .weui-cells{
+        background-color: transparent;
+        @borders:#fff;
+        border-bottom: 1px solid @borders;
+        color: @borders;
+        @borders2:rgba(255,255,255,0.7);
+        border-bottom: 1px solid @borders2;
+        &:before{
+          border: none;
+        }
+        &:after{
+          border: none;
+        }
+        .weui-label{
+          font-size: @px_18;
+          opacity: @_0_7;
+        }
+      }
+    }
+    .min_logo{
+      width: 80%;
+      margin: auto;
+      display: block;
     }
   }
   .weui-label{
@@ -205,6 +260,9 @@
     border: 1px solid @themeColor;
   }
   .ForgetPwdXbutton{
+    .HomeXbutton;
+  }
+  .registerXbutton{
     .HomeXbutton;
   }
   .home{

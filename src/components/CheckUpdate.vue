@@ -63,12 +63,13 @@
                       this.$vux.alert.show(
                           {
                               title:"软件更新提示",
-                              content:"暂不支持ios系统升级",
+                              content:"暂不支持ios系统升级,如需升級请联系开发人员",
                           }
                       );
                       return;
                   };
-                  this.init();
+                  console.log(utils.isIosAndroid())
+                  // this.init();
               }
           }
         }

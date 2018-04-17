@@ -1,32 +1,34 @@
 <template>
     <div class="loginModule" :style="{backgroundImage:`url(${login_bj})`}">
         <img :src="xiaosanyuan" class="headImg"/>
-        <group class="loginXinput">
+        <group class="loginXinput loginXinput2">
             <x-input label-width="30px"  title="&#xe638;" :value="airforce.login.phone" @on-change="airforce.change.set($event,'phone','login')" placeholder="输入您的登陆账号" class="iconfont"></x-input>
         </group>
-        <group class="loginXinput">
+        <group class="loginXinput loginXinput2">
             <x-input  type="password" label-width="30px"  title="&#xe62d;"  :value="airforce.login.password" @on-change="airforce.change.set($event,'password','login')" placeholder="输入您的6位以上密码" class="iconfont"></x-input>
         </group>
         <box>
-            <x-button type="primary" class="loginXbutton" @click.native="login">登陆</x-button>
+            <x-button type="primary" class="loginXbutton loginXbutton2" @click.native="login">登陆</x-button>
         </box>
-        <flexbox class="loginFlexbox">
+        <flexbox class="loginFlexbox loginFlexbox2">
             <flexbox-item><div class="loginFlexboxTxt left" @click="ForgetPwd">忘记密码?</div></flexbox-item>
             <flexbox-item><div class="loginFlexboxTxt" @click="register">新用户注册</div></flexbox-item>
         </flexbox>
+        <x-img :src="min_logo" class="min_logo"></x-img>
     </div>
 </template>
 
 <script>
-    import {XInput, Group, XButton, Box, Flexbox, FlexboxItem } from "vux"
+    import {XInput, Group, XButton, Box, Flexbox, FlexboxItem, XImg } from "vux"
     import { mapActions, mapGetters } from 'vuex'
     import Utils from "@/utils/utils.js"
     export default {
         name: "login",
         data(){
             return {
-                login_bj:require("@/assets/img/login/login_bj.png"),
+                login_bj:require("@/assets/img/login/login_bj1.png"),
                 xiaosanyuan:require("@/assets/img/login/xiaosanyuan.png"),
+                min_logo:require("@/assets/img/login/min-logo.png"),
             }
         },
         methods: {
@@ -86,6 +88,7 @@
             Box,
             Flexbox,
             FlexboxItem,
+            XImg,
         },
         computed: mapGetters({
             airforce: 'airforce'
@@ -94,17 +97,24 @@
 </script>
 
 <style lang="less" scoped>
+
 .loginModule{
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    background-size:100%;
+    background-repeat: no-repeat;
+    @media (min-height: 737px) {
+        background-size:100% 812px;
+    }
     .headImg{
-        width: 40%;
+        width: 30%;
         margin: auto;
         display: block;
         margin-top: 50px;
+        margin-bottom: 50px;
         //iPhone 6/7/8 Plus
         @media (min-height: 700px) {
             margin-top: 80px;

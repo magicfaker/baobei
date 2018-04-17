@@ -309,11 +309,12 @@ export default {
      * */
     isIosAndroid(){
         var bool = true;
-        var ua = navigator.userAgent.toLowerCase();
+        var ua = window.navigator.userAgent.toLowerCase();
         if (/iphone|ipad|ipod/.test(ua)) {
             bool = true;
         } else if (/android/.test(ua)) {
             bool = false;
         }
+        return bool;
     }
 }

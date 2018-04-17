@@ -127,6 +127,7 @@
                                 wgtVer = parseInt(wgtVer.replace(/\./img,''));
                             } catch (e){}
                             if(wgtVer&&newVer&&(newVer > wgtVer)){
+                            // if(true){
                                 if(!opts.bool){
                                     downWgt(opts.callback,opts.err,opts.ok,opts.wgtUrl);  // 下载升级包
                                 }

@@ -64,16 +64,6 @@
                         img: require('@/assets/img/banner/banner1.png'),
                         title: ''
                     },
-                    {
-                        url: 'javascript:',
-                        img: require('@/assets/img/banner/banner1.png'),
-                        title: ''
-                    },
-                    {
-                        url: 'javascript:',
-                        img: require('@/assets/img/banner/banner1.png'),
-                        title: ''
-                    },
                 ],
                 show1: false,
                 fenqiType:[
