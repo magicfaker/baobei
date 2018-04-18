@@ -14,7 +14,7 @@
             <flexbox-item><div class="loginFlexboxTxt left" @click="ForgetPwd">忘记密码?</div></flexbox-item>
             <flexbox-item><div class="loginFlexboxTxt" @click="register">新用户注册</div></flexbox-item>
         </flexbox>
-        <x-img :src="min_logo" class="min_logo"></x-img>
+        <img :src="min_logo" class="min_logo">
     </div>
 </template>
 
@@ -77,7 +77,7 @@
                 this.$router.push("/app/forgetPwd")
             }
         },
-        created(){
+        mounted(){
             //13757478025
             //ok6520814
         },
