@@ -28,7 +28,7 @@
                     continue;
                 }
                 win.pays[channel.id]=channel;
-                checkServices(channel);
+                // checkServices(channel);
             }
         },function(e){
             // outLine('获取支付通道失败：'+e.message);

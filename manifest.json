@@ -159,7 +159,7 @@
 				}
 			},
 			"plugins": {
-				"payment": {"appleiap":{"description":"Apple应用内支付"},"alipay":{"description":"阿里支付","scheme":""}
+				"payment": {"alipay":{"description":"阿里支付","scheme":""},"appleiap":{"description":"Apple应用内支付"}
                     
                 }
 			}
