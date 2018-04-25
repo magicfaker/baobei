@@ -1,7 +1,7 @@
 <template>
     <div class="Authentication">
         <group>
-            <div class="disabled"></div>
+            <div class="disabled" v-if="airforce.homeSubmit.fenqicheType"></div>
             <x-input :value="airforce.homeSubmit.auth_name" @on-change="airforce.change.set($event,'auth_name','homeSubmit')" label-width="100px" title="姓名" placeholder="请输入车主姓名"></x-input>
             <x-input :value="airforce.homeSubmit.auth_phone" @on-change="airforce.change.set($event,'auth_phone','homeSubmit')" label-width="100px" title="手机号码" placeholder="请输入车主银行卡绑定手机号"></x-input>
             <select-picker :data="selectData"

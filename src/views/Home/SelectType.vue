@@ -165,6 +165,18 @@
                         this.$vux.toast.text(res.message);
                         return;
                     }
+                    try {
+                        var fenqicheType = false;
+                        if(res.data.cartype == '2'){
+                            fenqicheType = true;
+                        };
+                        this.action({
+                            moduleName:"homeSubmit",
+                            goods:{
+                                fenqicheType:fenqicheType
+                            }
+                        })
+                    }catch (e){}
                 }).catch(err=>{
                     this.$vux.toast.text(err);
                 })
