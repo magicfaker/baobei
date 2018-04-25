@@ -68,8 +68,7 @@
                       );
                       return;
                   };
-                  console.log(utils.isIosAndroid())
-                  // this.init();
+                  this.init();
               }
           }
         }
