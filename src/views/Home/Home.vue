@@ -81,8 +81,8 @@
                     {name:"商业险和交强险",value:"3"},
                 ],
                 rateList:[
-                    {name:"20%",value:"0.2"},
-                    {name:"25%",value:"0.25"},
+                    // {name:"20%",value:1},
+                    // {name:"25%",value:2},
                 ],
                 findOpt:null,
                 radioSelect:null,
@@ -97,8 +97,6 @@
                 this.show1 = false;
             },
             homeSubmitNext(){
-                console.log(this.airforce.homeSubmit.rate_Select.value)
-                // return;
                 if(this.airforce.homeSubmit.fenqicheType && !this.airforce.homeSubmit.company){
                     this.$vux.toast.text("请选择隶属公司");
                     return
@@ -132,6 +130,7 @@
                     plate:this.airforce.homeSubmit.number,
                     amount:this.airforce.homeSubmit.money,
                     insurance:this.airforce.homeSubmit.fenqiType_SelectTxt,
+                    rate_id:this.airforce.homeSubmit.rate_Select.value,
                 };
                 try {
                     if(this.airforce.homeSubmit.company && this.airforce.homeSubmit.company.cid){
@@ -321,6 +320,29 @@
             }).catch(e=>{
                 this.$vux.toast.text(e);
             });
+            this.action({
+                moduleName:'rateList_post',
+                isFormData:true,
+                method:"POST",
+                url:'app/installment/rate',
+                data:this.airforce.login_post.data
+            }).then(res=>{
+                if(res.code != 200){
+                    if(res.message){
+                        this.$vux.toast.text(res.message);
+                    };
+                    return;
+                }
+                if(res.msg){
+                    this.rateList = res.msg.map(e=>{
+                        e.value = e.id;
+                        e.name = parseFloat(e.rate)*100 + "%";
+                        return e;
+                    });
+                }
+            }).catch(err=>{
+                this.$vux.toast.text(err);
+            })
         }
     }
 </script>

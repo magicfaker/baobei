@@ -78,9 +78,9 @@ export default {
         // fenqiType_SelectTxt:"交强险",
         rate_Select:{
             name:"20%",
-            value:"0.2",
+            value:1,
         },
-        rate_SelectVal:["0.2"],
+        rate_SelectVal:[1],
         rate_SelectTxt:"20%",
         // auth_name:"张三",
         // auth_phone:"18768527011",
