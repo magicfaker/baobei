@@ -22,6 +22,15 @@
                            label-width="80px"
             >
             </select-picker>
+            <select-picker :data="rateList"
+                           title="手续费费率"
+                           selectPlaceholder="选择手续费费率"
+                           name="rate"
+                           moduleName="homeSubmit"
+                           type="select"
+                           label-width="80px"
+            >
+            </select-picker>
             <x-input label-width="80px" title="业务渠道" placeholder="请输入您投保的保险渠道（选填）" :value="airforce.homeSubmit.channel" @on-change="airforce.change.set($event,'channel','homeSubmit')"></x-input>
             <x-input label-width="80px" title="备注" placeholder="输入您需要备注的内容（选填）" :value="airforce.homeSubmit.remark" @on-change="airforce.change.set($event,'remark','homeSubmit')"></x-input>
         </group>
@@ -71,6 +80,10 @@
                     {name:"交强险",value:"2"},
                     {name:"商业险和交强险",value:"3"},
                 ],
+                rateList:[
+                    {name:"20%",value:"0.2"},
+                    {name:"25%",value:"0.25"},
+                ],
                 findOpt:null,
                 radioSelect:null,
             }
@@ -84,6 +97,8 @@
                 this.show1 = false;
             },
             homeSubmitNext(){
+                console.log(this.airforce.homeSubmit.rate_Select.value)
+                // return;
                 if(this.airforce.homeSubmit.fenqicheType && !this.airforce.homeSubmit.company){
                     this.$vux.toast.text("请选择隶属公司");
                     return
