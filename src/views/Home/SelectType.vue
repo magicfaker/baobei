@@ -15,13 +15,14 @@
                     <span class="iconfont" v-if="item.select">&#xe717;</span>
                 </flexbox-item>
             </flexbox>
+            <x-switch title="上海订单是否3期转6期" class="homeXSwitch" :value="airforce.homeSubmit.SelectType_switch" @on-change="airforce.change.set($event,'SelectType_switch','homeSubmit')"></x-switch>
         </div>
         <img :src="renzheng" class="renzheng animated fadeInUp" @click="homeSubmitNext">
     </div>
 </template>
 
 <script>
-    import { FormPreview, Flexbox, FlexboxItem } from 'vux'
+    import { FormPreview, Flexbox, FlexboxItem, XSwitch } from 'vux'
     import { mapActions, mapGetters } from 'vuex'
     export default {
         name: "select-type",
@@ -75,6 +76,7 @@
                         token:this.airforce.login_post.data.token,
                         orderid:orderid,
                         periods:this.airforce.homeSubmit.SelectType.periods,
+                        switch:this.switchObj,
                     },
                     isFormData:true,
                 }).then(r=>{
@@ -146,6 +148,12 @@
                     return [];
                 }
                 return [];
+            },
+            switchObj(){
+                if(this.airforce.homeSubmit.SelectType_switch){
+                    return 1;
+                }
+                return 0;
             }
         },
         mounted(){
@@ -183,12 +191,27 @@
             };
         },
         components:{
-            FormPreview, Flexbox, FlexboxItem
+            FormPreview, Flexbox, FlexboxItem, XSwitch
         }
     }
 </script>
 <style scoped lang="less">
     .SelectType{
+        .homeXSwitch{
+            &/deep/ .weui-cell__ft{
+                position: relative;
+                .weui-switch{
+                    &:checked{
+                        border-color: #f38431;
+                        background-color: #f38431;
+                    }
+                }
+            }
+            &/deep/ .weui-label{
+                color: #ffffff;
+                font-size: 12px;
+            }
+        }
         .bj{
             &:before{
                 content: '';
