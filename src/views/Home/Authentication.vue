@@ -145,10 +145,10 @@
                     this.$vux.toast.text("【银行卡卡号】<br>不能为空,请补全公司信息");
                     return
                 }
-                if(!/^(\d{16}|\d{19})$/.test(this.airforce.homeSubmit.auth_bankCode)){
-                    this.$vux.toast.text("请输入正确的<br>【银行卡卡号】,请补全公司信息");
-                    return
-                }
+                // if(!/^(\d{16,19})$/.test(this.airforce.homeSubmit.auth_bankCode)){
+                //     this.$vux.toast.text("请输入正确的<br>【银行卡卡号】,请补全公司信息");
+                //     return
+                // }
                 if(!this.airforce.homeSubmit.auth_idCode ||
                     this.airforce.homeSubmit.auth_idCode.length == 0){
                     this.$vux.toast.text("【身份证号】<br>不能为空,请补全公司信息");

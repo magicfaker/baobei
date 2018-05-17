@@ -15,7 +15,6 @@
                     <span class="iconfont" v-if="item.select">&#xe717;</span>
                 </flexbox-item>
             </flexbox>
-            <x-switch title="上海订单是否3期转6期" class="homeXSwitch" :value="airforce.homeSubmit.SelectType_switch" @on-change="airforce.change.set($event,'SelectType_switch','homeSubmit')"></x-switch>
         </div>
         <img :src="renzheng" class="renzheng animated fadeInUp" @click="homeSubmitNext">
     </div>
@@ -76,7 +75,6 @@
                         token:this.airforce.login_post.data.token,
                         orderid:orderid,
                         periods:this.airforce.homeSubmit.SelectType.periods,
-                        switch:this.switchObj,
                     },
                     isFormData:true,
                 }).then(r=>{
@@ -149,12 +147,6 @@
                 }
                 return [];
             },
-            switchObj(){
-                if(this.airforce.homeSubmit.SelectType_switch){
-                    return 1;
-                }
-                return 0;
-            }
         },
         mounted(){
             if(this.$router.currentRoute.query.editor == "true"){
