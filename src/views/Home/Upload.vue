@@ -6,6 +6,7 @@
         <images-upload inputOfFile="bank_card" text="上传还款的借记卡" toastText="还款的借记卡" :off="bank_card"></images-upload>
         <images-upload inputOfFile="payment_slip" text="上传投保人变更凭证" toastText="投保人变更凭证"></images-upload>
         <images-upload inputOfFile="safe_no" text="上传保险公司的收款账号" toastText="保险公司的收款账号"></images-upload>
+        <images-upload inputOfFile="gongzhang" text="上传公章扫描件" toastText="公章扫描件" :off="gongzhang"></images-upload>
         <x-switch class="homeXSwitch" title="是否上传额外附件" v-model="is_more"></x-switch>
         <div :class="(!is_more) ? 'is_more' : ''">
             <images-upload v-for="i in 9" :key="i" :inputOfFile="'vehicle_license'+i" :text="'额外的行驶证图片'+i" toastText="行驶证图片"></images-upload>
@@ -68,6 +69,11 @@
                 if(!this.airforce.homeSubmit.upload_safe_no ||
                     !this.airforce.homeSubmit.upload_safe_no.bool ){
                     this.$vux.toast.text("请上传保险公司收款账号");
+                    return;
+                }else
+                if(!this.airforce.homeSubmit.upload_gongzhang ||
+                    !this.airforce.homeSubmit.upload_gongzhang.bool ){
+                    this.$vux.toast.text("请上公章扫描件");
                     return;
                 }
                 let orderid = '';
@@ -155,6 +161,14 @@
                 if(data && data.bank_card && data.cartype == '2'
                 ){
                     return  this.url + data.bank_card;
+                };
+                return null;
+            },
+            gongzhang(){
+                var data = this.airforce.SelectType_post.data;
+                if(data && data.gongzhang && data.cartype == '2'
+                ){
+                    return  this.url + data.gongzhang;
                 };
                 return null;
             }
