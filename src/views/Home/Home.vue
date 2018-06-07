@@ -271,7 +271,35 @@
                             head_txt:"添加公司",
                             click:true,
                             clickfn:()=>{
-                                this.$router.push("/app/HomeLayout/addcompany")
+                                this.action({
+                                    moduleName:'getOrderNo',
+                                    method:"POST",
+                                    isFormData:true,
+                                    url:'app/Truck/order_no',
+                                    data:{
+                                        uid:this.airforce.login_post.data.uid,
+                                        token:this.airforce.login_post.data.token,
+                                    }
+                                }).then(res=>{
+                                    if(res.code != 200){
+                                        this.$vux.toast.text(res.message);
+                                        return;
+                                    }
+                                    if(res.data && res.data.order_no){
+                                        this.action({
+                                            moduleName:'homeSubmit',
+                                            goods:{
+                                                AddCompany_bank_card:null,
+                                                AddCompany_gongzhang:null,
+                                                AddCompany_idcard_back:null,
+                                                AddCompany_idcard_front:null,
+                                            }
+                                        });
+                                        this.$router.push("/app/HomeLayout/addcompany")
+                                    }
+                                }).catch(err=>{
+                                    this.$vux.toast.text(err);
+                                })
                             }
                         }
                     });

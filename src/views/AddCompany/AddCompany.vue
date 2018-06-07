@@ -22,7 +22,6 @@
         data(){
             return {
                 url:`${$$rootUrl}app/Truck/upphoto`,
-                orderNo:null,
                 prefix:'AddCompany_',
                 ossUrl:`app/Truck/upcardphone`
             }
@@ -50,7 +49,13 @@
             }
         },
         computed:{
-            ...mapGetters(['airforce'])
+            ...mapGetters(['airforce']),
+            orderNo(){
+                try {
+                    return this.airforce.getOrderNo.data.order_no;
+                }catch (e){}
+                return null;
+            }
         },
         mounted(){
             this.action({
@@ -59,26 +64,6 @@
                     marquee:"上传的证件照必须为原件拍摄，并且真实有效。如有造假，不予通过！"
                 }
             });
-            this.action({
-                moduleName:'getOrderNo',
-                method:"POST",
-                isFormData:true,
-                url:'app/Truck/order_no',
-                data:{
-                    uid:this.airforce.login_post.data.uid,
-                    token:this.airforce.login_post.data.token,
-                }
-            }).then(res=>{
-                if(res.code != 200){
-                    this.$vux.toast.text(res.message);
-                    return;
-                }
-                if(res.data && res.data.order_no){
-                    this.orderNo = res.data.order_no
-                }
-            }).catch(err=>{
-                this.$vux.toast.text(err);
-            })
         }
     }
 </script>

@@ -35,6 +35,7 @@
                 try {
                     if(this.airforce.layout && this.airforce.layout.click){
                         this.airforce.layout.clickfn();
+                        return;
                     }
                     if(this.airforce.layout && this.airforce.layout.icon_url){
                         this.$router.push(this.airforce.layout.icon_url);
