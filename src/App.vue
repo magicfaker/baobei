@@ -5,7 +5,7 @@
 
       <div id="appView" ref="appView">
           <loading v-model="isLoading"></loading>
-          <router-view/>
+          <router-view v-if="Refresh"/>
           <check-update :update="update"></check-update>
       </div>
       <previewer ref="previewer" :list="imgList" @on-close="closePreviewer"></previewer>
@@ -28,6 +28,7 @@ export default {
         path:null,
         isClosePreviewer:false,
         guidePageShow:false,
+        Refresh:true,
         banners:[
             {
                 url: 'javascript:',
@@ -58,6 +59,12 @@ export default {
   },
   methods:{
       ...mapActions(['action']),
+      onLoad(){
+          this.Refresh = false;
+          setTimeout(()=>{
+              this.Refresh = true;
+          })
+      },
       //路由返回处理
       notWhiteListBack(event){
           var  callback = new Function();
@@ -217,7 +224,7 @@ export default {
   }
   //*/
   /*
-  @Nb:"font_590408_fgip3g4snd5z5mi";
+  @Nb:"font_590408_l6p72mmr1zh";
   @font-face {
     font-family: 'iconfont';
     src: url('//at.alicdn.com/t/@{Nb}.eot');

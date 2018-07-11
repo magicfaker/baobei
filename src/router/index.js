@@ -58,6 +58,8 @@ export default new Router({
                               homeTabbarIndex: 2,
                           }
                         }),
+                        utils.importVueInit('ImageManagement/imageManagement', '/app/HomeLayout/imageManagement', '图片管理', {meta: {navShow: false}}),
+                        utils.importVueInit('ImageManagement/imageManagementDetails', '/app/HomeLayout/imageManagementDetails', '图片详情', {meta: {navShow: false}}),
                         utils.importVueInit('Tool/Cxjsq', '/app/HomeLayout/cxjsq', '车险分期计算器', {meta: {navShow: false}}),
                         utils.importVueInit('Tool/Hljs', '/app/HomeLayout/hljs', '汇率计算', {meta: {navShow: false}}),
                         utils.importVueInit('Tool/SelectRate', '/app/HomeLayout/selectrate', '币种切换', {meta: {navShow: false}}),

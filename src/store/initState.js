@@ -105,4 +105,8 @@ export default {
     },
     Tool:{},
     app_info:{},
+    imageManagementDetails:{},
+    imageManagement:{
+        selectFolder:{}
+    },
 }

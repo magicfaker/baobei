@@ -99,6 +99,10 @@ Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 Vue.use(ConfirmPlugin)
 
+//utilts工具引入
+import UtilsPlugin from "./utils/index"
+Vue.use(UtilsPlugin)
+
 /* 实例化 */
 new Vue({
   el: '#app',
