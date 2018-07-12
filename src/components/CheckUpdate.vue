@@ -60,12 +60,13 @@
           newUpdate(){
               if(this.update){
                   if(utils.isIosAndroid()){
-                      this.$vux.alert.show(
-                          {
-                              title:"软件更新提示",
-                              content:"暂不支持ios系统升级,如需升級请联系开发人员",
-                          }
-                      );
+                      plus.runtime.openURL( "itms-apps://itunes.apple.com/cn/app/%E4%BF%9D%E5%91%97%E8%BD%A6%E9%99%A9%E5%88%86%E6%9C%9F/id1183235116?mt=8" );
+                      // this.$vux.alert.show(
+                      //     {
+                      //         title:"软件更新提示",
+                      //         content:"暂不支持ios系统升级,如需升級请联系开发人员",
+                      //     }
+                      // );
                       return;
                   };
                   this.init();

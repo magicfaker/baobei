@@ -134,7 +134,7 @@
                         this.action({
                             moduleName:"imageManagement_list",
                             goods:{
-                                data:lists.concat([{type_name:this.airforce.imageManagement.selectFolder.type_name}])
+                                data:lists.concat([{type_name:this.airforce.imageManagement.selectFolder.type_name,id:res.data}])
                             }
                         });
                         this.$vux.toast.text("添加成功！");
