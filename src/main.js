@@ -94,10 +94,11 @@ router.afterEach(function (to) {
 
 Vue.config.productionTip = false
 // 弹出层引入
-import { AlertPlugin, ToastPlugin, ConfirmPlugin } from 'vux'
+import { AlertPlugin, ToastPlugin, ConfirmPlugin, LoadingPlugin } from 'vux'
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 Vue.use(ConfirmPlugin)
+Vue.use(LoadingPlugin)
 
 //utilts工具引入
 import UtilsPlugin from "./utils/index"

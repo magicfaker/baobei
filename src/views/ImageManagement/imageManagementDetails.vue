@@ -1,18 +1,14 @@
 <template>
     <div class="imageManagementDetails">
-        <flexbox :gutter="0" wrap="wrap">
-            <flexbox-item :span="1/3" v-for="item,index in list" :key="index" @click.native="show(index)">
-                <div class="folder" :style="{height:height}">
-                    <img class="previewer-demo-img" :src="item.src" width="100">
-                </div>
-            </flexbox-item>
-            <flexbox-item :span="1/3">
-                <label class="folder iconfont folderAdd" :style="{height:height,lineHeight:height}">
-                    &#xe60c;
-                    <input type="file" hidden @change="upload">
-                </label>
-            </flexbox-item>
-        </flexbox>
+        <group class="group">
+            <cell @click.native="previeweDemoImg(item,index)" :title="item.messige" v-for="(item,index) in list" is-link :value="item.count" :key="index">
+                <img class="previewer-demo-img" slot="icon" width="20" height="20" style="display:block;margin-right:5px;" :src="item.src">
+            </cell>
+            <label class="folder iconfont folderAdd">
+                &#xe60c;&nbsp;&nbsp;添加图片
+                <input type="file" hidden @change="upload">
+            </label>
+        </group>
         <div v-transfer-dom>
             <previewer :list="list" ref="previewer" :options="options" @on-index-change="logIndexChange" @on-close="onClose">
                 <div slot="button-after" v-if="airforce.imageManagement.saveImgs && airforce.imageManagement.saveImgs.messige" class="imageManagementDetailsDescribe">
@@ -34,14 +30,14 @@
 </template>
 
 <script>
-    import { Previewer, TransferDom, Flexbox, FlexboxItem, XButton, XInput, Group, XDialog } from 'vux'
+    import { Previewer, TransferDom, Flexbox, FlexboxItem, XButton, XInput, Group, XDialog, Cell } from 'vux'
     import { mapActions, mapGetters } from 'vuex'
     export default {
         directives: {
             TransferDom
         },
         name: "image-management-details",
-        components:{ Previewer, Flexbox, FlexboxItem, XButton, XInput, Group, XDialog },
+        components:{ Previewer, Flexbox, FlexboxItem, XButton, XInput, Group, XDialog, Cell },
         data(){return{
             index:3,
             showXDialog:false,
@@ -68,6 +64,10 @@
         }},
         methods:{
             ...mapActions(['action']),
+            previeweDemoImg(item,index){
+                this.$refs.previewer.show(index);
+                this.logIndexChange({currentIndex:index});
+            },
             logIndexChange (arg) {
                this.action({
                    moduleName:"imageManagement",
@@ -211,6 +211,12 @@
                             goods:null
                         });
                     }
+                    if(this.$route.query.imgId){
+                        var Index = _.findIndex(res.data,{id:this.$route.query.imgId})
+                        if(Index > -1){
+                            this.previeweDemoImg(null,Index);
+                        }
+                    }
                 }).catch(err=>{
                     this.$vux.toast.text(err);
                 });
@@ -241,7 +247,6 @@
 <style scoped lang="less">
 @import "../../assets/css/vars";
 .imageManagementDetails{
-    padding: 0 2px;
     .saveImgs{
         position:fixed;
         left: 15px;
@@ -280,11 +285,21 @@
 
         }
         &.folderAdd{
-            background-color: #e5e5e5;
-            font-size: 50px;
             text-align: center;
             color:@themeColor;
             display: block;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: @themeColor;
+            border: none;
+            border-radius: 0;
+            color: #ffffff;
+            line-height: 42px;
+            &:active{
+                background-color: @themeColor*0.9;
+            }
         }
     }
 }

@@ -14,6 +14,7 @@
     import ImagesUpload from "@/components/ImagesUpload.vue"
     import { mapActions, mapGetters } from "vuex"
     import { Box, XButton } from "vux"
+    import utils from "@/utils/utils.js"
     export default {
         name: "add-company",
         components:{
@@ -45,7 +46,23 @@
                     this.$vux.toast.text("请先上传公章扫描件");
                     return;
                 }
-                this.$router.push('/app/HomeLayout/addcompanyinfo');
+                this.$vux.loading.show();
+                this.action({
+                    moduleName:'ocrimg_post',
+                    method:"POST",
+                    url:"/index.php?g=admin&m=ocr&a=ocrimg",
+                    data:{
+                        imgUrl:this.airforce.homeSubmit.AddCompany_idcard_back.base64Url,
+                    },
+                    isFormData:true,
+                }).then(res=>{
+                    utils.isValidity.call(this,res,()=>{
+                        this.$router.push('/app/HomeLayout/addcompanyinfo');
+                    });
+                }).catch(err=>{
+                    this.$vux.loading.hide();
+                    this.$vux.alert.show({title:"温馨提示",content:"身份证反面验证失败，请重新上传或重新提交"});
+                });
             }
         },
         computed:{

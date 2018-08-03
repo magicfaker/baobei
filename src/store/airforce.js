@@ -63,6 +63,13 @@ const actions = {
         if (data.success) {
           data.success(res)
         }
+        //登录超时请重新登录
+        if(res.code === 10010){
+            commit(AIRFORCE_LEAVE, { data:{moduleName:'login_post'}});
+            delete localStorage.login_post;
+            VUX.toast.text(res.message);
+            VUX._this.$router.push("/Loogin");
+        };
         return res
       }).catch(e => {
         if (data.loading) {

@@ -171,38 +171,85 @@
                 }else {
                     orderid = this.airforce.home_post.data.orderid;
                 }
-                this.$store.commit('updateLoadingStatus', {isLoading: true})
+                this.$vux.loading.show();
+                //姓名验证
                 this.action({
-                   moduleName:"Authentication_post",
-                    method:"post",
-                    url:"app/installment/certification",
+                    moduleName:'ocrimg_post',
+                    method:"POST",
+                    url:"/index.php?g=admin&m=ocr&a=ocrimg",
                     data:{
-                        uid:this.airforce.login_post.data.uid,
-                        token:this.airforce.login_post.data.token,
-                        orderid:orderid,
-                        name:this.airforce.homeSubmit.auth_name,
-                        phone:this.airforce.homeSubmit.auth_phone,
-                        idcard:this.airforce.homeSubmit.auth_idCode,
-                        cardno:this.airforce.homeSubmit.auth_bankCode,
-                        role_name:this.airforce.homeSubmit.auth_linkman1,
-                        role:this.airforce.homeSubmit.auth_linkman1_SelectTxt,
-                        jjphone:this.airforce.homeSubmit.auth_linkman1_phone,
-                        role_2_name:this.airforce.homeSubmit.auth_linkman2,
-                        role_2:this.airforce.homeSubmit.auth_linkman2_SelectTxt,
-                        jjphone_2:this.airforce.homeSubmit.auth_linkman2_phone,
-                        cartype:cartype,
+                        imgUrl:this.url + this.airforce.SelectType_post.data.idcard_front,
                     },
                     isFormData:true,
                 }).then(res=>{
-                    this.$store.commit('updateLoadingStatus', {isLoading: false})
+                    this.$vux.loading.hide();
                     if(res.code != 200){
-                        this.$vux.toast.text(res.message);
+                        this.$vux.toast.show(res.message);
                         return;
                     }
-                    this.$router.push("/app/HomeLayout/pending");
+                    try {
+                        if(this.airforce.homeSubmit.auth_name != res.data.name){
+                            this.$vux.alert.show({title:"温馨提示",content:"身份证正面姓名与【法人代表】姓名不一致，请确认一致后再提交或重新上传证件"});
+                            return;
+                        }
+                        this.$vux.loading.show();
+                        //orc识别
+                        this.action({
+                            moduleName:'ocrimg_post',
+                            method:"POST",
+                            url:"/index.php?g=admin&m=ocr&a=ocrimg",
+                            data:{
+                                imgUrl:this.url + this.airforce.SelectType_post.data.idcard_back,
+                            },
+                            isFormData:true,
+                        }).then(ress=>{
+                            //有效期验证
+                            utils.isValidity.call(this,ress,()=>{
+                                //进件
+                                this.$store.commit('updateLoadingStatus', {isLoading: true})
+                                this.action({
+                                    moduleName:"Authentication_post",
+                                    method:"post",
+                                    url:"app/installment/certification",
+                                    data:{
+                                        uid:this.airforce.login_post.data.uid,
+                                        token:this.airforce.login_post.data.token,
+                                        orderid:orderid,
+                                        name:this.airforce.homeSubmit.auth_name,
+                                        phone:this.airforce.homeSubmit.auth_phone,
+                                        idcard:this.airforce.homeSubmit.auth_idCode,
+                                        cardno:this.airforce.homeSubmit.auth_bankCode,
+                                        role_name:this.airforce.homeSubmit.auth_linkman1,
+                                        role:this.airforce.homeSubmit.auth_linkman1_SelectTxt,
+                                        jjphone:this.airforce.homeSubmit.auth_linkman1_phone,
+                                        role_2_name:this.airforce.homeSubmit.auth_linkman2,
+                                        role_2:this.airforce.homeSubmit.auth_linkman2_SelectTxt,
+                                        jjphone_2:this.airforce.homeSubmit.auth_linkman2_phone,
+                                        cartype:cartype,
+                                    },
+                                    isFormData:true,
+                                }).then(res=>{
+                                    this.$store.commit('updateLoadingStatus', {isLoading: false})
+                                    if(res.code != 200){
+                                        this.$vux.toast.text(res.message);
+                                        return;
+                                    }
+                                    this.$router.push("/app/HomeLayout/pending");
+                                }).catch(err=>{
+                                    this.$store.commit('updateLoadingStatus', {isLoading: false})
+                                    this.$vux.toast.text(err);
+                                });
+                            },this.airforce.homeSubmit.SelectType.periods);
+                        }).catch(err=>{
+                            this.$vux.loading.hide();
+                            this.$vux.alert.show({title:"温馨提示",content:"身份证反面验证失败，请重新上传或重新提交"});
+                        });
+                    }catch (e){
+                        this.$vux.alert.show({title:"温馨提示",content:"身份证正面验证失败，请重新上传证件或重新提交"});
+                    }
                 }).catch(err=>{
-                    this.$store.commit('updateLoadingStatus', {isLoading: false})
-                    this.$vux.toast.text(err);
+                    this.$vux.loading.hide();
+                    this.$vux.alert.show({title:"温馨提示",content:"身份证正面验证失败，请重新上传证件或重新提交"});
                 });
             }
         },

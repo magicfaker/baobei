@@ -1,20 +1,36 @@
 <template>
-    <div class="imageManagement">
-        <flexbox :gutter="0" wrap="wrap">
-            <flexbox-item :span="1/index" v-for="item,i in list" :key="i">
-                <div class="folder" :style="{height:height}">
-                    <div class="folderIcon" @click="addFolder(item,i)">{{item.type_name}}</div>
-                    <div class="folderBody" @click="go(item)" v-if="item.first_img && item.first_img.length > 0" :style="{backgroundImage:`url('${item.first_img}')`}"></div>
-                    <div class="folderBody iconfont" @click="go(item)" v-else>&#xe75b;</div>
-                    <span class="index">({{item.count}})</span>
-                </div>
-            </flexbox-item>
-            <flexbox-item :span="1/index" @click.native="addFolder(null)">
-                <div class="folder" :style="{height:height}">
-                    <div class="folderBody iconfont">&#xe61d;</div>
-                </div>
-            </flexbox-item>
-        </flexbox>
+    <div class="imageManagement vux-1px-t">
+        <search @on-change="searchChange" :auto-fixed="false"></search>
+        <div class="notData" v-if="notData">无结果!</div>
+        <group class="group">
+            <swipeout>
+                <swipeout-item class="swipeout-item"  v-for="(item,index) in list" :key="index">
+                    <div slot="content">
+                        <cell v-if="sousuoVal.length == 0" @click.native="go(item)" :title="item.type_name" is-link :value="item.count">
+                            <img slot="icon" width="20"  height="20"  v-if="item.first_img && item.first_img.length > 0" style="display:block;margin-right:5px;" :src="item.first_img">
+                            <img slot="icon" width="20"  height="20" v-else style="display:block;margin-right:5px;" src="http://placeholder.qiniudn.com/20x20/d8d8d8/d8d8d8">
+                        </cell>
+                    </div>
+                    <div slot="right-menu">
+                        <swipeout-button @click.native="addFolder(item,index)" type="primary">修改名称</swipeout-button>
+                    </div>
+                </swipeout-item>
+            </swipeout>
+            <!--<cell v-if="sousuoVal.length == 0" @click.native="go(item)" :title="item.type_name" v-for="(item,index) in list" is-link :value="item.count" :key="index">-->
+                <!--<img slot="icon" width="20"  height="20"  v-if="item.first_img && item.first_img.length > 0" style="display:block;margin-right:5px;" :src="item.first_img">-->
+                <!--<img slot="icon" width="20"  height="20" v-else style="display:block;margin-right:5px;" src="http://placeholder.qiniudn.com/20x20/d8d8d8/d8d8d8">-->
+            <!--</cell>-->
+            <cell v-if="sousuoVal.length != 0" @click.native="go(item)" :title="item.type_name" v-for="(item,index) in list.type" is-link value="分类" :key="index">
+                <img slot="icon" width="20"  height="20"  v-if="item.first_img && item.first_img.length > 0" style="display:block;margin-right:5px;" :src="item.first_img">
+                <img slot="icon" width="20"  height="20" v-else style="display:block;margin-right:5px;" src="http://placeholder.qiniudn.com/20x20/d8d8d8/d8d8d8">
+            </cell>
+            <cell v-if="sousuoVal.length != 0" @click.native="go(item,true)" :title="item.messige" v-for="(item,index) in list.messige" is-link value="图片" :key="index+'messige'">
+                <img slot="icon" width="20"  height="20"  v-if="item.img && item.img.length > 0" style="display:block;margin-right:5px;" :src="item.img">
+                <img slot="icon" width="20"  height="20" v-else style="display:block;margin-right:5px;" src="http://placeholder.qiniudn.com/20x20/d8d8d8/d8d8d8">
+            </cell>
+            <x-button v-if="sousuoVal.length == 0" class="group-x-button" @click.native="addFolder(null)">添加分类</x-button>
+        </group>
+
         <div v-transfer-dom>
             <x-dialog v-model="show" :hideOnBlur="true" class="addFolderBox">
                 <h1 class="title" v-if="typeof airforce.imageManagement.index == 'number'">修改文件夹</h1>
@@ -30,17 +46,56 @@
 </template>
 
 <script>
-    import { Flexbox, FlexboxItem, XDialog,TransferDomDirective as TransferDom, Group, XInput, XButton  } from 'vux'
+    import { Flexbox, FlexboxItem, XDialog,TransferDomDirective as TransferDom, Group, XInput, XButton, Cell, Swipeout, SwipeoutItem, SwipeoutButton, Search  } from 'vux'
     import { mapGetters, mapActions } from "vuex"
     export default {
         name: "image-management",
-        components:{ Flexbox, FlexboxItem, XDialog, Group, XInput, XButton  },
+        components:{ Flexbox, FlexboxItem, XDialog, Group, XInput, XButton, Cell, Swipeout, SwipeoutItem, SwipeoutButton, Search  },
         data(){return{
             index:2,
-            show:false
+            show:false,
+            sousuoVal:''
         }},
         methods:{
             ...mapActions(['action']),
+            searchChange(v){
+                this.sousuoVal = v;
+                this.action({
+                    moduleName:"imageManagement_sousuo",
+                    method:"post",
+                    url:"App/Img/sousuo",
+                    isFormData:true,
+                    data:{
+                        token:this.airforce.login_post.data.token,
+                        uid:this.airforce.login_post.data.uid,
+                        messige:v
+                    }
+                }).then(res=>{
+                    if (res.code != 200){
+                        this.$vux.toast.text(res.message);
+                        return;
+                    };
+                    this.action({
+                        moduleName:"sousuoData",
+                        goods:null
+                    });
+                    try {
+                        const sousuoData = res.data.messige.map(e=>{
+                            try {
+                                e.img = JSON.parse(e.img)[0];
+                            }catch (ee){}
+                            return e;
+                        });
+                        res.data.messige = sousuoData;
+                    }catch (d){}
+                    this.action({
+                        moduleName:"sousuoData",
+                        goods:res.data
+                    });
+                }).catch(err=>{
+                    this.$vux.toast.text(err);
+                })
+            },
             addFolder(item,index){
                 if(item){
                     this.action({
@@ -146,14 +201,20 @@
                 }
 
             },
-            go(item){
+            go(item,bool){
                 this.action({
                     moduleName:"imageManagement",
                     goods:{
                         itemFolder:item,
                     }
-                })
-                this.$router.push("/app/HomeLayout/imageManagementDetails?id="+item.id)
+                });
+                var url = "/app/HomeLayout/imageManagementDetails?id=";
+                if(bool){
+                    url += item.type + "&imgId="+ item.i_id;
+                }else {
+                    url += item.id;
+                }
+                this.$router.push(url)
             }
         },
         directives: {
@@ -166,9 +227,19 @@
             },
             list(){
                 try {
+                    if(this.airforce.sousuoData && this.sousuoVal.length > 0){
+                        return this.airforce.sousuoData;
+                    }
                     return this.airforce.imageManagement_list.data;
                 }catch (e){
                     return [];
+                }
+            },
+            notData(){
+                try {
+                    return (this.sousuoVal.length != 0 && this.list.type.length == 0 && this.list.messige.length == 0);
+                }catch (e){
+                    return false;
                 }
             }
         },
@@ -197,7 +268,43 @@
 <style scoped lang="less">
 @import "../../assets/css/vars";
 .imageManagement{
-    padding: 15px;
+    &/deep/ .swipeout-item{
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px solid #D9D9D9;
+            color: #D9D9D9;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            left: 15px;
+            z-index: 4;
+        }
+    }
+    .notData{
+        text-align: center;
+        font-size: 12px;
+        line-height: 50px;
+        color: #9c9c9c;
+    }
+    .group-x-button{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: @themeColor;
+        border: none;
+        border-radius: 0;
+        color: #ffffff;
+        z-index: 5;
+        &:active{
+            background-color: @themeColor*0.9;
+        }
+    }
     .folder{
         width: 100%;
         position: relative;

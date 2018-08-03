@@ -3,14 +3,14 @@
         <swiper :list="banners" auto loop :show-desc-mask="false"></swiper>
         <group class="homeGroup">
             <flexbox>
-                <flexbox-item>
+                <flexbox-item v-if="airforce.login_post.data.is_flag == '2'">
                     <x-switch class="homeXSwitch" :inline-desc="fenqicheTypeTxt" title="分期车型" :value="airforce.homeSubmit.fenqicheType" @on-change="airforce.change.set($event,'fenqicheType','homeSubmit')"></x-switch>
                 </flexbox-item>
                 <flexbox-item>
                     <x-switch class="homeXSwitch" :inline-desc="chepaiTypeTxt" title="车牌情况" :value="airforce.homeSubmit.chepaiType" @on-change="airforce.change.set($event,'chepaiType','homeSubmit')"></x-switch>
                 </flexbox-item>
             </flexbox>
-            <cell title="隶属公司" :value="companyValue" is-link value-align="left" :class="`homeCell ${(airforce.homeSubmit.company)?'companySelect':''}`" @click.native="companySelect" v-if="airforce.homeSubmit.fenqicheType"></cell>
+            <cell title="隶属公司" :value="companyValue" is-link value-align="left" :class="`homeCell ${(airforce.homeSubmit.company)?'companySelect':''}`" @click.native="companySelect" v-if="airforce.homeSubmit.fenqicheType && airforce.login_post.data.is_flag == '2'"></cell>
             <x-input label-width="80px" title="车牌号码" placeholder="输入您的车牌号码" v-if="!airforce.homeSubmit.chepaiType" :value="airforce.homeSubmit.number" @on-change="airforce.change.set($event,'number','homeSubmit')"></x-input>
             <x-input type="number" label-width="80px" title="分期金额" placeholder="输入您要分期的总金额" :value="airforce.homeSubmit.money" @on-change="airforce.change.set($event,'money','homeSubmit')"></x-input>
             <select-picker :data="fenqiType"
@@ -323,31 +323,37 @@
             Swiper, XInput, Group, Flexbox, FlexboxItem, Cell, Box, XButton, XSwitch, Selector, PopupHeader, Popup, Radio, Search, PopupPicker
         },
         created(){
-            this.action({
-                moduleName:'all_company_post',
-                method:"POST",
-                url:"app/truck/all_company",
-                data:this.airforce.login_post.data,
-                isFormData:true,
-            }).then(e=>{
-                if(e.code != 200){
-                    this.$vux.toast.text(e.message);
-                    return;
-                }
-                this.action({
-                    moduleName: 'all_company_post',
-                    goods:{
-                        data: this.airforce.all_company_post.data.map(d=>{
-                            d.key = d.cid;
-                            d.value = d.cname;
-                            return d;
-                        })
-                    }
-                });
+            switch (this.airforce.login_post.data.is_flag){
+                case "2":
+                    this.action({
+                        moduleName:'all_company_post',
+                        method:"POST",
+                        url:"app/truck/all_company",
+                        data:this.airforce.login_post.data,
+                        isFormData:true,
+                    }).then(e=>{
+                        if(e.code != 200){
+                            this.$vux.toast.text(e.message);
+                            return;
+                        }
+                        this.action({
+                            moduleName: 'all_company_post',
+                            goods:{
+                                data: this.airforce.all_company_post.data.map(d=>{
+                                    d.key = d.cid;
+                                    d.value = d.cname;
+                                    return d;
+                                })
+                            }
+                        });
 
-            }).catch(e=>{
-                this.$vux.toast.text(e);
-            });
+                    }).catch(e=>{
+                        this.$vux.toast.text(e);
+                    });
+                    break;
+                default:
+                    break;
+            }
             this.action({
                 moduleName:'rateList_post',
                 isFormData:true,

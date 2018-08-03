@@ -1,4 +1,5 @@
 import importVue from 'import-vue'
+import { dateFormat } from 'vux'
 export default {
   isEmail (email) {
     return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(email)
@@ -316,5 +317,76 @@ export default {
             bool = false;
         }
         return bool;
+    },
+    /**
+     * @判断有效期
+     * @param res 验证的数据
+     * @param callback 满足条件回调，验证通过
+     * @param periods 分期期数
+     */
+    isValidity(res,callback,periods){
+        this.$vux.loading.hide();
+        if(res.code != 200){
+            this.$vux.toast.show(res.message);
+            return;
+        }
+        const toastTxt = "身份证反面验证失败，请重新上传或重新提交";
+        try {
+            if(res.data.validity){
+                const validity = res.data.validity.split("-");
+                if(res.data.validity.indexOf("长期") < 0){
+                    if(validity.length < 2){
+                        this.$vux.alert.show({title:"温馨提示",content:toastTxt});
+                    }else {
+                        let isMonth = false;
+                        const Datavalidity = validity.map((str,strIndex)=>{
+                            let strrep = str.replace(/\.|年|月|日/img,"");
+                            let strend = " 00:00:00";
+                            if(strIndex = 1){
+                                if(strrep.replace(/\s/img,"").length == 6){
+                                    strend = "";
+                                    isMonth = true;
+                                }else {
+                                    strend = " 23:59:59";
+                                }
+                            }
+                            const time = strrep.match(/(?:\d{1,2})/img).map((e,i,d)=>i < 2?e+d[i+1]:e).filter((e,i)=>i != 1).join(" ") + strend;
+                            const timeData = new Date(time);
+                            return timeData.getTime();
+                        });
+                        let getTime = new Date().getTime();
+                        if(periods && periods.toString()){
+                            let getDateFormat = dateFormat(new Date(), 'YYYY MM DD HH:mm:ss').split(" ");
+                            if(isMonth){
+                                getDateFormat = dateFormat(new Date(), 'YYYY MM').split(" ");
+                            }
+                            getDateFormat[1] = +getDateFormat[1] + periods;
+                            if(getDateFormat[1] > 12){
+                                getDateFormat[0] = +getDateFormat[0] + 1;
+                                getDateFormat[1] -= 12;
+                            }
+                            getTime = new Date(getDateFormat).getTime();
+                        }
+                        if(Datavalidity[1] >= getTime){
+                            //通过
+                            callback();
+                        }else {
+                            if(periods && periods.toString()){
+                                this.$vux.alert.show({title:"温馨提示",content:"借款期限与身份证有效期不匹配，请重新上传或重新选择分期数"});
+                            }else {
+                                this.$vux.alert.show({title:"温馨提示",content:"身份证有效期限失效，请重新上传"});
+                            }
+                        }
+                    }
+                }else {
+                    //通过
+                    callback();
+                }
+            }else {
+                this.$vux.alert.show({title:"温馨提示",content:toastTxt});
+            }
+        }catch (e){
+            this.$vux.alert.show({title:"温馨提示",content:toastTxt});
+        }
     }
 }

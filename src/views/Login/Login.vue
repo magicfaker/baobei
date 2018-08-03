@@ -80,6 +80,8 @@
         mounted(){
             //13757478025
             //ok6520814
+            this.$store.commit('updateLoadingStatus', {isLoading: false})
+            this.$vux.loading.hide();
         },
         components:{
             XInput,

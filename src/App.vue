@@ -17,6 +17,7 @@ import { Loading, Previewer, Swiper } from 'vux'
 import Hammer from 'hammerjs'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import CheckUpdate from '@/components/CheckUpdate.vue'
+
 export default {
   name: 'App',
   data(){
@@ -67,12 +68,14 @@ export default {
       },
       //路由返回处理
       notWhiteListBack(event){
+          //白名单
+          let whiteList = ["车险分期","分期订单","工具","我的","登录"];
           var  callback = new Function();
           if(typeof event == "function"){
               callback = event;
+          }else {
+              whiteList = whiteList.concat(["图片管理","图片详情"]);
           };
-          //白名单
-          const whiteList = ["车险分期","分期订单","工具","我的","登录"];
           if(!whiteList.some(title=>{return title == this.airforce.layout.title; })){
               if(this.isClosePreviewer){
                   this.$refs.previewer.close();
@@ -129,6 +132,10 @@ export default {
               this.path = this.$router.currentRoute.path;
           }
       },
+  },
+  created(){
+      this.$vux._this = this
+      window.VUX = this.$vux
   },
   mounted(){
       var time = setInterval(()=>{
