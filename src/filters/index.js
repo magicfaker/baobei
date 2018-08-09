@@ -1,5 +1,5 @@
 import { dateFormat } from  "vux"
-module.exports = {
+export default {
     dateFormat(val,str,bool){
         if(bool){
             var d = new Date();

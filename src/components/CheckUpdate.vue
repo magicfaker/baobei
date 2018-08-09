@@ -12,7 +12,7 @@
 
 <script>
     import { XDialog, XProgress} from "vux"
-    import utils from "@/utils/utils.js"
+    import utils from "@/utils/index.js"
     export default {
         name: "check-update",
         components:{

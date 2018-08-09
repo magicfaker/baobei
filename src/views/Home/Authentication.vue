@@ -37,7 +37,7 @@
     import { XInput,Group,XImg, Box, XButton  } from "vux"
     import SelectPicker from "@/components/select.vue"
     import { mapGetters, mapActions } from "vuex"
-    import utils from "@/utils/utils.js"
+    import utils from "@/utils/index.js"
     export default {
         name: "authentication",
         components:{

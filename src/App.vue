@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-      <!--引导页-->
       <swiper class="guidePage" v-if="guidePageShow" :list="banners" :show-desc-mask="false"></swiper>
 
       <div id="appView" ref="appView">
@@ -53,13 +52,13 @@ export default {
       Loading, CheckUpdate, Previewer, Swiper
   },
   computed: {
-      ...mapGetters(['airforce']),
+      // ...mapGetters(['airforce']),
       ...mapState({
           isLoading: state => state.vux.isLoading,
-      })
+      }),
   },
   methods:{
-      ...mapActions(['action']),
+      // ...mapActions(['action']),
       onLoad(){
           this.Refresh = false;
           setTimeout(()=>{

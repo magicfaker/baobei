@@ -2,14 +2,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store'
+import store from 'store-vue'
 // 引入plus封装
 import '@/assets/js/plus.js'
-import * as filters from './filters/index'
-// 注册过滤器
-Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
-})
+// import * as filters from './filters/index'
+// // 注册过滤器
+// Object.keys(filters).forEach(key => {
+//   Vue.filter(key, filters[key])
+// })
 // 页面切换loading加载动画
 store.registerModule('vux', {
   state: {
@@ -100,9 +100,9 @@ Vue.use(ToastPlugin)
 Vue.use(ConfirmPlugin)
 Vue.use(LoadingPlugin)
 
-//utilts工具引入
-import UtilsPlugin from "./utils/index"
-Vue.use(UtilsPlugin)
+// //utilts工具引入
+// import UtilsPlugin from "./utils/index"
+// Vue.use(UtilsPlugin)
 
 /* 实例化 */
 new Vue({

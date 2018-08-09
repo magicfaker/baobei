@@ -21,7 +21,7 @@
 <script>
     import {XInput, Group, XButton, Box, Flexbox, FlexboxItem, XImg } from "vux"
     import { mapActions, mapGetters } from 'vuex'
-    import Utils from "@/utils/utils.js"
+    import Utils from "@/utils/index.js"
     export default {
         name: "login",
         data(){

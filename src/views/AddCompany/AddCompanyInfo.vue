@@ -38,7 +38,7 @@
 <script>
     import { XInput, Group, Box, XButton, XImg } from "vux"
     import { mapActions, mapGetters } from "vuex"
-    import Utils from "@/utils/utils.js"
+    import Utils from "@/utils/index.js"
     import SelectPicker from "@/components/select.vue"
     export default {
         name: "add-company-info",

@@ -377,7 +377,7 @@
             }).catch(err=>{
                 this.$vux.toast.text(err);
             })
-        }
+        },
     }
 </script>
 

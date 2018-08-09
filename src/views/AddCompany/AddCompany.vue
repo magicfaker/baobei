@@ -14,7 +14,7 @@
     import ImagesUpload from "@/components/ImagesUpload.vue"
     import { mapActions, mapGetters } from "vuex"
     import { Box, XButton } from "vux"
-    import utils from "@/utils/utils.js"
+    import utils from "@/utils/index.js"
     export default {
         name: "add-company",
         components:{

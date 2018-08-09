@@ -23,7 +23,7 @@
     import LayoutHeader from '../Layout/LayoutHeader'
     import {XInput, Group, XButton, Box, Flexbox, FlexboxItem, md5 } from "vux"
     import { mapActions, mapGetters } from 'vuex'
-    import Utils from '@/utils/utils.js'
+    import Utils from '@/utils/index.js'
     export default {
         name: "ForgetPwd",
         data(){
