@@ -342,7 +342,7 @@ export default {
                         const Datavalidity = validity.map((str,strIndex)=>{
                             let strrep = str.replace(/\.|年|月|日/img,"");
                             let strend = " 00:00:00";
-                            if(strIndex = 1){
+                            if(strIndex == 1){
                                 if(strrep.replace(/\s/img,"").length == 6){
                                     strend = "";
                                     isMonth = true;
