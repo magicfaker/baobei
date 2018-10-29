@@ -157,6 +157,34 @@
                     this.$vux.toast.text("请输入正确的<br>【身份证号码】");
                     return
                 }
+                this.$store.commit('updateLoadingStatus', {isLoading: true})
+                this.action({
+                    moduleName:'AddCompanyInfo_post',
+                    method:"POST",
+                    isFormData:true,
+                    url:'app/Truck/huoche_certification',
+                    data:_.merge({
+                        uid:this.airforce.login_post.data.uid,
+                        token:this.airforce.login_post.data.token,
+                        order_no:this.airforce.getOrderNo.data.order_no,
+                        role:this.airforce.AddCompanyInfo.role_name_SelectTxt,
+                        role_2:this.airforce.AddCompanyInfo.role_2_name_SelectTxt,
+                    },this.airforce.AddCompanyInfo)
+                }).then(res=>{
+                    this.$store.commit('updateLoadingStatus', {isLoading: false})
+                    if(res.code != 200){
+                        this.$vux.toast.text(res.message);
+                        return;
+                    }
+                    this.$vux.toast.text("添加成功");
+                    setTimeout(()=>{
+                        this.$router.push('/app/HomeLayout/home');
+                    },500);
+                }).catch(err=>{
+                    this.$store.commit('updateLoadingStatus', {isLoading: false})
+                    this.$vux.toast.text(err);
+                });
+                /*
                 this.$vux.loading.show();
                 this.action({
                     moduleName:'ocrimg_post',
@@ -210,7 +238,7 @@
                 }).catch(err=>{
                     this.$vux.loading.hide();
                     this.$vux.alert.show({title:"温馨提示",content:"身份证正面验证失败，请重新上传或重新提交"});
-                });
+                });*/
             }
         },
         computed:{
