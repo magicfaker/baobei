@@ -5,6 +5,7 @@
             <cell-box link="hljs" class="list">汇率计算</cell-box>
             <cell-box is-link link="" class="list" @click.native="alerts">房产分期</cell-box>
             <cell-box is-link link="imageManagement" class="list">图片管理</cell-box>
+            <cell-box is-link link="Depository" class="list">存管管理</cell-box>
         </div>
     </div>
 

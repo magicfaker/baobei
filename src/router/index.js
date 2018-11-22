@@ -59,6 +59,8 @@ export default new Router({
                           }
                         }),
                         importVueInit('ImageManagement/imageManagement', '/app/HomeLayout/imageManagement', '图片管理', {meta: {navShow: false}}),
+                        importVueInit('Depository/Depository', '/app/HomeLayout/Depository', '存管管理', {meta: {navShow: false}}),
+                        importVueInit('Depository/DepositoryData', '/app/HomeLayout/DepositoryData', '存管资料补全', {meta: {navShow: false}}),
                         importVueInit('ImageManagement/imageManagementDetails', '/app/HomeLayout/imageManagementDetails', '图片详情', {meta: {navShow: false}}),
                         importVueInit('Tool/Cxjsq', '/app/HomeLayout/cxjsq', '车险分期计算器', {meta: {navShow: false}}),
                         importVueInit('Tool/Hljs', '/app/HomeLayout/hljs', '汇率计算', {meta: {navShow: false}}),
