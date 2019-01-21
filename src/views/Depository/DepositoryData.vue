@@ -1,6 +1,6 @@
 <template>
     <div class="DepositoryData">
-        
+
     </div>
 </template>
 
